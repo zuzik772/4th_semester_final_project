@@ -6,3 +6,14 @@
 * {
   font-family: "Roboto", sans-serif;
 }
+
+nav img {
+  width: 1.5rem;
+}
+
+nav li *{
+  display: flex;
+  gap: 3px;
+  font-size: large;
+  font-weight: 600;
+}
