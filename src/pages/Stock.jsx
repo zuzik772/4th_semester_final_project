@@ -1,10 +1,8 @@
-import Nav from "../components/Nav";
-
+import Maintitle from "../components/MainTitle";
 export default function Stock() {
   return (
-    <div>
-      <Nav />
-      <span className="font-bold text-3xl">Stock</span>
-    </div>
+    <>
+      <Maintitle title="Stock overview" />
+    </>
   );
 }

@@ -1,10 +1,8 @@
-import Nav from "../components/Nav";
-
+import Maintitle from "../components/MainTitle";
 export default function Manual() {
   return (
-    <div>
-      <Nav />
-      <span className="font-bold text-3xl">Manual</span>
-    </div>
+    <>
+      <Maintitle title="Table of contents" />
+    </>
   );
 }

@@ -1,10 +1,10 @@
-import Nav from "../components/Nav";
+import MainTitle from "../components/MainTitle";
 
 export default function Dashboard() {
   return (
-    <div>
-      <Nav />
-      <span className="font-bold text-3xl">Dashboard</span>
+    <div className="p-4">
+      <MainTitle title="date for dashboard" />
+      
     </div>
   );
 }

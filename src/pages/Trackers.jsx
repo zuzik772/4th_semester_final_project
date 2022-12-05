@@ -1,10 +1,8 @@
-import Nav from "../components/Nav";
-
+import Maintitle from "../components/MainTitle";
 export default function Trackers() {
   return (
-    <div>
-      <Nav />
-      <span className="font-bold text-3xl">Trackers</span>
-    </div>
+    <>
+      <Maintitle title="Crashpad rental tracker" />
+    </>
   );
 }

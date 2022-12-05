@@ -1,10 +1,8 @@
-import Nav from "../components/Nav";
-
-export default function Posts() {
+import Maintitle from "../components/MainTitle";
+export default function Posts(props) {
   return (
-    <div>
-      <Nav />
-      <span className="font-bold text-3xl">Posts</span>
-    </div>
+    <>
+      <Maintitle title="write new post" />
+    </>
   );
 }

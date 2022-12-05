@@ -1,10 +1,8 @@
-import Nav from "../components/Nav";
-
+import Maintitle from "../components/MainTitle";
 export default function Deliveries() {
   return (
-    <div>
-      <Nav />
-      <span className="font-bold text-3xl">Deliveries</span>
-    </div>
+    <>
+      <Maintitle title="date for deliveries" />
+    </>
   );
 }
