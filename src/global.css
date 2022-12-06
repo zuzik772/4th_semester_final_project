@@ -17,3 +17,7 @@ nav li * {
   font-size: large;
   font-weight: 600;
 }
+
+input::placeholder {
+  color: #202021;
+}
