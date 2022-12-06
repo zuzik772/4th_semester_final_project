@@ -16,7 +16,7 @@ export default function Sidebar() {
 
   return (
     <div>
-      <nav className="bg-light w-fit h-screen p-10">
+      <nav className="bg-light w-56 h-screen p-8">
         <ul className="flex flex-col gap-6">
           <li>
             <Link to="/" className={isActive ? "text-accent" : "text-dark"}>
