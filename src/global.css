@@ -16,6 +16,13 @@ nav li * {
   gap: 3px;
   font-size: large;
   font-weight: 600;
+  text-transform: uppercase;
+}
+
+nav li span {
+  font-size: small;
+  font-weight: 500;
+  margin-left: 2rem;
 }
 
 input::placeholder {

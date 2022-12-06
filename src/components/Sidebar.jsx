@@ -17,7 +17,7 @@ export default function Sidebar() {
   return (
     <div>
       <nav className="bg-light w-fit h-screen p-10">
-        <ul className="flex flex-col gap-8">
+        <ul className="flex flex-col gap-6">
           <li>
             <Link to="/" className={isActive ? "text-accent" : "text-dark"}>
               <img src={dashboard} alt="dashboard icon" />
@@ -41,6 +41,12 @@ export default function Sidebar() {
               <img src={trackers} alt="trackers icon" />
               Trackers
             </Link>
+            <span>Lost & Found</span>
+            <span>Consent form</span>
+            <span>Closing receipts</span>
+            <span>Food waste</span>
+            <span>Crashpad rental</span>
+            <span>Cleaning shoes</span>
           </li>
           <li>
             <Link to="/stock" className={isActive ? "text-accent" : "text-dark"}>
