@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import dashboard from "../img/dashboard.png";
+import dashboard from "../img/dashboard.svg";
 import deliveries from "../img/deliveries.png";
 import trackers from "../img/trackers.png";
 import posts from "../img/posts.png";
