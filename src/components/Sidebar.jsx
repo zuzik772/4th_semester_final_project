@@ -41,7 +41,7 @@ export default function Sidebar() {
           <li>
             <Link to="/stock" className={isActive ? "text-accent" : "text-dark"}>
               <img src={stock} alt="stock icon" />
-              Stock
+              Inventory
             </Link>
           </li>
           <li>
