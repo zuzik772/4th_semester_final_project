@@ -8,6 +8,7 @@ module.exports = {
       dark: "#202021",
       accent: "#E07B23",
       fadedAccent: "#FFC18A",
+      white: "#FDFDFD",
     },
     fontFamily: {
       mainFont: ["Roboto", "sans-serif"],
