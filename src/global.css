@@ -23,6 +23,7 @@ nav li span {
   font-size: small;
   font-weight: 500;
   margin-left: 2rem;
+  opacity: 0.5;
 }
 
 input::placeholder {
