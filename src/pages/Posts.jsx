@@ -1,7 +1,7 @@
 import MainTitle from "../components/MainTitle";
 export default function Posts(props) {
   return (
-    <main className=" w-11/12 lg:w-3/5 p-0 sm:p-6 block lg:grid gap-6">
+    <main className="w-11/12 lg:w-3/5 p-0 sm:p-6 sm:pl-12 block lg:grid gap-6">
       <div>
         <MainTitle title="Posts" />
       </div>
@@ -25,20 +25,20 @@ export default function Posts(props) {
         </div>
       </div>
       <div>
-        <h3 className="text-lg font-semibold">Old Posts</h3>
-        <div className="flex flex-col bg-light p-6 col-span-3 mb-5 lg:mb-0">
-          <div className="flex gap-2">
-            <span className="bg-fadedBlue w-6 h-6 p-2 rounded-full flex items-center justify-center cursor-pointerfont-bold text-xs font-medium cursor-pointer">
+        <h3 className="text-lg font-semibold pl-6">Old Posts</h3>
+        <div className="flex flex-col gap-2 bg-light p-6 col-span-3 mb-5 lg:mb-0">
+          <div className="flex gap-2 items-center">
+            <span className="bg-fadedBlue w-10 h-10 p-2 rounded-full flex items-center justify-center cursor-pointerfont-bold text-md font-medium cursor-pointer">
               AS
             </span>
-            <span>Agata Szulc</span>
+            <span className="font-medium">Agata Szulc</span>
           </div>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt unde ratione rerum illum
             magnam tenetur. Expedita, officiis illo facilis repudiandae odit nesciunt, minus harum
             laborum facere vitae eveniet aperiam libero?
           </p>
-          <div className="flex">
+          <div className="flex gap-2">
             <span>icon</span>
             <span>10</span>
           </div>
