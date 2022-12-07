@@ -1,6 +1,6 @@
 export default function DashboardSubtitle(props) {
   return (
-    <div className="flex gap-1 uppercase font-semibold">
+    <div className="flex gap-1 uppercase font-semibold p-2 sm:p-0">
       <img
         src={props.iconSource}
         alt={props.iconDescription}

@@ -19,6 +19,13 @@ nav li * {
   text-transform: uppercase;
 }
 
+@media only screen and (max-width: 640px) {
+  nav li * {
+    font-size: small;
+    font-weight: 500;
+  }
+}
+
 nav li span {
   font-size: small;
   font-weight: 500;
@@ -38,4 +45,8 @@ input {
 button,
 label {
   font-weight: 500;
+}
+
+tr th {
+  border-left: solid 2px grey;
 }

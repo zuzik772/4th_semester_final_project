@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <Nav />
-      <div className="flex">
+      <div className="block sm:flex">
         <BrowserRouter>
           <Sidebar />
           <Routes>

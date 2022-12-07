@@ -16,26 +16,41 @@ export default function Sidebar() {
 
   return (
     <div>
-      <nav className="bg-light w-56 h-screen p-8">
-        <ul className="flex flex-col gap-6">
-          <li>
-            <Link to="/" className={isActive ? "text-accent" : "text-dark"}>
-              <img src={dashboard} alt="dashboard icon" />
-              Dashboard
-            </Link>
-          </li>
-          <li>
-            <Link to="/posts" className={isActive ? "text-accent" : "text-dark"}>
-              <img src={posts} alt="posts icon" />
-              Posts
-            </Link>
-          </li>
-          <li>
-            <Link to="/deliveries" className={isActive ? "text-accent" : "text-dark"}>
-              <img src={deliveries} alt="deliveries icon" />
-              Deliveries
-            </Link>
-          </li>
+      <nav className="bg-light w-full sm:w-56 h-full p-2 sm:p-8">
+        <ul className="flex sm:flex-col gap-2 sm:gap-6 ">
+          <div className="grid sm:flex sm:flex-col gap-2 sm:gap-6 ">
+            <li>
+              <Link to="/" className={isActive ? "text-accent" : "text-dark"}>
+                <img src={dashboard} alt="dashboard icon" />
+                Dashboard
+              </Link>
+            </li>
+            <li>
+              <Link to="/posts" className={isActive ? "text-accent" : "text-dark"}>
+                <img src={posts} alt="posts icon" />
+                Posts
+              </Link>
+            </li>
+            <li>
+              <Link to="/deliveries" className={isActive ? "text-accent" : "text-dark"}>
+                <img src={deliveries} alt="deliveries icon" />
+                Deliveries
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/stock" className={isActive ? "text-accent" : "text-dark"}>
+                <img src={stock} alt="stock icon" />
+                Inventory
+              </Link>
+            </li>
+            <li>
+              <Link to="/manual" className={isActive ? "text-accent" : "text-dark"}>
+                <img src={manual} alt="manual icon" />
+                Manual
+              </Link>
+            </li>
+          </div>
           <li>
             <Link to="/trackers" className={isActive ? "text-accent" : "text-dark"}>
               <img src={trackers} alt="trackers icon" />
@@ -47,18 +62,6 @@ export default function Sidebar() {
             <span>Food waste</span>
             <span>Crashpad rental</span>
             <span>Cleaning shoes</span>
-          </li>
-          <li>
-            <Link to="/stock" className={isActive ? "text-accent" : "text-dark"}>
-              <img src={stock} alt="stock icon" />
-              Inventory
-            </Link>
-          </li>
-          <li>
-            <Link to="/manual" className={isActive ? "text-accent" : "text-dark"}>
-              <img src={manual} alt="manual icon" />
-              Manual
-            </Link>
           </li>
         </ul>
       </nav>

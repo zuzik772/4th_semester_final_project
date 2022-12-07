@@ -7,11 +7,11 @@ import SpecialOfferItem from "../components/SpecialOfferItem";
 import DashboardSubtitle from "../components/DashboardSubtitle";
 export default function Dashboard() {
   return (
-    <main className="p-6 grid grid-cols-4 gap-6 w-screen h-fit">
+    <main className="p-0 sm:p-6 block lg:grid grid-cols-4 gap-6 w-full h-fit">
       <div className="col-span-3">
         <MainTitle title="Dashboard" />
       </div>
-      <div className="row-span-3 p-2">
+      <div className="row-span-3 p-0 sm:p-2 mb-5 lg:mb-0">
         <DashboardSubtitle
           title="Tasks"
           iconSource={deliveries}
@@ -19,7 +19,7 @@ export default function Dashboard() {
         />
         <Tasks />
       </div>
-      <div className="flex flex-col gap-4 h-fit bg-light p-6">
+      <div className="flex flex-col gap-4 h-fit bg-light p-2 sm:p-6 mb-5 lg:mb-0">
         <DashboardSubtitle
           title="Bookings"
           iconSource={deliveries}
@@ -27,7 +27,7 @@ export default function Dashboard() {
         />
         <Cards />
       </div>
-      <div className="flex flex-col gap-4 h-fit bg-light p-6">
+      <div className="flex flex-col gap-4 h-fit bg-light p-2 sm:p-6 mb-5 lg:mb-0">
         <DashboardSubtitle
           title="Deliveries"
           iconSource={deliveries}
@@ -35,7 +35,7 @@ export default function Dashboard() {
         />
         <Cards />
       </div>
-      <div className="flex flex-col gap-4 h-fit py-6 px-4 border-l-2 border-accent rounded-none">
+      <div className="flex flex-col gap-4 h-fit py-6 pl-4 border-l-2 border-accent rounded-none mb-5 lg:mb-0">
         <DashboardSubtitle
           title="Special offers"
           iconSource={deliveries}
@@ -53,7 +53,7 @@ export default function Dashboard() {
         <SpecialOfferItem
           title="Loyalty program"
           discount="10% OFF from shakes for members only"
-          expiration={"valid until 01/12/2022"}
+          expiration={"valid until 31/01/2023"}
         />
         <SpecialOfferItem
           title="Christmas pass"
@@ -62,7 +62,7 @@ export default function Dashboard() {
         />
       </div>
 
-      <div className=" bg-light p-6">
+      <div className=" bg-light p-6 col-span-3 mb-5 lg:mb-0">
         <DashboardSubtitle
           title="Schedule"
           iconSource={deliveries}
