@@ -9,6 +9,7 @@ module.exports = {
       accent: "#E07B23",
       fadedAccent: "#FFC18A",
       white: "#FDFDFD",
+      fadedBlue: "#639AF1",
     },
     fontFamily: {
       mainFont: ["Roboto", "sans-serif"],

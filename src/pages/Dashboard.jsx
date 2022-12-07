@@ -7,11 +7,19 @@ import SpecialOfferItem from "../components/SpecialOfferItem";
 import DashboardSubtitle from "../components/DashboardSubtitle";
 export default function Dashboard() {
   return (
-    <main className="p-8 grid grid-cols-4 gap-8 w-screen h-fit">
-      <div className="col-span-4">
+    <main className="p-6 grid grid-cols-4 gap-6 w-screen h-fit">
+      <div className="col-span-3">
         <MainTitle title="Dashboard" />
       </div>
-      <div className="flex flex-col gap-4 h-fit bg-light p-8">
+      <div className="row-span-3 p-2">
+        <DashboardSubtitle
+          title="Tasks"
+          iconSource={deliveries}
+          iconDescription="deliveries icon"
+        />
+        <Tasks />
+      </div>
+      <div className="flex flex-col gap-4 h-fit bg-light p-6">
         <DashboardSubtitle
           title="Bookings"
           iconSource={deliveries}
@@ -19,7 +27,7 @@ export default function Dashboard() {
         />
         <Cards />
       </div>
-      <div className="flex flex-col gap-4 h-fit bg-light p-8">
+      <div className="flex flex-col gap-4 h-fit bg-light p-6">
         <DashboardSubtitle
           title="Deliveries"
           iconSource={deliveries}
@@ -27,7 +35,7 @@ export default function Dashboard() {
         />
         <Cards />
       </div>
-      <div className="flex flex-col gap-4 h-fit p-8 border-l-2 border-accent rounded-none">
+      <div className="flex flex-col gap-4 h-fit py-6 px-4 border-l-2 border-accent rounded-none">
         <DashboardSubtitle
           title="Special offers"
           iconSource={deliveries}
@@ -53,15 +61,8 @@ export default function Dashboard() {
           expiration={"valid until 31/01/2023"}
         />
       </div>
-      <div>
-        <DashboardSubtitle
-          title="Tasks"
-          iconSource={deliveries}
-          iconDescription="deliveries icon"
-        />
-        <Tasks />
-      </div>
-      <div className=" bg-light p-8">
+
+      <div className=" bg-light p-6">
         <DashboardSubtitle
           title="Schedule"
           iconSource={deliveries}

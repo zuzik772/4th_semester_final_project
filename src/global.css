@@ -34,3 +34,8 @@ div,
 input {
   border-radius: 0.375rem;
 }
+
+button,
+label {
+  font-weight: 500;
+}
