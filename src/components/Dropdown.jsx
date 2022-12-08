@@ -4,7 +4,7 @@ export default function Dropdown() {
     <select
       name="gym"
       id="gym"
-      className="minimal rounded-xl py-1 px-4 font-medium border-2 outline-none border-fadedBlue hover:border-b-4 absolute top-8 right-24"
+      className="hidden md:block minimal rounded-xl py-1 px-4 font-medium border-2 outline-none border-fadedBlue hover:border-b-4 "
     >
       <option value="west" defaultValue>
         Beta West
