@@ -9,6 +9,7 @@
 
 img {
   width: 1.5rem;
+  border-radius: 0.5rem;
 }
 
 nav li * {
@@ -49,4 +50,10 @@ label {
 
 tr th {
   border-left: solid 2px grey;
+}
+
+figcaption {
+  font-style: italic;
+  font-size: small;
+  text-align: center;
 }
