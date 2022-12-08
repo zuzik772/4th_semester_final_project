@@ -4,7 +4,7 @@ import matcha2 from "../img/matcha2.webp";
 import matcha3 from "../img/matcha3.webp";
 import SeenBypeople from "../components/icons/SeenByPeople";
 import Attachment from "../components/icons/Attachment";
-
+import CTA from "../components/CTA";
 export default function Posts(props) {
   return (
     <main className="w-full lg:w-3/5 p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
@@ -27,7 +27,7 @@ export default function Posts(props) {
             <Attachment />
             <span className="font-medium text-sm">add attachment</span>
           </div>
-          <button className="bg-accent text-white rounded-lg px-4 py-1">Add post</button>
+          <CTA title="Add post" />
         </div>
       </div>
       {/* new posts */}

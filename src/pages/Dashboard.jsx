@@ -9,7 +9,7 @@ export default function Dashboard() {
   return (
     <main className="p-0 sm:p-6 block lg:grid grid-cols-4 gap-6 w-full h-fit">
       <div className="col-span-3">
-        <MainTitle title="Dashboard" />
+        <MainTitle title="Dashboard" date={"Tuesday, 6th of December 2022"} />
       </div>
       <div className="row-span-3 p-0 sm:p-2 mb-5 lg:mb-0">
         <DashboardSubtitle

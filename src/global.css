@@ -49,7 +49,17 @@ label {
 }
 
 tr th {
-  border-left: solid 2px grey;
+  border-bottom: solid 2px #f2f2f2;
+  text-transform: uppercase;
+}
+
+td {
+  border-bottom: solid 2px #f2f2f2;
+  padding: 1rem;
+}
+
+tr {
+  text-align: center;
 }
 
 figcaption {
