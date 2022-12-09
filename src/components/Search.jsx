@@ -7,7 +7,7 @@ export default function Search() {
         type="text"
         name="search"
         placeholder="Search"
-        className="font-bold text-md outline-none text-dark bg-darkerLight w-full h-10"
+        className="font-bold text-md outline-none text-dark bg-darkerLight w-full h-10 border-none rounded-md  focus:ring-darkerLight dark:focus:ring-darkerLight"
       ></input>
     </div>
   );
