@@ -4,7 +4,7 @@ import deliveries from "../img/deliveries.png";
 import trackers from "../img/trackers.png";
 import posts from "../img/posts.png";
 import manual from "../img/manual.png";
-import stock from "../img/stock.png";
+import inventory from "../img/stock.png";
 import { useState } from "react";
 
 export default function Sidebar() {
@@ -34,8 +34,8 @@ export default function Sidebar() {
             </li>
 
             <li>
-              <Link to="/stock" className={isActive ? "text-accent" : "text-dark"}>
-                <img src={stock} alt="stock icon" />
+              <Link to="/inventory" className={isActive ? "text-accent" : "text-dark"}>
+                <img src={inventory} alt="inventory icon" />
                 Inventory
               </Link>
             </li>
