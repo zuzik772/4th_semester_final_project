@@ -25,12 +25,7 @@ export default function Sidebar() {
                 Dashboard
               </Link>
             </li>
-            <li>
-              <Link to="/posts" className={isActive ? "text-accent" : "text-dark"}>
-                <img src={posts} alt="posts icon" />
-                Posts
-              </Link>
-            </li>
+
             <li>
               <Link to="/deliveries" className={isActive ? "text-accent" : "text-dark"}>
                 <img src={deliveries} alt="deliveries icon" />
@@ -50,18 +45,24 @@ export default function Sidebar() {
                 Manual
               </Link>
             </li>
+            <li>
+              <Link to="/posts" className={isActive ? "text-accent" : "text-dark"}>
+                <img src={posts} alt="posts icon" />
+                Posts
+              </Link>
+            </li>
           </div>
           <li>
             <Link to="/trackers" className={isActive ? "text-accent" : "text-dark"}>
               <img src={trackers} alt="trackers icon" />
               Trackers
             </Link>
-            <span>Lost & Found</span>
-            <span>Consent form</span>
-            <span>Closing receipts</span>
-            <span>Food waste</span>
-            <span>Crashpad rental</span>
             <span>Cleaning shoes</span>
+            <span>Closing receipts</span>
+            <span>Consent form</span>
+            <span>Crashpad rental</span>
+            <span>Food waste</span>
+            <span>Lost & Found</span>
           </li>
         </ul>
       </nav>
