@@ -9,7 +9,7 @@ export default function Tasks() {
         <button className="rounded-t-lg bg-darkerLight  p-0 sm:p-3 py-1">Daily</button>
         <button className="rounded-t-lg bg-darkerLight  p-0 sm:p-3 py-1">Closing</button>
       </div>
-      <ul className="flex flex-col gap-6 bg-light px-4 lg:px-8 py-6">
+      <ul className="flex flex-col gap-6 bg-light px-2 lg:pl-2 xl:px-6 py-6">
         <TasksListItem title="cleaning coffee machine" desc="see manual" />
         <TasksListItem title="cleaning coffee machine" desc="see manual" />
         <TasksListItem title="cleaning coffee machine" desc="see manual" />

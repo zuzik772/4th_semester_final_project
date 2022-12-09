@@ -7,11 +7,11 @@ import SpecialOfferItem from "../components/SpecialOfferItem";
 import DashboardSubtitle from "../components/DashboardSubtitle";
 export default function Dashboard() {
   return (
-    <main className="p-0 sm:p-6 block lg:grid grid-cols-4 gap-6 w-full h-fit">
+    <main className="p-0 sm:p-6 sm:pr-1 block lg:grid grid-cols-4 gap-6 w-full h-fit">
       <div className="col-span-3">
         <MainTitle title="Dashboard" date={"Tuesday, 6th of December 2022"} />
       </div>
-      <div className="row-span-3 p-0 sm:p-2 mb-5 lg:mb-0">
+      <div className="min-w-fit row-span-3 p-0 sm:p-2 mb-5 lg:mb-0">
         <DashboardSubtitle
           title="Tasks"
           iconSource={deliveries}
@@ -19,7 +19,7 @@ export default function Dashboard() {
         />
         <Tasks />
       </div>
-      <div className="flex flex-col gap-4 h-fit bg-light p-2 sm:p-6 mb-5 lg:mb-0">
+      <div className="flex flex-col gap-4 h-fit p-2 sm:p-6 mb-5 lg:mb-0">
         <DashboardSubtitle
           title="Bookings"
           iconSource={deliveries}
@@ -27,7 +27,7 @@ export default function Dashboard() {
         />
         <Cards />
       </div>
-      <div className="flex flex-col gap-4 h-fit bg-light p-2 sm:p-6 mb-5 lg:mb-0">
+      <div className="flex flex-col gap-4 h-fit p-2 sm:p-6 mb-5 lg:mb-0">
         <DashboardSubtitle
           title="Deliveries"
           iconSource={deliveries}
