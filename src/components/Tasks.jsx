@@ -14,7 +14,7 @@ export default function Tasks() {
         <TasksListItem title="cleaning coffee machine" desc="see manual" />
         <TasksListItem title="cleaning coffee machine" desc="see manual" />
       </ul>
-      <div className="bg-light py-6 lg:py-12">
+      <div className="bg-light py-6 lg:py-12 h-full">
         <h4 className="font-medium pl-6">Done</h4>
         <TasksDoneItem title="cleaning coffee machine" desc="see manual" />
         <TasksDoneItem title="cleaning coffee machine" desc="see manual" />

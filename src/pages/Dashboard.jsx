@@ -11,7 +11,7 @@ export default function Dashboard() {
       <div className="col-span-3">
         <MainTitle title="Dashboard" date={"Tuesday, 6th of December 2022"} />
       </div>
-      <div className="min-w-fit row-span-3 p-0 sm:p-2 mb-5 lg:mb-0">
+      <div className="min-w-fit row-span-4 p-0 sm:p-2 mb-5 lg:mb-0">
         <DashboardSubtitle
           title="Tasks"
           iconSource={deliveries}
@@ -35,12 +35,24 @@ export default function Dashboard() {
         />
         <Cards />
       </div>
-      <div className="flex flex-col gap-4 h-fit py-6 pl-4 border-l-2 border-accent rounded-none mb-5 lg:mb-0">
+      <div className="flex flex-col gap-4 h-fit p-2 sm:p-6 mb-5 lg:mb-0">
         <DashboardSubtitle
-          title="Special offers"
+          title="Schedule"
           iconSource={deliveries}
           iconDescription="deliveries icon"
         />
+        <Cards />
+      </div>
+
+      {/* special offers */}
+      <div className="col-span-3 grid grid-cols-3 gap-4 h-fit py-6 pl-4 mb-5 lg:mb-0">
+        <div className="col-span-3">
+          <DashboardSubtitle
+            title="Special offers"
+            iconSource={deliveries}
+            iconDescription="deliveries icon"
+          />
+        </div>
         {/* <div className="flex gap-1 uppercase font-semibold">
           <img src={deliveries} alt="deliveries icon" className="border-b-4 border-accent " />
           <h3>Special offers</h3>
@@ -61,15 +73,14 @@ export default function Dashboard() {
           expiration={"valid until 31/01/2023"}
         />
       </div>
-
-      <div className=" bg-light p-6 col-span-3 mb-5 lg:mb-0">
+      {/* <div className="col-span-2 p-6 mb-5 lg:mb-0">
         <DashboardSubtitle
           title="Schedule"
           iconSource={deliveries}
           iconDescription="deliveries icon"
         />
         <Schedule />
-      </div>
+      </div> */}
     </main>
   );
 }
