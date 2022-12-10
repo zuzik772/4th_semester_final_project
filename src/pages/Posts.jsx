@@ -2,7 +2,7 @@ import MainTitle from "../components/MainTitle";
 import matcha1 from "../img/matcha1.webp";
 import matcha2 from "../img/matcha2.webp";
 import matcha3 from "../img/matcha3.webp";
-import SeenBypeople from "../components/icons/SeenByPeople";
+import SeenByPeople from "../components/icons/SeenByPeople";
 import Attachment from "../components/icons/Attachment";
 import CTA from "../components/CTA";
 export default function Posts(props) {
@@ -56,7 +56,7 @@ export default function Posts(props) {
           </p>
 
           <div className="flex gap-1 items-center justify-end">
-            <SeenBypeople />
+            <SeenByPeople />
             <span className="font-medium text-sm">10</span>
           </div>
         </div>
@@ -101,7 +101,7 @@ export default function Posts(props) {
           </div>
 
           <div className="flex gap-1 items-center justify-end">
-            <SeenBypeople />
+            <SeenByPeople />
             <span className="font-medium text-sm">21</span>
           </div>
         </div>

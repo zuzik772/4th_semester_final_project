@@ -1,4 +1,4 @@
-export default function DashboardSubtitle(props) {
+export default function DashboardCardHeadline(props) {
   return (
     <div className="flex gap-1 uppercase font-semibold p-2 sm:p-0">
       <img
