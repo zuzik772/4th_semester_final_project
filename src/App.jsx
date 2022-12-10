@@ -12,14 +12,14 @@ function App() {
   return (
     <div className="App">
       <Nav />
-      <div className="flex">
+      <div className="block sm:flex">
         <BrowserRouter>
           <Sidebar />
           <Routes>
             <Route index element={<Dashboard />} />
             <Route path="/posts" element={<Posts />} />
             <Route path="/deliveries" element={<Deliveries />} />
-            <Route path="/stock" element={<Inventory />} />
+            <Route path="/inventory" element={<Inventory />} />
             <Route path="/trackers" element={<Trackers />} />
             <Route path="/manual" element={<Manual />} />
           </Routes>
