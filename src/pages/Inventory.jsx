@@ -3,13 +3,21 @@ import CTA from "../components/CTA";
 import AmountInput from "../components/AmountInput";
 import removeIcon from "../img/trash.png";
 import FilterButton from "../components/FilterButton";
+import { useState } from "react";
+import ModalInventory from "../components/ModalInventory";
 export default function Inventory() {
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   return (
     <main className="w-full 2xl:w-3/5 h-fit p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
       <div className="flex flex-wrap sm:flex-nowrap justify-between">
         <MainTitle title="Inventory overview" />
-        <CTA title="Add item" />
+        <CTA title="Add item" handleCTA={handleShow} />
       </div>
+      {show ? <ModalInventory handleCTA={handleClose} /> : null}
+
       <div className="flex flex-wrap gap-2 my-6 text-center">
         <FilterButton title="All" />
         <FilterButton title="Bars" />
