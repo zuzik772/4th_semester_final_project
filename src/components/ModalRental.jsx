@@ -87,7 +87,7 @@ export default function ModalRental(props) {
               </div>
             </div>
             {/* <!-- Modal footer --> */}
-            <div className="flex justify-end p-6 ">
+            <div className="flex justify-end p-6 pt-0">
               <CTA title="Add rental" />
             </div>
           </div>

@@ -15,8 +15,8 @@ export default function Posts(props) {
       <div className="flex flex-col gap-2 bg-light p-5 mb-5 lg:mb-0">
         <h3 className="text-lg font-semibold">Write new post</h3>
         <textarea
-          name=""
-          id=""
+          name="post"
+          id="post"
           cols="30"
           rows="3"
           className="rounded-lg outline-none p-2"

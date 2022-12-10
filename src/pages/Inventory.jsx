@@ -4,8 +4,7 @@ import AmountInput from "../components/AmountInput";
 import removeIcon from "../img/trash.png";
 import FilterButton from "../components/FilterButton";
 import { useState } from "react";
-// import ModalInventory from "../components/ModalInventory";
-import ModalRental from "../components/ModalRental";
+import ModalInventory from "../components/ModalInventory";
 export default function Inventory() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -17,7 +16,7 @@ export default function Inventory() {
         <MainTitle title="Inventory overview" />
         <CTA title="Add item" handleModal={handleShow} />
       </div>
-      {show ? <ModalRental handleModal={handleClose} /> : null}
+      {show ? <ModalInventory handleModal={handleClose} /> : null}
 
       <div className="flex flex-wrap gap-2 my-6 text-center">
         <FilterButton title="All" />

@@ -4,7 +4,7 @@ export default function AmountInput(props) {
       type="number"
       amount={props.amount}
       className={
-        "w-20 outline-none text-dark border-accent rounded-md  focus:ring-darkerLight dark:focus:ring-darkerLight"
+        "w-20 rounded-lg outline-none p-2 border-darkerLight hover:border-accent focus:border-accent focus:ring-0 dark:focus:ring-0"
       }
     />
   );
