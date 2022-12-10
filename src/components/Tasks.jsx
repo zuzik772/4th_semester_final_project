@@ -1,5 +1,4 @@
 import TaskItem from "./TaskItem";
-import TasksDoneItem from "./TasksDoneItem";
 
 export default function Tasks() {
   return (

@@ -10,7 +10,7 @@ export default function Inventory() {
         <MainTitle title="Inventory overview" />
         <CTA title="Add item" />
       </div>
-      <div className="flex flex-wrap gap-2 my-6">
+      <div className="flex flex-wrap gap-2 my-6 text-center">
         <FilterButton title="All" />
         <FilterButton title="Bars" />
         <FilterButton title="Beer" />
