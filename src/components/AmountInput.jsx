@@ -1,5 +1,6 @@
 export default function AmountInput(props) {
   return (
+    
     <input
       type="number"
       amount={props.amount}
