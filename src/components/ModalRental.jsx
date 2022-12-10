@@ -1,7 +1,7 @@
 import CTA from "./CTA";
 import RequiredIcon from "./icons/RequiredIcon";
 import CloseIcon from "./icons/CloseIcon";
-export default function ModalInventory(props) {
+export default function ModalRental(props) {
   return (
     <div className="bg-dark fixed top-0 left-0 right-0 z-50 h-screen flex place-content-center items-center">
       <div
@@ -15,7 +15,7 @@ export default function ModalInventory(props) {
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             {/* <!-- Modal header --> */}
             <div className="flex items-center justify-between p-5 border-b rounded-t dark:border-gray-600">
-              <h3 className="text-xl font-medium">Add item</h3>
+              <h3 className="text-xl font-medium">Add rental</h3>
               <button
                 type="button"
                 className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
@@ -29,21 +29,34 @@ export default function ModalInventory(props) {
             {/* <!-- Modal body --> */}
             <div className="p-5">
               <div className="flex flex-col gap-0.5">
-                <label htmlFor="item" className="flex pt-2">
-                  Item
+                <label htmlFor="name" className="flex pt-2">
+                  Name
                   <RequiredIcon />
                 </label>
                 <input
                   type="text"
-                  placeholder="Product name"
+                  placeholder="Customer name"
                   required
                   className="p-0 border-none placeholder:text-darkerLight bg-white w-full rounded-md  focus:ring-0 dark:focus:ring-0 focus:bg-white"
                 />
                 <span className="border-t-2 border-t-accent"></span>
               </div>
               <div className="flex flex-col gap-0.5 mt-4">
-                <label htmlFor="amount" className="flex pt-2">
-                  Amount
+                <label htmlFor="betaTag" className="flex pt-2">
+                  Beta tag
+                  <RequiredIcon />
+                </label>
+                <input
+                  type="text"
+                  placeholder="Scan beta tag"
+                  required
+                  className="p-0 border-none placeholder:text-darkerLight bg-white w-full rounded-md  focus:ring-0 dark:focus:ring-0 focus:bg-white"
+                />
+                <span className="border-t-2 border-t-accent"></span>
+              </div>
+              <div className="flex flex-col gap-1 mt-4">
+                <label htmlFor="items" className="flex mt-6">
+                  Items
                   <RequiredIcon />
                 </label>
                 <div className="flex gap-2">
@@ -52,41 +65,30 @@ export default function ModalInventory(props) {
                     required
                     className="w-20 border-darkerLight bg-white rounded-md  focus:ring-0 dark:focus:ring-0 focus:bg-light focus:border-accent"
                   />
-                  <select
-                    id="unit"
-                    className="w-fit border-darkerLight bg-white rounded-md  focus:ring-0 dark:focus:ring-0 focus:bg-light focus:border-accent "
-                  >
-                    <option value="pieces" defaultValue>
-                      pcs
-                    </option>
-                    <option value="gram">g</option>
-                    <option value="bags">bags</option>
-                    <option value="litres">litres</option>
-                  </select>
+                  <label htmlFor="doubleCrashpad" className="flex py-2 font-normal">
+                    Double crashpad
+                  </label>
+                </div>
+                <div className="flex gap-2">
+                  <input
+                    type="number"
+                    required
+                    className="w-20 border-darkerLight bg-white rounded-md  focus:ring-0 dark:focus:ring-0 focus:bg-light focus:border-accent"
+                  />
+                  <label htmlFor="tripleCrashpad" className="flex py-2 font-normal">
+                    Triple crashpad
+                  </label>
                 </div>
               </div>
               <div className="mt-6">
-                <label htmlFor="expiration" className="flex pt-2">
-                  Expiry date
+                <label htmlFor="expiration" className="flex py-2 ">
+                  Rental period
                 </label>
-              </div>
-              <div className="flex flex-col gap-0.5 mt-6">
-                <label htmlFor="item" className="flex pt-2">
-                  Link to order
-                  <RequiredIcon />
-                </label>
-                <input
-                  type="text"
-                  placeholder="Website's URL"
-                  required
-                  className="p-0 border-none placeholder:text-darkerLight bg-white w-full rounded-md  focus:ring-0 dark:focus:ring-0 focus:bg-white"
-                />
-                <span className="border-t-2 border-t-accent"></span>
               </div>
             </div>
             {/* <!-- Modal footer --> */}
             <div className="flex justify-end p-6 ">
-              <CTA title="Add item" />
+              <CTA title="Add rental" />
             </div>
           </div>
         </div>
