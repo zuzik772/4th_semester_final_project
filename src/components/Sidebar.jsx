@@ -20,7 +20,7 @@ export default function Sidebar() {
         <ul className="flex sm:flex-col gap-2 sm:gap-6 ">
           <div className="grid sm:flex sm:flex-col gap-2 sm:gap-6 ">
             <li>
-              <Link to="/" className={isActive ? "text-accent" : "text-dark"}>
+              <Link to="/dashboard" className={isActive ? "text-accent" : "text-dark"}>
                 <img src={dashboard} alt="dashboard icon" />
                 Dashboard
               </Link>

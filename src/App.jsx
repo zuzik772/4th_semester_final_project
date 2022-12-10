@@ -8,15 +8,18 @@ import Inventory from "./pages/Inventory";
 import Trackers from "./pages/Trackers";
 import Nav from "./components/Nav";
 import Sidebar from "./components/Sidebar";
+import Login from "./pages/Login";
 function App() {
+  const isLoggedIn = false;
   return (
     <div className="App">
-      <Nav />
+      {isLoggedIn ? <Nav /> : null}
       <div className="block sm:flex">
         <BrowserRouter>
-          <Sidebar />
+          {isLoggedIn ? <Sidebar /> : null}
           <Routes>
-            <Route index element={<Dashboard />} />
+            <Route index element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/posts" element={<Posts />} />
             <Route path="/deliveries" element={<Deliveries />} />
             <Route path="/inventory" element={<Inventory />} />
