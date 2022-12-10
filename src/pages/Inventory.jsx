@@ -14,9 +14,9 @@ export default function Inventory() {
     <main className="w-full 2xl:w-3/5 h-fit p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
       <div className="flex flex-wrap sm:flex-nowrap justify-between">
         <MainTitle title="Inventory overview" />
-        <CTA title="Add item" handleModal={handleShow} />
+        <CTA title="Add item" handleCTA={handleShow} />
       </div>
-      {show ? <ModalInventory handleModal={handleClose} /> : null}
+      {show ? <ModalInventory handleCTA={handleClose} /> : null}
 
       <div className="flex flex-wrap gap-2 my-6 text-center">
         <FilterButton title="All" />
