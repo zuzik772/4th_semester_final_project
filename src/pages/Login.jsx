@@ -1,8 +1,11 @@
-// import Logo from "../components/Logo";
+import { Link } from "react-router-dom";
 import cover from "../img/login_cover.webp";
 import darkLogo from "../img/black_logo.png";
 import RequiredIcon from "../components/icons/RequiredIcon";
-export default function Login() {
+export default function Login(props) {
+  function Login() {
+    props.setIsLoggedIn(true);
+  }
   return (
     <div className="grid sm:grid-cols-2 bg-light h-screen">
       <div className="flex flex-col justify-evenly items-center">
@@ -14,7 +17,7 @@ export default function Login() {
           </div>
           <form className="flex flex-col gap-6 w-60 sm:w-80">
             <div>
-              <label for="username" className="flex text-sm">
+              <label htmlFor="username" className="flex text-sm">
                 Username
                 <RequiredIcon />
               </label>
@@ -28,7 +31,7 @@ export default function Login() {
               />
             </div>
             <div>
-              <label for="password" className="flex text-sm">
+              <label htmlFor="password" className="flex text-sm">
                 Password
                 <RequiredIcon />
               </label>
@@ -43,9 +46,15 @@ export default function Login() {
             </div>
           </form>
           <div className="flex flex-col gap-1 items-center">
-            <button type="submit" className="bg-accent text-white rounded-lg px-4 py-1 h-fit w-40">
-              Sign in
-            </button>
+            <Link to="/dashboard">
+              <button
+                type="submit"
+                className="bg-accent text-white rounded-lg px-4 py-1 h-fit w-40"
+                onClick={Login}
+              >
+                Sign in
+              </button>
+            </Link>
             <span className="text-xs opacity-70">Have a good working day!</span>
           </div>
         </div>
@@ -58,13 +67,5 @@ export default function Login() {
         />
       </div>
     </div>
-
-    // <input
-    //   type="number"
-    //   amount={props.amount}
-    //   className={
-    //     "w-20 outline-none text-dark border-accent rounded-md  focus:ring-darkerLight dark:focus:ring-darkerLight"
-    //   }
-    // />
   );
 }

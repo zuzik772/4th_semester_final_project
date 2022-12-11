@@ -9,16 +9,17 @@ import Trackers from "./pages/Trackers";
 import Nav from "./components/Nav";
 import Sidebar from "./components/Sidebar";
 import Login from "./pages/Login";
+import { useState } from "react";
 function App() {
-  const isLoggedIn = false;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className="App">
-      {isLoggedIn ? <Nav /> : null}
+      {isLoggedIn && <Nav setIsLoggedIn={setIsLoggedIn} />}
       <div className="block sm:flex">
         <BrowserRouter>
-          {isLoggedIn ? <Sidebar /> : null}
+          {isLoggedIn && <Sidebar />}
           <Routes>
-            <Route index element={<Login />} />
+            <Route index element={<Login setIsLoggedIn={setIsLoggedIn} />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/posts" element={<Posts />} />
             <Route path="/deliveries" element={<Deliveries />} />
