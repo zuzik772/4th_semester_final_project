@@ -34,6 +34,10 @@ nav li span {
   opacity: 0.5;
 }
 
+li:hover {
+  color: #e07b23;
+}
+
 input::placeholder {
   color: #202021;
 }
