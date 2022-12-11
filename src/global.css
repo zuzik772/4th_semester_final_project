@@ -35,8 +35,9 @@ nav li span {
 }
 
 input::placeholder {
-  color: #202021;
+  color: #5c5c5c;
 }
+
 
 div,
 input {
