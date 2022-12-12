@@ -14,9 +14,9 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className="App">
-      {isLoggedIn && <Nav setIsLoggedIn={setIsLoggedIn} />}
-      <div className="block sm:flex">
-        <BrowserRouter>
+      <BrowserRouter>
+        {isLoggedIn && <Nav setIsLoggedIn={setIsLoggedIn} />}
+        <div className="block sm:flex">
           {isLoggedIn && <Sidebar />}
           <Routes>
             <Route index element={<Login setIsLoggedIn={setIsLoggedIn} />} />
@@ -27,8 +27,8 @@ function App() {
             <Route path="/trackers" element={<Trackers />} />
             <Route path="/manual" element={<Manual />} />
           </Routes>
-        </BrowserRouter>
-      </div>
+        </div>
+      </BrowserRouter>
     </div>
   );
 }

@@ -12,14 +12,14 @@ export default function Posts(props) {
         <MainTitle title="Posts" />
       </div>
 
-      <div className="flex flex-col gap-2 bg-light p-5 mb-5 lg:mb-0">
+      <div className="flex flex-col gap-2 bg-light p-2 sm:p-5 mb-5 lg:mb-0">
         <h3 className="text-lg font-semibold">Write new post</h3>
         <textarea
           name=""
           id=""
           cols="30"
           rows="3"
-          className="rounded-lg outline-none p-2"
+          className="p-2 rounded-lg outline-none border-darkerLight  focus:ring-0 focus:border-accent dark:focus:ring-0"
           placeholder="Write here"
         ></textarea>
         <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-2">
@@ -33,7 +33,7 @@ export default function Posts(props) {
       {/* new posts */}
       <div className="mt-6">
         <h3 className="text-lg font-semibold">New Posts</h3>
-        <div className="flex flex-col gap-2 bg-light p-5 col-span-3 mb-5 lg:mb-0">
+        <div className="flex flex-col gap-2 bg-light p-2 sm:p-5 col-span-3 mb-5 lg:mb-0">
           <div className="flex gap-2 items-center">
             <span className="bg-fadedBlue w-10 h-10 p-2 rounded-full flex items-center justify-center cursor-pointerfont-bold text-md font-medium cursor-pointer">
               AS
@@ -43,16 +43,14 @@ export default function Posts(props) {
               <span className="font-light text-xs">22. nov 2022 9:58</span>
             </div>
           </div>
-          <h4 className="text-md font-medium mt-2">Ventilation</h4>
+          <h4 className="text-md font-medium mt-2">Pilates</h4>
           <p>
-            The ventilation will automatically start before your shift starts. The times are
-            automatic during weekdays - 6am to 8am and weekend - 7am to 9am. When you arrive - leave
-            it on for the period you are there and let me know if it correctly turns off at the time
-            above.
+            Now we offer pilates as a part of our flexibility program. Pilates is mind-mody exercise
+            that will help you to improve your mental state along with your body flexibility.
           </p>
           <p>
-            If it doesn't or does let me know please so I can reprogram it for the morning earlier
-            (not to disturb customers)
+            You can reserve a spot at our pilates class online and then just show up when its time
+            for you class.
           </p>
 
           <div className="flex gap-1 items-center justify-end">
@@ -64,7 +62,7 @@ export default function Posts(props) {
       {/* old posts */}
       <div className="mt-6">
         <h3 className="text-lg font-semibold">Old Posts</h3>
-        <div className="flex flex-col gap-2 bg-light p-5 col-span-3 mb-5 lg:mb-0">
+        <div className="flex flex-col gap-2 bg-light p-2 sm:p-5 col-span-3 mb-5 lg:mb-0">
           <div className="flex gap-2 items-center">
             <span className="bg-fadedBlue w-10 h-10 p-2 rounded-full flex items-center justify-center cursor-pointerfont-bold text-md font-medium cursor-pointer">
               AS
@@ -78,11 +76,10 @@ export default function Posts(props) {
 
           <ol className="list-decimal pl-4 text-sm leading-6">
             <li>Mix 1 tablespoon of matcha in yellow cup</li>
-            <li>Pour a tiny bit hot water for 2 seconds from the coffee machine</li>
-            <li>Whisk it well to dissolve the matcha (with wooden whisk)</li>
-            <li>Steam the (oat) milk (Big pitcher filled up to the spout)</li>
-            <li>Pour the milk on top of the dissolved matcha</li>
-            <li>After making matcha, make sure to properly clean wooden whisk with hot water.</li>
+            <li>Add a little bit of hot water to mix it.</li>
+            <li>Start by sifting your matcha powder. Spend a while on it.</li>
+            <li>Now your matcha latte will be smooth, creamy & lump-free.</li>
+            <li>Steam the milk and pour it on top of the dissolved matcha</li>
           </ol>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 justify-center">
             <figure>

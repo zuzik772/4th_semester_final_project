@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import Menu from "./Menu";
 export default function Profile(props) {
   const [toggle, setToggle] = useState(false);
@@ -8,6 +9,7 @@ export default function Profile(props) {
       <button onClick={() => setToggle(!toggle)} className="font-bold text-xl">
         AS
       </button>
+
       {toggle && <Menu setIsLoggedIn={props.setIsLoggedIn} />}
     </div>
   );
