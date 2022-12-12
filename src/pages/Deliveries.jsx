@@ -41,24 +41,6 @@ export default function Deliveries() {
             start: new Date("2022-12-12T04:00:00.000Z"),
             title: "Toilet paper",
           },
-          {
-            allDay: false,
-            end: new Date("2022-12-12T22:00:00.000Z"),
-            start: new Date("2022-12-12T14:00:00.000Z"),
-            title: "Booking",
-          },
-          {
-            allDay: false,
-            end: new Date("2022-12-12T20:00:00.000Z"),
-            start: new Date("2022-12-12T19:00:00.000Z"),
-            title: "Yoga",
-          },
-          {
-            allDay: false,
-            end: new Date("2022-12-15T15:37:46.766Z"),
-            start: new Date("2022-12-12T15:37:46.766Z"),
-            title: "Crashpad rental",
-          },
         ]}
       />
     </main>
