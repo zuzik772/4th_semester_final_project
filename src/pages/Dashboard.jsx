@@ -4,12 +4,14 @@ import Tasks from "../components/Tasks";
 import deliveries from "../img/deliveries.png";
 import SpecialOfferItem from "../components/SpecialOfferItem";
 import DashboardCardHeadline from "../components/DashboardCardHeadline";
+import moment from "moment";
 export default function Dashboard() {
   return (
     <main className="p-0 sm:p-6 sm:pr-1 block lg:grid grid-cols-4 gap-4 xl:gap-8 w-full h-fit">
       <div className="col-span-3">
         <MainTitle title="Dashboard" />
-        <span className="p-2 sm:p-0">Tuesday, 6th of December 2022</span>
+
+        <span className="p-2 sm:p-0">{moment().format("MMMM Do YYYY")}</span>
       </div>
       {/* special offers */}
       <div className="col-span-3 grid grid-cols-3 gap-4 md:gap-8 h-fit pb-6 lg:mb-0">

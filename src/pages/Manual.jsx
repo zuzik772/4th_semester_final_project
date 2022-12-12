@@ -6,16 +6,17 @@ export default function Manual() {
     <main className="w-full md:w-11/12 lg:w-3/5 p-2 sm:p-6 sm:pl-6 block lg:grid gap-6">
       <div>
         <MainTitle title="Manual" />
+        <p className="text-xs opacity-75 mb-4">Gain the expertise in all the areas</p>
       </div>
 
       <div className="flex flex-col gap-2 p-5 mb-5 lg:mb-0">
         <h3 className="text-lg font-bold">Table of contents</h3>
         <ol type="A" className="list-decimal ml-6 leading-8">
           <li>
-            <a href="#customerQuestions">Customer questions</a>
+            <a href="#commonQuestions">Common questions</a>
           </li>
           <li>
-            <a href="#minors">Minors</a>
+            <a href="#bookings">Bookings</a>
           </li>
           <li>
             <a href="#deliveries">Deliveries</a>
@@ -43,8 +44,8 @@ export default function Manual() {
       </div>
       <div className="flex flex-col gap-6">
         <div className="p-5">
-          <h2 id="customerQuestions" className="text-lg font-bold mb-2">
-            Customer questions
+          <h2 id="commonQuestions" className="text-lg font-bold mb-2">
+            Common questions
           </h2>
           <div className="flex flex-col gap-4 col-span-3 mb-5 lg:mb-0">
             <ManualQA
@@ -69,25 +70,13 @@ export default function Manual() {
           </div>
         </div>
         <div className="p-5">
-          <h2 id="minors" className="text-lg font-bold mb-2">
-            Minors
+          <h2 id="bookings" className="text-lg font-bold mb-2">
+            Bookings{" "}
           </h2>
           <div className="flex flex-col gap-4 col-span-3 mb-5 lg:mb-0">
             <ManualQA
-              question="Our Terms"
-              answer="Everybody below the age of 18 is considered a minor. We require all minors to have a signed online parent consent form when they come to Beta. All consent forms are stored digitally. Below the age of 14 minors must be accompanied by an adult (maximum of two kids per adult)."
-            />
-            <ManualQA
-              question="Minors 5 and under"
-              answer="They are allowed to climb for free with constant supervision. They don't need to be registered neither checked in. We do not issue a Beta barcode tag for them. There is a limit of 1 kid per adult. They have free shoe rental."
-            />
-            <ManualQA
-              question="Minors between 5 and 14 (excluded)"
-              answer="Must provide the consent form. Must pay entrance. Must be accompanied by an adult when climbing (not necessarily a parent or legal guardian). Must register in Boulderado and must be checked in. Not issued with a Beta barcode tag. No more than 2 kids per adult."
-            />
-            <ManualQA
-              question="Minors between14 (included) to 17"
-              answer="Must provide the consent form. Must register in Boulderado and must be checked in (PAID). Can be issued with a Beta barcode tag."
+              question="How can I book a climbing session with a coach?"
+              answer="You can find all the information on our website."
             />
           </div>
         </div>

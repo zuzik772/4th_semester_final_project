@@ -8,7 +8,7 @@ export default function Checkbox(props) {
   return (
     <input
       checked={isChecked}
-      onClick={changeCheckbox}
+      onChange={changeCheckbox}
       id="orange-checkbox"
       type="checkbox"
       value=""
