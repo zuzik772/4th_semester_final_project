@@ -87,7 +87,3 @@ figcaption {
   font-size: small;
   text-align: center;
 }
-
-.rbc-event:focus, .rbc-day-slot .rbc-background-event:focus {
-  outline: 5px auto hotpink;
-}
