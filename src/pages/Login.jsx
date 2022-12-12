@@ -33,8 +33,8 @@ export default function Login(props) {
         <div className="flex flex-col items-center justify-center gap-8 mb-4 sm:mb-0">
           <div className="flex flex-col w-60 sm:w-80">
             <h1 className="uppercase font-semibold text-2xl text-left">Log in</h1>
-            <span className="text-sm">Welcome back! Please enter your details</span>
-            {(validated===false) && <span className="text-sm text-warning">Sorry, username or password isn’t right. Check for typos and try again.</span>}
+            <span className={`text-sm ${(validated===false)?'hidden':''}`}>Welcome back! Please enter your details</span>
+            <span className={`text-sm text-warning ${(validated===false)?'':'hidden'}`}>Sorry, username or password isn’t right. Check for typos and try again.</span>
           </div>
           <form className="flex flex-col gap-6 w-60 sm:w-80">
             <div>
@@ -49,7 +49,7 @@ export default function Login(props) {
                 name="username"
                 placeholder="Put your password here"
                 required
-                className="pl-0 pb-0 outline-none bg-light w-full border-x-0 border-t-0 border-b-gray-400 rounded-none focus:border-t-0 focus:border-x-0 focus:ring-0 dark:focus:ring-0 focus:border-accent"
+                className={`pl-0 pb-0 outline-none bg-light w-full border-x-0 border-t-0 ${(validated===false)?'border-b-warning':'border-b-gray-400'} rounded-none focus:border-t-0 focus:border-x-0 focus:ring-0 dark:focus:ring-0 focus:border-accent`}
               />
             </div>
             <div>
@@ -64,7 +64,7 @@ export default function Login(props) {
                 name="password"
                 placeholder="And your password here"
                 required
-                className="pl-0 pb-0 outline-none bg-light w-full border-x-0 border-t-0 border-b-gray-400 rounded-none focus:border-t-0 focus:border-x-0 focus:ring-0 dark:focus:ring-0 focus:border-accent"
+                className={`pl-0 pb-0 outline-none bg-light w-full border-x-0 border-t-0 ${(validated===false)?'border-b-warning':'border-b-gray-400'} rounded-none focus:border-t-0 focus:border-x-0 focus:ring-0 dark:focus:ring-0 focus:border-accent`}
               />
             </div>
           </form>
