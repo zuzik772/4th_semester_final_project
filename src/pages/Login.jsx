@@ -7,8 +7,8 @@ export default function Login(props) {
 
   const navigate = useNavigate();
 
-  const usernameRef = useRef(null);
-  const passwordRef = useRef(null);
+  const usernameRef = useRef("");
+  const passwordRef = useRef("");
 
   const [validated, setValidated] = useState();
 
@@ -20,7 +20,7 @@ export default function Login(props) {
 
   function validate() {
     if(usernameRef.current.value==="admin" && passwordRef.current.value==="admin") {
-      setValidated(true);
+      setValidated('');
       login();
     } else setValidated(false)
     
@@ -34,7 +34,7 @@ export default function Login(props) {
           <div className="flex flex-col w-60 sm:w-80">
             <h1 className="uppercase font-semibold text-2xl text-left">Log in</h1>
             <span className="text-sm">Welcome back! Please enter your details</span>
-            {(validated===false) && <span className="text-sm ">Sorry, username or password isn’t right. Check for typos and try again.</span>}
+            {(validated===false) && <span className="text-sm text-warning">Sorry, username or password isn’t right. Check for typos and try again.</span>}
           </div>
           <form className="flex flex-col gap-6 w-60 sm:w-80">
             <div>
