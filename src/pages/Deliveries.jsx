@@ -14,7 +14,12 @@ export default function Deliveries() {
   return (
     <main className="w-full 2xl:w-3/5 p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
       <div className="flex flex-wrap items-center justify-between">
-        <Maintitle title="Deliveries" />
+        <div>
+          <Maintitle title="Deliveries" />
+          <p className="text-xs opacity-75 mb-4">
+            Check out all the upcoming deliveries in the calendar
+          </p>
+        </div>
         <CTA title="Add delivery" handleCTA={handleShow} />
       </div>
       {show ? <ModalDelivery handleCTA={handleClose} /> : null}
