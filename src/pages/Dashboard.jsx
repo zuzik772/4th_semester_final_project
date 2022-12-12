@@ -1,51 +1,18 @@
 import MainTitle from "../components/MainTitle";
-import Cards from "../components/Cards";
+import CardItem from "../components/CardItem";
 import Tasks from "../components/Tasks";
 import deliveries from "../img/deliveries.png";
 import SpecialOfferItem from "../components/SpecialOfferItem";
 import DashboardCardHeadline from "../components/DashboardCardHeadline";
 export default function Dashboard() {
   return (
-    <main className="p-0 sm:p-6 sm:pr-1 block lg:grid grid-cols-4 gap-6 w-full h-fit">
+    <main className="p-0 sm:p-6 sm:pr-1 block lg:grid grid-cols-4 gap-4 xl:gap-8 w-full h-fit">
       <div className="col-span-3">
         <MainTitle title="Dashboard" />
         <span className="p-2 sm:p-0">Tuesday, 6th of December 2022</span>
       </div>
-      <div className="min-w-fit row-span-4 p-0 sm:p-2 mb-5 lg:mb-0">
-        <DashboardCardHeadline
-          title="Tasks"
-          iconSource={deliveries}
-          iconDescription="deliveries icon"
-        />
-        <Tasks />
-      </div>
-      <div className="flex flex-col gap-4 h-fit p-2 sm:p-6 mb-5 lg:mb-0">
-        <DashboardCardHeadline
-          title="Bookings"
-          iconSource={deliveries}
-          iconDescription="deliveries icon"
-        />
-        <Cards />
-      </div>
-      <div className="flex flex-col gap-4 h-fit p-2 sm:p-6 mb-5 lg:mb-0">
-        <DashboardCardHeadline
-          title="Deliveries"
-          iconSource={deliveries}
-          iconDescription="deliveries icon"
-        />
-        <Cards />
-      </div>
-      <div className="flex flex-col gap-4 h-fit p-2 sm:p-6 mb-5 lg:mb-0">
-        <DashboardCardHeadline
-          title="Schedule"
-          iconSource={deliveries}
-          iconDescription="deliveries icon"
-        />
-        <Cards />
-      </div>
-
       {/* special offers */}
-      <div className="col-span-3 grid grid-cols-3 gap-4 h-fit py-6 pl-4 mb-5 lg:mb-0">
+      <div className="col-span-3 grid grid-cols-3 gap-4 md:gap-8 h-fit pb-6 lg:mb-0">
         <div className="col-span-3">
           <DashboardCardHeadline
             title="Special offers"
@@ -68,6 +35,63 @@ export default function Dashboard() {
           discount="569kr for members only"
           expiration={"valid until 31/01/2023"}
         />
+      </div>
+      <div className="min-w-fit row-span-4 p-0 sm:p-2 mb-5 lg:mb-0">
+        <DashboardCardHeadline
+          title="Tasks"
+          iconSource={deliveries}
+          iconDescription="deliveries icon"
+        />
+        <Tasks />
+      </div>
+      <div className="flex flex-col gap-2 h-fit mb-5 lg:mb-0">
+        <DashboardCardHeadline
+          title="Bookings"
+          iconSource={deliveries}
+          iconDescription="deliveries icon"
+        />
+        <CardItem title="Kea" time="10:00 - 12:00" />
+        <div className="grid gap-2 grid-cols-2 grid-rows-3">
+          <div className="row-start-1 row-span-3">
+            <CardItem title="Novo Nordisk" time="17:00 - 21:00" />
+          </div>
+          <div className="row-start-3">
+            <CardItem title="Beginners class" time="19:00 -21:00" />
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4 mb-5 lg:mb-0">
+        <DashboardCardHeadline
+          title="Deliveries"
+          iconSource={deliveries}
+          iconDescription="deliveries icon"
+        />
+        <div className="grid gap-2 grid-cols-2 grid-rows-3">
+          <div className="row-start-1 row-span-3">
+            <CardItem title="Fruits & vegetables" time="08:30 - 14:30" />
+          </div>
+          <div className="row-start-2">
+            <CardItem title="Toilet paper" time="10:00 - 11:00" />
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col gap-4 h-full mb-5 lg:mb-0">
+        <DashboardCardHeadline
+          title="Schedule"
+          iconSource={deliveries}
+          iconDescription="deliveries icon"
+        />
+        <div className="grid gap-2 grid-cols-2 grid-rows-9 h-full">
+          <div className="col-start-1 col-span-2 row-start-1 row-span-3">
+            <CardItem title="John Smith" time="07:00 - 12:00" />
+          </div>
+          <div className="col-start-1 row-start-4 row-span-4 ">
+            <CardItem title="Jane Doe" time="12:00 - 19:30" />
+          </div>
+          <div className="col-start-2 row-start-6 row-span-4 ">
+            <CardItem title="Zuzana Chudinova" time="17:00 - 22:00" />
+          </div>
+        </div>
       </div>
     </main>
   );
