@@ -16,6 +16,7 @@ module.exports = {
       fadedAccent: "#FFC18A",
       white: "#FDFDFD",
       fadedBlue: "#639AF1",
+      modal: "rgba(0, 0, 0, 0.35)",
     },
     fontFamily: {
       mainFont: ["Roboto", "sans-serif"],

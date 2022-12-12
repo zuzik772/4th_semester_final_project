@@ -45,13 +45,10 @@ export default function Posts(props) {
           </div>
           <h4 className="text-md font-medium mt-2">Pilates</h4>
           <p>
-            Now we offer pilates as a part of our flexibility program. Pilates is mind-mody exercise
-            that will help you to improve your mental state along with your body flexibility.
+            Now we offer pilates as a part of our flexibility program. The classes will take place
+            every Tuesday and Saturday at 19:00 in the yoga gym.
           </p>
-          <p>
-            You can reserve a spot at our pilates class online and then just show up when its time
-            for you class.
-          </p>
+          <p>Customers can reserve a spot online, same as for yoga.</p>
 
           <div className="flex gap-1 items-center justify-end">
             <SeenByPeople />
@@ -72,7 +69,7 @@ export default function Posts(props) {
               <span className="font-light text-xs">22. nov 2022 9:58</span>
             </div>
           </div>
-          <h4 className="text-md font-medium mt-2">Now we sell matcha! Price is 40kr.</h4>
+          <h4 className="text-md font-medium mt-2">Now we offer matcha latte</h4>
 
           <ol className="list-decimal pl-4 text-sm leading-6">
             <li>Mix 1 tablespoon of matcha in yellow cup</li>

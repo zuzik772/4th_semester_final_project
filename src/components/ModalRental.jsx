@@ -3,10 +3,10 @@ import RequiredIcon from "./icons/RequiredIcon";
 import CloseIcon from "./icons/CloseIcon";
 export default function ModalRental(props) {
   return (
-    <div className="bg-dark fixed top-0 left-0 right-0 z-50 h-screen flex place-content-center items-center">
+    <div className="bg-modal fixed top-0 left-0 right-0 z-50 h-screen flex place-content-center items-center">
       <div id="small-modal" tabIndex="-1" className="w-96">
         <div className="relative w-full h-full max-w-md md:h-auto">
-          <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+          <div className="relative bg-white rounded-lg shadow">
             <div className="flex items-center justify-between p-5 border-b rounded-t dark:border-gray-600">
               <h3 className="text-xl font-medium">Add rental</h3>
               <button
@@ -38,7 +38,7 @@ export default function ModalRental(props) {
                   Beta tag
                   <RequiredIcon />
                 </label>
-                <input 
+                <input
                   type="text"
                   placeholder="Scan beta tag here"
                   required
