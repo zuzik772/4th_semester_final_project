@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 export default function Menu(props) {
   function Logout() {
-    props.setIsLoggedIn(false);
+    localStorage.setItem("isLoggedIn", 'false');
+    props.getLoginStatus(localStorage.getItem("isLoggedIn"));
   }
   return (
     <div className="p-3 w-36 absolute top-20 right-0">

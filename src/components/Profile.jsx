@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import Menu from "./Menu";
 export default function Profile(props) {
   const [toggle, setToggle] = useState(false);
@@ -10,7 +9,7 @@ export default function Profile(props) {
         AS
       </button>
 
-      {toggle && <Menu setIsLoggedIn={props.setIsLoggedIn} />}
+      {toggle && <Menu getLoginStatus={props.getLoginStatus}/>}
     </div>
   );
 }

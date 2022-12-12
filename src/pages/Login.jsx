@@ -4,7 +4,8 @@ import darkLogo from "../img/black_logo.png";
 import RequiredIcon from "../components/icons/RequiredIcon";
 export default function Login(props) {
   function Login() {
-    props.setIsLoggedIn(true);
+    localStorage.setItem("isLoggedIn", 'true')
+    props.getLoginStatus(localStorage.getItem("isLoggedIn"))
   }
   return (
     <div className="grid sm:grid-cols-2 bg-light h-screen">
