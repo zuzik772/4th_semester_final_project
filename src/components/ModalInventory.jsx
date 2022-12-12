@@ -3,7 +3,7 @@ import RequiredIcon from "./icons/RequiredIcon";
 import CloseIcon from "./icons/CloseIcon";
 export default function ModalInventory(props) {
   return (
-    <div className="bg-dark fixed top-0 left-0 right-0 z-50 h-screen flex place-content-center items-center">
+    <div className="bg-modal fixed top-0 left-0 right-0 z-50 h-screen flex place-content-center items-center">
       <div id="small-modal" tabIndex="-1" className="w-96">
         <div className="relative w-full h-full max-w-md md:h-auto">
           <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -33,12 +33,10 @@ export default function ModalInventory(props) {
                   <option value="category" defaultValue disabled>
                     Choose category
                   </option>
-                  <option value="bars">bars</option>
                   <option value="beer">beer</option>
                   <option value="cleaning">cleaning</option>
                   <option value="coffee">coffee</option>
                   <option value="food">food</option>
-                  <option value="shakes">shakes</option>
                 </select>
               </div>
               <div className="flex flex-col gap-0.5 mt-4">
