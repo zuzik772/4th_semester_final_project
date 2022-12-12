@@ -1,6 +1,5 @@
 import MainTitle from "../components/MainTitle";
 import CTA from "../components/CTA";
-import AmountInput from "../components/AmountInput";
 import removeIcon from "../img/trash.png";
 import { useState } from "react";
 import Checkbox from "../components/Checkbox";
@@ -66,7 +65,7 @@ export default function Trackers() {
               <td>BETA5147625</td>
               <td>0</td>
               <td>1</td>
-              <td>29/11/2022</td>
+              <td>30/11/2022</td>
               <td>02/12/2022</td>
               <td>500</td>
               <td>
