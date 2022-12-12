@@ -5,22 +5,14 @@ import trackers from "../img/trackers.png";
 import posts from "../img/posts.png";
 import manual from "../img/manual.png";
 import inventory from "../img/stock.png";
-import { useState } from "react";
-
 export default function Sidebar() {
-  const [isActive, setIsActive] = useState(true);
-
-  function isPageActive(path) {
-    setIsActive(path);
-  }
-
   return (
     <div>
       <nav className="static sm:sticky sm:top-0 bg-light w-full sm:w-56 sm:h-screen p-2 sm:p-8">
         <ul className="flex sm:flex-col gap-2 sm:gap-6 ">
           <div className="grid sm:flex sm:flex-col gap-2 sm:gap-6">
             <li>
-              <Link to="/dashboard" className={isActive ? "text-accent" : "text-dark"}>
+              <Link to="/dashboard">
                 <img src={dashboard} alt="dashboard icon" />
                 Dashboard
               </Link>
@@ -30,7 +22,7 @@ export default function Sidebar() {
             </li>
 
             <li>
-              <Link to="/deliveries" className={isActive ? "text-accent" : "text-dark"}>
+              <Link to="/deliveries">
                 <img src={deliveries} alt="deliveries icon" />
                 Deliveries
               </Link>
@@ -40,7 +32,7 @@ export default function Sidebar() {
             </li>
 
             <li>
-              <Link to="/inventory" className={isActive ? "text-accent" : "text-dark"}>
+              <Link to="/inventory">
                 <img src={inventory} alt="inventory icon" />
                 Inventory
               </Link>
@@ -49,7 +41,7 @@ export default function Sidebar() {
               </span>
             </li>
             <li>
-              <Link to="/manual" className={isActive ? "text-accent" : "text-dark"}>
+              <Link to="/manual">
                 <img src={manual} alt="manual icon" />
                 Manual
               </Link>
@@ -58,7 +50,7 @@ export default function Sidebar() {
               </span>
             </li>
             <li>
-              <Link to="/posts" className={isActive ? "text-accent" : "text-dark"}>
+              <Link to="/posts">
                 <img src={posts} alt="posts icon" />
                 Posts
               </Link>
@@ -68,7 +60,7 @@ export default function Sidebar() {
             </li>
           </div>
           <li>
-            <Link to="/trackers" className={isActive ? "text-accent" : "text-dark"}>
+            <Link to="/trackers">
               <img src={trackers} alt="trackers icon" />
               Trackers
             </Link>
