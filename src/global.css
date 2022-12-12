@@ -30,7 +30,7 @@ nav li * {
 nav li span {
   font-size: small;
   font-weight: 500;
-  margin-left: 2rem;
+  margin-left: 1.75rem;
   opacity: 0.5;
 }
 
@@ -39,7 +39,7 @@ li:hover {
 }
 
 input::placeholder {
-  color: #202021;
+  color: #5c5c5c;
 }
 
 div,

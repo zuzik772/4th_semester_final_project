@@ -8,23 +8,27 @@ import Inventory from "./pages/Inventory";
 import Trackers from "./pages/Trackers";
 import Nav from "./components/Nav";
 import Sidebar from "./components/Sidebar";
+import Login from "./pages/Login";
+import { useState } from "react";
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <div className="App">
-      <Nav />
-      <div className="block sm:flex">
-        <BrowserRouter>
-          <Sidebar />
+      <BrowserRouter>
+        {isLoggedIn && <Nav setIsLoggedIn={setIsLoggedIn} />}
+        <div className="block sm:flex">
+          {isLoggedIn && <Sidebar />}
           <Routes>
-            <Route index element={<Dashboard />} />
+            <Route index element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/posts" element={<Posts />} />
             <Route path="/deliveries" element={<Deliveries />} />
             <Route path="/inventory" element={<Inventory />} />
             <Route path="/trackers" element={<Trackers />} />
             <Route path="/manual" element={<Manual />} />
           </Routes>
-        </BrowserRouter>
-      </div>
+        </div>
+      </BrowserRouter>
     </div>
   );
 }

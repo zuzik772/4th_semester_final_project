@@ -29,45 +29,48 @@ export default function Inventory() {
         <FilterButton title="Soft drinks" />
       </div>
       <table>
-        <tr>
-          <th>Category</th>
-          <th>Item</th>
-          <th>Amount</th>
-          <th>Expiry date</th>
-        </tr>
-        <tr>
-          <td>Food</td>
-          <td>Bananas</td>
-          <td>
-            <AmountInput amount="14" /> pcs
-          </td>
-          <td>10/12/2022</td>
-          <td>
-            <CTA title="Order" />
-          </td>
-          <td>
-            <button>
-              <img src={removeIcon} alt="remove icon" className="hover:bg-fadedAccent" />
-            </button>
-          </td>
-        </tr>
-
-        <tr>
-          <td>Food</td>
-          <td>Milk</td>
-          <td>
-            <AmountInput amount="9" /> pcs
-          </td>
-          <td>15/12/2022</td>
-          <td>
-            <CTA title="Order" />
-          </td>
-          <td>
-            <button>
-              <img src={removeIcon} alt="remove icon" className="hover:bg-fadedAccent" />
-            </button>
-          </td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Item</th>
+            <th>Amount</th>
+            <th>Expiry date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Food</td>
+            <td>Bananas</td>
+            <td>
+              <AmountInput amount="14" /> pcs
+            </td>
+            <td>10/12/2022</td>
+            <td>
+              <CTA title="Order" />
+            </td>
+            <td>
+              <button>
+                <img src={removeIcon} alt="remove icon" className="hover:bg-fadedAccent" />
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td>Food</td>
+            <td>Milk</td>
+            <td>
+              <AmountInput amount="9" /> pcs
+            </td>
+            <td>15/12/2022</td>
+            <td>
+              <CTA title="Order" />
+            </td>
+            <td>
+              <button>
+                <img src={removeIcon} alt="remove icon" className="hover:bg-fadedAccent" />
+              </button>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </main>
   );

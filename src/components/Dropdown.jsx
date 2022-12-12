@@ -2,7 +2,7 @@ import "../global.css";
 export default function Dropdown() {
   return (
     <div className="flex gap-2 items-center">
-      <label htmlFor="gym" className="text-light font-normal">
+      <label htmlFor="gym" className="text-light font-normal hidden md:block">
         Location:
       </label>
       <select

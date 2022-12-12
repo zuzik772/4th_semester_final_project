@@ -24,7 +24,7 @@ export default function TaskItem(props) {
             <Checkbox />
 
             <div className="flex flex-col">
-              <label for="orange-checkbox" className="text-sm font-medium">
+              <label htmlFor="orange-checkbox" className="text-sm font-medium">
                 {props.title}
               </label>
               <span className="text-xs">{props.desc}</span>
