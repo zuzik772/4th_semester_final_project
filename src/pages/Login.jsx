@@ -1,20 +1,40 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import cover from "../img/login_cover.webp";
 import darkLogo from "../img/black_logo.png";
 import RequiredIcon from "../components/icons/RequiredIcon";
+import { useRef, useState } from "react";
 export default function Login(props) {
-  function Login() {
+
+  const navigate = useNavigate();
+
+  const usernameRef = useRef(null);
+  const passwordRef = useRef(null);
+
+  const [validated, setValidated] = useState();
+
+  function login() {
     localStorage.setItem("isLoggedIn", 'true')
     props.getLoginStatus(localStorage.getItem("isLoggedIn"))
+    navigate('/')
   }
+
+  function validate() {
+    if(usernameRef.current.value==="admin" && passwordRef.current.value==="admin") {
+      setValidated(true);
+      login();
+    } else setValidated(false)
+    
+  }
+  
   return (
     <div className="grid sm:grid-cols-2 bg-light h-screen">
       <div className="flex flex-col justify-evenly items-center">
         <img src={darkLogo} alt="Beta Boulders logo" className="w-40 sm:w-60"></img>
         <div className="flex flex-col items-center justify-center gap-8 mb-4 sm:mb-0">
-          <div className="w-60 sm:w-80">
+          <div className="flex flex-col w-60 sm:w-80">
             <h1 className="uppercase font-semibold text-2xl text-left">Log in</h1>
             <span className="text-sm">Welcome back! Please enter your details</span>
+            {(validated===false) && <span className="text-sm ">Sorry, username or password isn’t right. Check for typos and try again.</span>}
           </div>
           <form className="flex flex-col gap-6 w-60 sm:w-80">
             <div>
@@ -23,6 +43,7 @@ export default function Login(props) {
                 <RequiredIcon />
               </label>
               <input
+                ref={usernameRef}
                 type="text"
                 id="username"
                 name="username"
@@ -37,6 +58,7 @@ export default function Login(props) {
                 <RequiredIcon />
               </label>
               <input
+                ref={passwordRef}
                 type="password"
                 id="password"
                 name="password"
@@ -47,15 +69,13 @@ export default function Login(props) {
             </div>
           </form>
           <div className="flex flex-col gap-1 items-center">
-            <Link to="/dashboard">
               <button
                 type="submit"
                 className="bg-accent text-white rounded-lg px-4 py-1 h-fit w-40"
-                onClick={Login}
+                onClick={validate}
               >
                 Sign in
               </button>
-            </Link>
             <span className="text-xs opacity-70">Have a good working day!</span>
           </div>
         </div>
