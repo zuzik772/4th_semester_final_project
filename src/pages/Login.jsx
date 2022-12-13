@@ -11,6 +11,7 @@ export default function Login(props) {
   const passwordRef = useRef("");
 
   const [validated, setValidated] = useState();
+  const [isLocationChosen, setIsLocationChosen] = useState();
 
   function login() {
     localStorage.setItem("isLoggedIn", "true");
@@ -19,17 +20,22 @@ export default function Login(props) {
   }
 
   function validate() {
+    if (!isLocationChosen) setIsLocationChosen(false);
     if (
       usernameRef.current.value === "admin" &&
       passwordRef.current.value === "admin"
     ) {
-      setValidated("");
-      login();
-    } else setValidated(false);
+      if(isLocationChosen)
+      {setValidated("");
+      login();}
+    } else {
+      setValidated(false);
+    }
   }
 
   function getLocation(location) {
-    props.getLocation(location)
+    props.getLocation(location);
+    setIsLocationChosen(true);
   }
 
   return (
@@ -107,6 +113,13 @@ export default function Login(props) {
                 radioButtonFunction={getLocation}
               />
             </div>
+            <span
+              className={`text-sm text-warning ${
+                isLocationChosen === false ? "" : "hidden"
+              }`}
+            >
+              Choose a location to continue.
+            </span>
           </form>
           <div className="flex flex-col gap-1 items-center">
             <button
