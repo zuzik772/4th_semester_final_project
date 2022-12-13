@@ -11,7 +11,7 @@ import Sidebar from "./components/Sidebar";
 import Login from "./pages/Login";
 import { PrivateRoute } from "./PrivateRoute";
 import { useState, useEffect } from "react";
-function App() {
+export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [location, setLocation] = useState();
   const [userType, setUserType] = useState("");
@@ -29,6 +29,7 @@ function App() {
 
   function getLocation(locationName) {
     setLocation(locationName);
+  }
   function getUserType(type) {
     setUserType(type);
   }
@@ -114,5 +115,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
