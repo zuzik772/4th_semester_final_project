@@ -3,12 +3,30 @@ import CTA from "../components/CTA";
 import AmountInput from "../components/AmountInput";
 import removeIcon from "../img/trash.png";
 import FilterButton from "../components/FilterButton";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalInventory from "../components/ModalInventory";
+import moment from "moment/moment";
 export default function Inventory() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [inventoryArray, setInventoryArray] = useState([])
+
+  const url = "https://louisiana-2c6b.restdb.io/rest/inventory-2";
+  const options = {
+    headers: {
+      "x-apikey": "63925f89f43a573dae0953ee",
+    },
+  };
+
+  useEffect(() => {
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => {
+        setInventoryArray(data)
+      });
+  },[]);
 
   return (
     <main className="overflow-x-auto w-full 2xl:w-3/5 h-fit p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
@@ -40,38 +58,23 @@ export default function Inventory() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Food</td>
-            <td>Bananas</td>
+          {inventoryArray.map(item=>
+          <tr key={item._id}>
+            <td>{item.category}</td>
+            <td>{item.item}</td>
             <td>
-              <AmountInput amount="14" /> pcs
+              <AmountInput amount={item.amount} /> {item.unit}
             </td>
-            <td>10/12/2022</td>
+            <td>{moment(item.expirydate).format("DD/MM/YYYY")}</td>
             <td>
-              <CTA title="Order" />
-            </td>
-            <td>
-              <button>
-                <img src={removeIcon} alt="remove icon" className="hover:bg-fadedAccent" />
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>Food</td>
-            <td>Milk</td>
-            <td>
-              <AmountInput amount="9" /> pcs
-            </td>
-            <td>15/12/2022</td>
-            <td>
-              <CTA title="Order" />
+              <a href={item.link}>Order</a>
             </td>
             <td>
               <button>
                 <img src={removeIcon} alt="remove icon" className="hover:bg-fadedAccent" />
               </button>
             </td>
-          </tr>
+          </tr> )}
         </tbody>
       </table>
     </main>
