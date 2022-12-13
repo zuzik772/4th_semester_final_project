@@ -70,7 +70,7 @@ export default function Inventory(props) {
             <td>{moment(item.expirydate).format("DD/MM/YYYY")}</td>
             {props.userType === "admin" && (
             <td>
-              <a href={item.link}>Order</a>
+              <a href={item.link} target="_blank" rel="noreferrer">Order</a>
             </td>
             )}
             {props.userType === "admin" && (
