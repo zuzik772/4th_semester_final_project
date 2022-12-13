@@ -2,7 +2,7 @@ import MainTitle from "../components/MainTitle";
 import CTA from "../components/CTA";
 import AmountInput from "../components/AmountInput";
 import removeIcon from "../img/trash.png";
-import FilterButton from "../components/FilterButton";
+import RadioButton from "../components/RadioButton";
 import { useState } from "react";
 import ModalInventory from "../components/ModalInventory";
 export default function Inventory() {
@@ -23,12 +23,12 @@ export default function Inventory() {
       </div>
       {show ? <ModalInventory handleCTA={handleClose} /> : null}
       <div className="flex flex-wrap gap-4 text-center">
-        <FilterButton title="All" />
-        <FilterButton title="Beer" />
-        <FilterButton title="Cleaning" />
-        <FilterButton title="Coffee" />
-        <FilterButton title="Food" />
-        <FilterButton title="Soft drinks" />
+        <RadioButton title="All" />
+        <RadioButton title="Beer" />
+        <RadioButton title="Cleaning" />
+        <RadioButton title="Coffee" />
+        <RadioButton title="Food" />
+        <RadioButton title="Soft drinks" />
       </div>
       <table className="w-full">
         <thead>

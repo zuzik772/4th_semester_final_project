@@ -1,5 +1,5 @@
 import "../global.css";
-export default function Dropdown() {
+export default function Dropdown(props) {
   return (
     <div className="flex gap-2 items-center">
       <label htmlFor="gym" className="text-light font-normal hidden md:block">
@@ -8,8 +8,9 @@ export default function Dropdown() {
       <select
         id="gym"
         className="hidden md:block minimal rounded-xl py-1 bg-light font-medium border-2 outline-none border-none cursor-pointer "
-      >
-        <option value="west" defaultValue>
+        defaultValue={props.location}
+        >
+        <option value="west" >
           Beta West
         </option>
         <option value="south">Beta South</option>
