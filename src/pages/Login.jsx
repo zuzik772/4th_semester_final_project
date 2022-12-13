@@ -12,6 +12,8 @@ export default function Login(props) {
 
   const [validated, setValidated] = useState();
   const [isLocationChosen, setIsLocationChosen] = useState();
+  const [emptyUsername, setEmptyUsername] = useState();
+  const [emptyPassword, setEmptyPassword] = useState();
 
   function login() {
     localStorage.setItem("isLoggedIn", "true");
@@ -19,15 +21,32 @@ export default function Login(props) {
     navigate("/");
   }
 
-  function validate() {
+  function checkForEmpty() {
+    if (usernameRef.current.value === "") {
+      setEmptyUsername(true);
+    } else {
+      setEmptyUsername(false);
+      validate();
+    }
+    if (passwordRef.current.value === "") {
+      setEmptyPassword(true);
+    } else {
+      setEmptyPassword(false);
+      validate();
+    }
+
     if (!isLocationChosen) setIsLocationChosen(false);
+  }
+
+  function validate() {
     if (
       usernameRef.current.value === "admin" &&
       passwordRef.current.value === "admin"
     ) {
-      if(isLocationChosen)
-      {setValidated("");
-      login();}
+      if (isLocationChosen) {
+        setValidated("");
+        login();
+      }
     } else {
       setValidated(false);
     }
@@ -51,7 +70,7 @@ export default function Login(props) {
             <h1 className="uppercase font-semibold text-2xl text-left">
               Log in
             </h1>
-            <span className={`text-sm ${validated === false ? "hidden" : ""}`}>
+            <span className={`text-sm ${validated != true ? "hidden" : ""}`}>
               Welcome back! Please enter your details
             </span>
             <span
@@ -61,6 +80,13 @@ export default function Login(props) {
             >
               Sorry, username or password isn’t right. Check for typos and try
               again.
+            </span>
+            <span
+              className={`text-sm text-warning ${
+                emptyUsername || emptyPassword ? "" : "hidden"
+              }`}
+            >
+              Seems like you forgot to fill all fields.
             </span>
           </div>
           <form className="flex flex-col gap-6 w-60 sm:w-80">
@@ -74,12 +100,19 @@ export default function Login(props) {
                 type="text"
                 id="username"
                 name="username"
-                placeholder="Put your password here"
+                placeholder="Put your username here"
                 required
                 className={`pl-0 pb-0 outline-none bg-light w-full border-x-0 border-t-0 ${
                   validated === false ? "border-b-warning" : "border-b-gray-400"
                 } rounded-none focus:border-t-0 focus:border-x-0 focus:ring-0 dark:focus:ring-0 focus:border-accent`}
               />
+              <span
+                className={`text-sm text-warning ${
+                  emptyUsername ? "" : "hidden"
+                }`}
+              >
+                Username is required.
+              </span>
             </div>
             <div>
               <label htmlFor="password" className="flex text-sm">
@@ -97,6 +130,13 @@ export default function Login(props) {
                   validated === false ? "border-b-warning" : "border-b-gray-400"
                 } rounded-none focus:border-t-0 focus:border-x-0 focus:ring-0 dark:focus:ring-0 focus:border-accent`}
               />
+              <span
+                className={`text-sm text-warning ${
+                  emptyPassword ? "" : "hidden"
+                }`}
+              >
+                Password is required.
+              </span>
             </div>
             <div className="flex">
               <span>Choose location you're at:</span>
@@ -125,7 +165,7 @@ export default function Login(props) {
             <button
               type="submit"
               className="bg-accent text-white rounded-lg px-4 py-1 h-fit w-40"
-              onClick={validate}
+              onClick={checkForEmpty}
             >
               Sign in
             </button>
