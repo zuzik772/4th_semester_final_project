@@ -26,7 +26,7 @@ export default function Deliveries() {
       <Calendar
         localizer={localizer}
         defaultDate={new Date()}
-        defaultView="month"
+        defaultView="week"
         style={{ height: "100vh" }}
         events={[
           {
