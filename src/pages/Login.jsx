@@ -70,7 +70,7 @@ export default function Login(props) {
             <h1 className="uppercase font-semibold text-2xl text-left">
               Log in
             </h1>
-            <span className={`text-sm ${validated != true ? "hidden" : ""}`}>
+            <span className={`text-sm ${validated !== true ? "hidden" : ""}`}>
               Welcome back! Please enter your details
             </span>
             <span
