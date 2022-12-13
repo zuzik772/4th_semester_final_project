@@ -9,23 +9,36 @@ import Trackers from "./pages/Trackers";
 import Nav from "./components/Nav";
 import Sidebar from "./components/Sidebar";
 import Login from "./pages/Login";
-import { useState } from "react";
+import {PrivateRoute} from "./PrivateRoute";
+import { useState, useEffect } from "react";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(()=>{
+    getLoginStatus(localStorage.getItem("isLoggedIn"))
+  })
+
+  function getLoginStatus(status) {
+    if (status==="true") {
+    setIsLoggedIn(true) }
+    else (setIsLoggedIn(false))
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
-        {isLoggedIn && <Nav setIsLoggedIn={setIsLoggedIn} />}
+        {isLoggedIn && <Nav getLoginStatus={getLoginStatus}/>}
         <div className="block sm:flex">
           {isLoggedIn && <Sidebar />}
           <Routes>
-            <Route index element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/posts" element={<Posts />} />
-            <Route path="/deliveries" element={<Deliveries />} />
-            <Route path="/inventory" element={<Inventory />} />
-            <Route path="/trackers" element={<Trackers />} />
-            <Route path="/manual" element={<Manual />} />
+            <Route path="/login" element={<Login getLoginStatus={getLoginStatus}/>} />
+            <Route index element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+            <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+            <Route path="/posts" element={<PrivateRoute><Posts /></PrivateRoute>} />
+            <Route path="/deliveries" element={<PrivateRoute><Deliveries /></PrivateRoute>} />
+            <Route path="/inventory" element={<PrivateRoute><Inventory /></PrivateRoute>} />
+            <Route path="/trackers" element={<PrivateRoute><Trackers /></PrivateRoute>} />
+            <Route path="/manual" element={<PrivateRoute><Manual /></PrivateRoute>} />
           </Routes>
         </div>
       </BrowserRouter>
