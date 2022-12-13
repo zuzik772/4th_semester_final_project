@@ -11,7 +11,10 @@ export default function Nav(props) {
       </Link>
       <Search />
       <Dropdown />
-      <Profile getLoginStatus={props.getLoginStatus}/>
+      <Profile
+        getLoginStatus={props.getLoginStatus}
+        userType={props.userType}
+      />
     </div>
   );
 }

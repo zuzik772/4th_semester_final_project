@@ -13,7 +13,7 @@ import { PrivateRoute } from "./PrivateRoute";
 import { useState, useEffect } from "react";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [user, setUser] = useState("");
+  const [userType, setUserType] = useState("");
 
   useEffect(() => {
     getLoginStatus(localStorage.getItem("isLoggedIn"));
@@ -26,19 +26,26 @@ function App() {
   }
 
   function getUserType(type) {
-    setUser(type);
+    setUserType(type);
   }
 
   return (
     <div className="App">
       <BrowserRouter>
-        {isLoggedIn && <Nav getLoginStatus={getLoginStatus} />}
+        {isLoggedIn && (
+          <Nav getLoginStatus={getLoginStatus} userType={userType} />
+        )}
         <div className="block sm:flex">
-          {isLoggedIn && <Sidebar />}
+          {isLoggedIn && <Sidebar userType={userType} />}
           <Routes>
             <Route
               path="/login"
-              element={<Login getLoginStatus={getLoginStatus} getUserType={getUserType} />}
+              element={
+                <Login
+                  getLoginStatus={getLoginStatus}
+                  getUserType={getUserType}
+                />
+              }
             />
             <Route
               index
@@ -64,7 +71,7 @@ function App() {
                 </PrivateRoute>
               }
             />
-            {user === "admin" && (
+            {userType === "admin" && (
               <Route
                 path="/deliveries"
                 element={
@@ -78,7 +85,7 @@ function App() {
               path="/inventory"
               element={
                 <PrivateRoute>
-                  <Inventory />
+                  <Inventory getUserType={getUserType} />
                 </PrivateRoute>
               }
             />
