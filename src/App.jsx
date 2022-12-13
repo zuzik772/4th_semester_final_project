@@ -16,7 +16,7 @@ function App() {
   const [userType, setUserType] = useState("");
 
   useEffect(() => {
-    getLoginStatus(localStorage.getItem("isLoggedIn"));
+    getLoginStatus(sessionStorage.getItem("isLoggedIn"));
   });
 
   function getLoginStatus(status) {

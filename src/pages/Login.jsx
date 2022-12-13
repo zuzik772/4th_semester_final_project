@@ -13,8 +13,8 @@ export default function Login(props) {
   const [validated, setValidated] = useState();
 
   function login() {
-    localStorage.setItem("isLoggedIn", 'true')
-    props.getLoginStatus(localStorage.getItem("isLoggedIn"))
+    sessionStorage.setItem("isLoggedIn", 'true')
+    props.getLoginStatus(sessionStorage.getItem("isLoggedIn"))
     navigate('/')
   }
 
