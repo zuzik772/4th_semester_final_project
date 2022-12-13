@@ -20,9 +20,15 @@ export default function Login(props) {
 
   function validate() {
     if(usernameRef.current.value==="admin" && passwordRef.current.value==="admin") {
+      props.getUserType('admin');
       setValidated('');
       login();
-    } else setValidated(false)
+    } else if (usernameRef.current.value==="user" && passwordRef.current.value==="user") {
+      props.getUserType('employee');
+      setValidated('');
+      login();
+    }
+    else setValidated(false)
     
   }
   
