@@ -5,7 +5,7 @@ import trackers from "../img/trackers.png";
 import posts from "../img/posts.png";
 import manual from "../img/manual.png";
 import inventory from "../img/stock.png";
-export default function Sidebar() {
+export default function Sidebar(props) {
   return (
     <div>
       <nav className="static sm:sticky sm:top-0 bg-light w-full sm:w-56 sm:h-screen p-2 sm:p-8">
@@ -21,15 +21,17 @@ export default function Sidebar() {
               </span>
             </li>
 
-            <li>
-              <Link to="/deliveries">
-                <img src={deliveries} alt="deliveries icon" />
-                Deliveries
-              </Link>
-              <span className="hidden md:block lowercase text-xs text-left -mt-2">
-                see what's coming
-              </span>
-            </li>
+            {props.userType === "admin" && (
+              <li>
+                <Link to="/deliveries">
+                  <img src={deliveries} alt="deliveries icon" />
+                  Deliveries
+                </Link>
+                <span className="hidden md:block lowercase text-xs text-left -mt-2">
+                  see what's coming
+                </span>
+              </li>
+            )}
 
             <li>
               <Link to="/inventory">

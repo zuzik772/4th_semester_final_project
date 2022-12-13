@@ -6,7 +6,7 @@ import FilterButton from "../components/FilterButton";
 import { useState, useEffect } from "react";
 import ModalInventory from "../components/ModalInventory";
 import moment from "moment/moment";
-export default function Inventory() {
+export default function Inventory(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -37,7 +37,9 @@ export default function Inventory() {
             Check what items are we missing, you can filter by category
           </p>
         </div>
-        <CTA title="Add item" handleCTA={handleShow} />
+        {props.userType === "admin" && (
+          <CTA title="Add item" handleCTA={handleShow} />
+        )}
       </div>
       {show ? <ModalInventory handleCTA={handleClose} /> : null}
       <div className="flex flex-wrap gap-4 text-center">
@@ -66,14 +68,22 @@ export default function Inventory() {
               <AmountInput amount={item.amount} /> {item.unit}
             </td>
             <td>{moment(item.expirydate).format("DD/MM/YYYY")}</td>
+            {props.userType === "admin" && (
             <td>
               <a href={item.link}>Order</a>
             </td>
-            <td>
-              <button>
-                <img src={removeIcon} alt="remove icon" className="hover:bg-fadedAccent" />
-              </button>
-            </td>
+            )}
+            {props.userType === "admin" && (
+              <td>
+                <button>
+                  <img
+                    src={removeIcon}
+                    alt="remove icon"
+                    className="hover:bg-fadedAccent"
+                  />
+                </button>
+              </td>
+            )}
           </tr> )}
         </tbody>
       </table>
