@@ -12,7 +12,7 @@ export default function Trackers() {
   const handleShow = () => setShow(true);
   const [rentalArray, setRentalArray] = useState([])
 
-  const url = "https://louisiana-2c6b.restdb.io/rest/crashpad-2";
+  const url = "https://louisiana-2c6b.restdb.io/rest/crashpad-2?sort=from&dir=-1";
   const options = {
     headers: {
       "x-apikey": "63925f89f43a573dae0953ee",
@@ -67,10 +67,10 @@ export default function Trackers() {
               <td>{moment(record.to).format("DD/MM/YYYY")}</td>
               <td>{record.double*500+record.triple*500}</td>
               <td>
-                <Checkbox />
+                <Checkbox isChecked={record.paid}/>
               </td>
               <td>
-                <Checkbox />
+                <Checkbox isChecked={record.returned}/>
               </td>
               <td>
                 <button>
