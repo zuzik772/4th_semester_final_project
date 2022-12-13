@@ -25,6 +25,7 @@ export default function Trackers() {
       .then((data) => {
         setRentalArray(data)
       });
+      // eslint-disable-next-line
   },[]);
 
   return (

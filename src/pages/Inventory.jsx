@@ -26,6 +26,7 @@ export default function Inventory(props) {
       .then((data) => {
         setInventoryArray(data)
       });
+      // eslint-disable-next-line
   },[]);
 
   return (
