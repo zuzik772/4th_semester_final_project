@@ -14,6 +14,7 @@ import { useState, useEffect } from "react";
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [location, setLocation] = useState();
+  const [userType, setUserType] = useState("");
 
   useEffect(() => {
     getLoginStatus(localStorage.getItem("isLoggedIn"));
@@ -25,20 +26,29 @@ function App() {
     } else setIsLoggedIn(false);
   }
 
+
   function getLocation(locationName) {
     setLocation(locationName);
+  function getUserType(type) {
+    setUserType(type);
   }
 
   return (
     <div className="App">
       <BrowserRouter>
-        {isLoggedIn && <Nav getLoginStatus={getLoginStatus} location={location} />}
+        {isLoggedIn && <Nav getLoginStatus={getLoginStatus} userType={userType} location={location} />}
         <div className="block sm:flex">
-          {isLoggedIn && <Sidebar />}
+          {isLoggedIn && <Sidebar userType={userType} />}
           <Routes>
             <Route
               path="/login"
-              element={<Login getLoginStatus={getLoginStatus} getLocation={getLocation}/>}
+              element={
+                <Login
+                  getLoginStatus={getLoginStatus}
+                  getUserType={getUserType}
+                  getLocation={getLocation}
+                />
+              }
             />
             <Route
               index
@@ -64,19 +74,21 @@ function App() {
                 </PrivateRoute>
               }
             />
-            <Route
-              path="/deliveries"
-              element={
-                <PrivateRoute>
-                  <Deliveries />
-                </PrivateRoute>
-              }
-            />
+            {userType === "admin" && (
+              <Route
+                path="/deliveries"
+                element={
+                  <PrivateRoute>
+                    <Deliveries />
+                  </PrivateRoute>
+                }
+              />
+            )}
             <Route
               path="/inventory"
               element={
                 <PrivateRoute>
-                  <Inventory />
+                  <Inventory getUserType={getUserType} />
                 </PrivateRoute>
               }
             />

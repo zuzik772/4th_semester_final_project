@@ -5,7 +5,7 @@ import removeIcon from "../img/trash.png";
 import RadioButton from "../components/RadioButton";
 import { useState } from "react";
 import ModalInventory from "../components/ModalInventory";
-export default function Inventory() {
+export default function Inventory(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -19,7 +19,9 @@ export default function Inventory() {
             Check what items are we missing, you can filter by category
           </p>
         </div>
-        <CTA title="Add item" handleCTA={handleShow} />
+        {props.userType === "admin" && (
+          <CTA title="Add item" handleCTA={handleShow} />
+        )}
       </div>
       {show ? <ModalInventory handleCTA={handleClose} /> : null}
       <div className="flex flex-wrap gap-4 text-center">
@@ -47,30 +49,22 @@ export default function Inventory() {
               <AmountInput amount="14" /> pcs
             </td>
             <td>10/12/2022</td>
-            <td>
-              <CTA title="Order" />
-            </td>
-            <td>
-              <button>
-                <img src={removeIcon} alt="remove icon" className="hover:bg-fadedAccent" />
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>Food</td>
-            <td>Milk</td>
-            <td>
-              <AmountInput amount="9" /> pcs
-            </td>
-            <td>15/12/2022</td>
-            <td>
-              <CTA title="Order" />
-            </td>
-            <td>
-              <button>
-                <img src={removeIcon} alt="remove icon" className="hover:bg-fadedAccent" />
-              </button>
-            </td>
+            {props.userType === "admin" && (
+              <td>
+                <CTA title="Order" />
+              </td>
+            )}
+            {props.userType === "admin" && (
+              <td>
+                <button>
+                  <img
+                    src={removeIcon}
+                    alt="remove icon"
+                    className="hover:bg-fadedAccent"
+                  />
+                </button>
+              </td>
+            )}
           </tr>
         </tbody>
       </table>

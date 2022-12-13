@@ -5,11 +5,26 @@ export default function Profile(props) {
 
   return (
     <div className="bg-fadedBlue w-12 h-12 rounded-full flex items-center justify-center cursor-pointer absolute md:static top-6 right-6 hover:bg-fadedAccent">
-      <button onClick={() => setToggle(!toggle)} className="font-bold text-xl">
-        AS
-      </button>
+      {props.userType === "admin" && (
+        <button
+          onClick={() => setToggle(!toggle)}
+          className="font-bold text-xl"
+        >
+          BA
+        </button>
+      )}
+      {props.userType === "employee" && (
+        <button
+          onClick={() => setToggle(!toggle)}
+          className="font-bold text-xl"
+        >
+          JE
+        </button>
+      )}
 
-      {toggle && <Menu getLoginStatus={props.getLoginStatus}/>}
+      {toggle && (
+        <Menu getLoginStatus={props.getLoginStatus} userType={props.userType} />
+      )}
     </div>
   );
 }

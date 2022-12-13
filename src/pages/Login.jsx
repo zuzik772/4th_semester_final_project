@@ -39,17 +39,20 @@ export default function Login(props) {
   }
 
   function validate() {
-    if (
-      usernameRef.current.value === "admin" &&
-      passwordRef.current.value === "admin"
-    ) {
-      if (isLocationChosen) {
-        setValidated("");
-        login();
+    if(usernameRef.current.value==="admin" && passwordRef.current.value==="admin") {
+     if (isLocationChosen) {
+      props.getUserType('admin');
+      setValidated('');
+      login();
       }
-    } else {
-      setValidated(false);
+    } else if (usernameRef.current.value==="user" && passwordRef.current.value==="user") {
+     if (isLocationChosen) {
+      props.getUserType('employee');
+      setValidated('');
+      login();
+      }
     }
+    else setValidated(false)
   }
 
   function getLocation(location) {
