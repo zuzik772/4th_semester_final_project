@@ -29,6 +29,28 @@ export default function Inventory(props) {
     // eslint-disable-next-line
   }, []);
 
+  function postToDb(item) {
+    const postData = JSON.stringify(item);
+    fetch(url, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-apikey": "63925f89f43a573dae0953ee",
+      },
+      body: postData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        handleClose();
+        fetch(url, options)
+          .then((response) => response.json())
+          .then((data) => {
+            setInventoryArray(data);
+          });
+      });
+  }
+
   return (
     <main className="overflow-x-auto w-full 2xl:w-3/5 h-fit p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
       <div className="flex flex-wrap sm:flex-nowrap justify-between">
@@ -38,9 +60,17 @@ export default function Inventory(props) {
             Check what items are we missing, you can filter by category
           </p>
         </div>
-        {props.userType === "admin" && <CTA title="Add item" handleCTA={handleShow} />}
+        {props.userType === "admin" && (
+          <CTA title="Add item" handleCTA={handleShow} />
+        )}
       </div>
-      {show ? <ModalInventory handleCTA={handleClose} /> : null}
+      {show ? (
+        <ModalInventory
+          handleCTA={handleClose}
+          location={props.location}
+          postToDb={postToDb}
+        />
+      ) : null}
       <div className="flex flex-wrap gap-2 lg:gap-4 my-4 lg:my-0 text-center">
         <RadioButton title="All" />
         <RadioButton title="Beer" />
@@ -68,7 +98,10 @@ export default function Inventory(props) {
                 <td>
                   <AmountInput amount={item.amount} /> {item.unit}
                 </td>
-                <td>{moment(item.expirydate).format("DD/MM/YYYY")}</td>
+                <td>
+                  {item.expirydate &&
+                    moment(item.expirydate).format("DD/MM/YYYY")}
+                </td>
                 {props.userType === "admin" && (
                   <td className="text-end">
                     <a
@@ -84,7 +117,11 @@ export default function Inventory(props) {
                 {props.userType === "admin" && (
                   <td className="text-end">
                     <button>
-                      <img src={removeIcon} alt="remove icon" className="hover:bg-fadedAccent" />
+                      <img
+                        src={removeIcon}
+                        alt="remove icon"
+                        className="hover:bg-fadedAccent"
+                      />
                     </button>
                   </td>
                 )}

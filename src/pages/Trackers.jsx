@@ -12,7 +12,8 @@ export default function Trackers(props) {
   const handleShow = () => setShow(true);
   const [rentalArray, setRentalArray] = useState([]);
 
-  const url = "https://louisiana-2c6b.restdb.io/rest/crashpad-2?sort=from&dir=-1";
+  const url =
+    "https://louisiana-2c6b.restdb.io/rest/crashpad-2?sort=from&dir=-1";
   const options = {
     headers: {
       "x-apikey": "63925f89f43a573dae0953ee",
@@ -28,6 +29,28 @@ export default function Trackers(props) {
     // eslint-disable-next-line
   }, []);
 
+  function postToDb(record) {
+    const postData = JSON.stringify(record);
+    fetch(url, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-apikey": "63925f89f43a573dae0953ee",
+      },
+      body: postData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        handleClose();
+        fetch(url, options)
+          .then((response) => response.json())
+          .then((data) => {
+            setRentalArray(data);
+          });
+      });
+  }
+
   return (
     <>
       <main className="overflow-x-auto w-full 2xl:w-3/5 h-fit p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
@@ -41,7 +64,13 @@ export default function Trackers(props) {
           </div>
           <CTA title="Add rental " handleCTA={handleShow} />
         </div>
-        {show ? <ModalRental handleCTA={handleClose} /> : null}
+        {show ? (
+          <ModalRental
+            handleCTA={handleClose}
+            location={props.location}
+            postToDb={postToDb}
+          />
+        ) : null}
 
         <table className="w-fit">
           <thead>
