@@ -89,7 +89,7 @@ export default function App() {
               path="/inventory"
               element={
                 <PrivateRoute>
-                  <Inventory getUserType={getUserType} />
+                  <Inventory userType={userType} />
                 </PrivateRoute>
               }
             />
