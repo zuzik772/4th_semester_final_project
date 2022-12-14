@@ -3,7 +3,6 @@ import "./global.css";
 import Dashboard from "./pages/Dashboard";
 import Deliveries from "./pages/Deliveries";
 import Posts from "./pages/Posts";
-import Manual from "./pages/Manual";
 import Inventory from "./pages/Inventory";
 import Trackers from "./pages/Trackers";
 import Nav from "./components/Nav";
@@ -104,14 +103,6 @@ export default function App() {
               element={
                 <PrivateRoute>
                   <Trackers location={location} />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/manual"
-              element={
-                <PrivateRoute>
-                  <Manual />
                 </PrivateRoute>
               }
             />
