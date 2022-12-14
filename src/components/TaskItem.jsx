@@ -1,7 +1,7 @@
 import Checkbox from "./Checkbox";
 import { useState } from "react";
 export default function TaskItem(props) {
-  const [isDone, setIsDone] = useState(true)
+  const [isDone, setIsDone] = useState(props.status)
 
   function getCheckboxState(state) {
     setIsDone(state)
@@ -17,10 +17,10 @@ export default function TaskItem(props) {
             <span className="text-xs">{props.desc}</span>
           </div>
           <span
-            title="Agata Szulc"
+            title={props.fullname}
             className="bg-fadedBlue w-6 h-6 p-2 rounded-full flex items-center justify-center cursor-pointerfont-bold text-xs font-medium cursor-pointer"
           >
-            AS
+            {props.initials}
           </span>
         </li>
       ) : (
