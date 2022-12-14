@@ -9,14 +9,14 @@ export default function Tasks() {
         <button className="rounded-t-lg bg-darkerLight  p-0 sm:p-3 py-1">Closing</button>
       </div>
       <ul className="flex flex-col gap-6 bg-light px-2 lg:pl-2 xl:px-6 py-6">
-        <TaskItem title="cleaning coffee machine" desc="see manual" />
-        <TaskItem title="cleaning coffee machine" desc="see manual" />
-        <TaskItem title="cleaning coffee machine" desc="see manual" />
+        <TaskItem title="cleaning coffee machine" />
+        <TaskItem title="cleaning coffee machine" />
+        <TaskItem title="cleaning coffee machine" />
       </ul>
       <ul className="bg-light py-6 lg:py-12 h-full">
         <h4 className="font-medium pl-6">Done</h4>
-        <TaskItem title="cleaning coffee machine" desc="see manual" />
-        <TaskItem title="cleaning coffee machine" desc="see manual" />
+        <TaskItem title="cleaning coffee machine" />
+        <TaskItem title="cleaning coffee machine" />
       </ul>
     </div>
   );

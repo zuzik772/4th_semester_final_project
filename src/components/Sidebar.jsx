@@ -3,7 +3,6 @@ import dashboard from "../img/dashboard.svg";
 import deliveries from "../img/deliveries.png";
 import trackers from "../img/trackers.png";
 import posts from "../img/posts.png";
-import manual from "../img/manual.png";
 import inventory from "../img/stock.png";
 import { useState } from "react";
 export default function Sidebar(props) {
@@ -43,15 +42,6 @@ export default function Sidebar(props) {
               </Link>
               <span className="hidden md:block lowercase text-xs text-left -mt-2">
                 see what's missing
-              </span>
-            </li>
-            <li className={`${position === "manual" ? "text-accent" : "hover:text-accent"}`}>
-              <Link to="/manual" onClick={() => setPosition("manual")}>
-                <img src={manual} alt="manual icon" />
-                Manual
-              </Link>
-              <span className="hidden md:block lowercase text-xs text-left -mt-2">
-                get an answer
               </span>
             </li>
             <li className={`${position === "posts" ? "text-accent" : "hover:text-accent"}`}>
