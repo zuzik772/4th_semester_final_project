@@ -16,9 +16,10 @@ export default function Login(props) {
   const [emptyPassword, setEmptyPassword] = useState();
 
   function login() {
-    localStorage.setItem("isLoggedIn", "true");
-    props.getLoginStatus(localStorage.getItem("isLoggedIn"));
-    navigate("/");
+
+    sessionStorage.setItem("isLoggedIn", 'true')
+    props.getLoginStatus(sessionStorage.getItem("isLoggedIn"))
+    navigate('/')
   }
 
   function checkForEmpty() {
