@@ -5,7 +5,8 @@ import deliveries from "../img/deliveries.png";
 import SpecialOfferItem from "../components/SpecialOfferItem";
 import DashboardCardHeadline from "../components/DashboardCardHeadline";
 import moment from "moment";
-export default function Dashboard() {
+export default function Dashboard(props) {
+
   return (
     <main className="p-0 sm:p-6 sm:pr-1 block lg:grid grid-cols-4 gap-4 xl:gap-8 w-full h-fit">
       <div className="col-span-3">
@@ -44,7 +45,7 @@ export default function Dashboard() {
           iconSource={deliveries}
           iconDescription="deliveries icon"
         />
-        <Tasks />
+        <Tasks location={props.location} userType={props.userType}/>
       </div>
       <div className="flex flex-col gap-2 h-fit mb-5 lg:mb-0">
         <DashboardCardHeadline
