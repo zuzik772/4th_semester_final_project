@@ -1,9 +1,14 @@
+import { useEffect } from "react";
 import { useState } from "react";
 export default function Checkbox(props) {
   const [isChecked, setIsChecked] = useState(props.isChecked);
   function toggleCheckbox() {
     setIsChecked(!isChecked);
   }
+
+  useEffect(() => {
+    props.getCheckboxState(isChecked);
+  }, [isChecked, props]);
 
   return (
     <input
