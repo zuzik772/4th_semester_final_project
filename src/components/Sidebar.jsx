@@ -72,13 +72,16 @@ export default function Sidebar(props) {
             <span className="hidden md:block lowercase text-xs text-lef mb-2 -mt-2">
               update the data
             </span>
-            <span>Cleaning shoes</span>
-            <span>Closing receipts</span>
-            <span>Consent form</span>
-            <span>Crashpad rental</span>
-            <span>Food waste</span>
-            <span>Lost & Found</span>
+            
           </li>
+          <div>
+            <span>Cleaning shoes</span>
+              <span>Closing receipts</span>
+              <span>Consent form</span>
+              <span>Crashpad rental</span>
+              <span>Food waste</span>
+              <span>Lost & Found</span>
+          </div>
         </ul>
       </nav>
     </div>
