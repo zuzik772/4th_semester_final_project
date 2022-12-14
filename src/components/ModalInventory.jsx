@@ -116,6 +116,7 @@ export default function ModalInventory(props) {
                 <DatePicker
                   selected={expiryDate}
                   onChange={(date) => setExpiryDate(date)}
+                  className="w-full rounded-md border-darkerLight focus:bg-light focus:ring-0 focus:border-accent"
                 />
               </div>
               <div className="flex flex-col gap-0.5 mt-6">

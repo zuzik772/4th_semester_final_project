@@ -29,7 +29,7 @@ export default function ModalDelivery(props) {
                   type="text"
                   placeholder="Write product name here"
                   required
-                  className="p-0 border-none placeholder:text-darkerLight bg-white w-full rounded-md  focus:ring-0 dark:focus:ring-0 focus:bg-white"
+                  className="image.png"
                 />
                 <span className="border-t-2 border-t-accent"></span>
               </div>
