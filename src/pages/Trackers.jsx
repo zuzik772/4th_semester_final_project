@@ -10,9 +10,10 @@ export default function Trackers(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [rentalArray, setRentalArray] = useState([])
+  const [rentalArray, setRentalArray] = useState([]);
 
-  const url = "https://louisiana-2c6b.restdb.io/rest/crashpad-2?sort=from&dir=-1";
+  const url =
+    "https://louisiana-2c6b.restdb.io/rest/crashpad-2?sort=from&dir=-1";
   const options = {
     headers: {
       "x-apikey": "63925f89f43a573dae0953ee",
@@ -23,10 +24,32 @@ export default function Trackers(props) {
     fetch(url, options)
       .then((response) => response.json())
       .then((data) => {
-        setRentalArray(data)
+        setRentalArray(data);
       });
-      // eslint-disable-next-line
-  },[]);
+    // eslint-disable-next-line
+  }, []);
+
+  function postToDb(record) {
+    const postData = JSON.stringify(record);
+    fetch(url, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-apikey": "63925f89f43a573dae0953ee",
+      },
+      body: postData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        handleClose();
+        fetch(url, options)
+          .then((response) => response.json())
+          .then((data) => {
+            setRentalArray(data);
+          });
+      });
+  }
 
   return (
     <>
@@ -35,13 +58,19 @@ export default function Trackers(props) {
           <div>
             <MainTitle title="Crashpad rental" />
             <p className="text-xs opacity-75 mb-4">
-              The records are sorted from newest to oldest and the deposit is calculated
-              automatically, so don’t worry about it.
+              The records are sorted from newest to oldest and the deposit is
+              calculated automatically, so don’t worry about it.
             </p>
           </div>
           <CTA title="Add rental " handleCTA={handleShow} />
         </div>
-        {show ? <ModalRental handleCTA={handleClose} /> : null}
+        {show ? (
+          <ModalRental
+            handleCTA={handleClose}
+            location={props.location}
+            postToDb={postToDb}
+          />
+        ) : null}
 
         <table className="w-full">
           <thead>
@@ -58,28 +87,34 @@ export default function Trackers(props) {
             </tr>
           </thead>
           <tbody>
-            {rentalArray.filter((record) => record.location === props.location).map(record=>
-            <tr key={record._id}>
-              <td>{record.name}</td>
-              <td>{record.betatag}</td>
-              <td>{record.double}</td>
-              <td>{record.triple}</td>
-              <td>{moment(record.from).format("DD/MM/YYYY")}</td>
-              <td>{moment(record.to).format("DD/MM/YYYY")}</td>
-              <td>{record.double*500+record.triple*500}</td>
-              <td>
-                <Checkbox isChecked={record.paid}/>
-              </td>
-              <td>
-                <Checkbox isChecked={record.returned}/>
-              </td>
-              <td>
-                <button>
-                  <img src={removeIcon} alt="remove icon" className="hover:bg-fadedAccent" />
-                </button>
-              </td>
-            </tr>
-            )}
+            {rentalArray
+              .filter((record) => record.location === props.location)
+              .map((record) => (
+                <tr key={record._id}>
+                  <td>{record.name}</td>
+                  <td>{record.betatag}</td>
+                  <td>{record.double}</td>
+                  <td>{record.triple}</td>
+                  <td>{moment(record.from).format("DD/MM/YYYY")}</td>
+                  <td>{moment(record.to).format("DD/MM/YYYY")}</td>
+                  <td>{record.double * 500 + record.triple * 500}</td>
+                  <td>
+                    <Checkbox isChecked={record.paid} />
+                  </td>
+                  <td>
+                    <Checkbox isChecked={record.returned} />
+                  </td>
+                  <td>
+                    <button>
+                      <img
+                        src={removeIcon}
+                        alt="remove icon"
+                        className="hover:bg-fadedAccent"
+                      />
+                    </button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </main>
