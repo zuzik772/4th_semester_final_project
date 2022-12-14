@@ -1,7 +1,42 @@
 import CTA from "./CTA";
 import RequiredIcon from "./icons/RequiredIcon";
 import CloseIcon from "./icons/CloseIcon";
+import { useRef, useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import moment from "moment/moment";
 export default function ModalInventory(props) {
+  const categoryRef = useRef();
+  const itemRef = useRef();
+  const amountRef = useRef();
+  const unitRef = useRef();
+  const linkRef = useRef();
+
+  const [expiryDate, setExpiryDate] = useState(new Date());
+
+  function addItem() {
+    let item = {
+      category: categoryRef.current.value,
+      item: itemRef.current.value,
+      amount: amountRef.current.value,
+      unit: unitRef.current.value,
+      expirydate: moment(expiryDate).toISOString(),
+      location: props.location,
+      link: linkRef.current.value,
+    };
+    const postData = JSON.stringify(item);
+    fetch("https://louisiana-2c6b.restdb.io/rest/inventory-3", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-apikey": "63925f89f43a573dae0953ee",
+      },
+      body: postData,
+    })
+      .then((res) => res.json())
+      .then((data) => {console.log(data); props.handleCTA()});
+  }
+
   return (
     <div className="bg-modal fixed top-0 left-0 right-0 z-50 h-screen flex place-content-center items-center">
       <div id="small-modal" tabIndex="-1" className="w-96">
@@ -27,16 +62,17 @@ export default function ModalInventory(props) {
                 </label>
 
                 <select
+                  ref={categoryRef}
                   id="unit"
                   className="w-fit border-darkerLight bg-white rounded-md  focus:ring-0 dark:focus:ring-0 focus:bg-light focus:border-accent "
                 >
                   <option value="category" defaultValue disabled>
                     Choose category
                   </option>
-                  <option value="beer">beer</option>
-                  <option value="cleaning">cleaning</option>
-                  <option value="coffee">coffee</option>
-                  <option value="food">food</option>
+                  <option value="beer">Beer</option>
+                  <option value="cleaning">Cleaning</option>
+                  <option value="coffee">Coffee</option>
+                  <option value="food">Food</option>
                 </select>
               </div>
               <div className="flex flex-col gap-0.5 mt-4">
@@ -45,6 +81,7 @@ export default function ModalInventory(props) {
                   <RequiredIcon />
                 </label>
                 <input
+                  ref={itemRef}
                   type="text"
                   placeholder="Write product's name here"
                   required
@@ -59,11 +96,13 @@ export default function ModalInventory(props) {
                 </label>
                 <div className="flex gap-2">
                   <input
+                    ref={amountRef}
                     type="number"
                     required
                     className="w-20 border-darkerLight bg-white rounded-md  focus:ring-0 dark:focus:ring-0 focus:bg-light focus:border-accent"
                   />
                   <select
+                    ref={unitRef}
                     id="unit"
                     className="w-fit border-darkerLight bg-white rounded-md  focus:ring-0 dark:focus:ring-0 focus:bg-light focus:border-accent "
                   >
@@ -80,6 +119,10 @@ export default function ModalInventory(props) {
                 <label htmlFor="expiration" className="flex pt-2">
                   Expiry date
                 </label>
+                <DatePicker
+                  selected={expiryDate}
+                  onChange={(date) => setExpiryDate(date)}
+                />
               </div>
               <div className="flex flex-col gap-0.5 mt-6">
                 <label htmlFor="item" className="flex pt-2">
@@ -87,6 +130,7 @@ export default function ModalInventory(props) {
                   <RequiredIcon />
                 </label>
                 <input
+                  ref={linkRef}
                   type="text"
                   placeholder="Write website's URL"
                   required
@@ -96,7 +140,7 @@ export default function ModalInventory(props) {
               </div>
             </div>
             <div className="flex justify-end p-6 pt-0">
-              <CTA title="Add item" />
+              <CTA title="Add item" handleCTA={addItem} />
             </div>
           </div>
         </div>
