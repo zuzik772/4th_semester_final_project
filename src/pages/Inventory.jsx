@@ -13,8 +13,11 @@ export default function Inventory(props) {
 
   const [inventoryArray, setInventoryArray] = useState([]);
   const [filtered, setFiltered] = useState([]);
+  const [sortedBy, setSortedBy] = useState("");
+  const [url, setUrl] = useState(
+    "https://louisiana-2c6b.restdb.io/rest/inventory-3"
+  );
 
-  const url = "https://louisiana-2c6b.restdb.io/rest/inventory-3";
   const options = {
     headers: {
       "x-apikey": "63925f89f43a573dae0953ee",
@@ -29,7 +32,7 @@ export default function Inventory(props) {
         setFiltered(data);
       });
     // eslint-disable-next-line
-  }, []);
+  }, [url]);
 
   function postToDb(item) {
     const postData = JSON.stringify(item);
@@ -58,6 +61,31 @@ export default function Inventory(props) {
     if (category === "all") setFiltered(inventoryArray);
     else
       setFiltered(inventoryArray.filter((item) => item.category === category));
+  }
+
+  function sort(property) {
+    if (property !== "") {
+      setSortedBy(property);
+      if (property === "expirydate")
+        setUrl(
+          "https://louisiana-2c6b.restdb.io/rest/inventory-3?sort=expirydate"
+        );
+      else {
+        setUrl("https://louisiana-2c6b.restdb.io/rest/inventory-3");
+        const sortedArray = [...filtered];
+        setFiltered(sortByProperty(sortedArray, property));
+      }
+    }
+  }
+
+  function sortByProperty(array, propertyName) {
+    return array.sort(function (a, b) {
+      if (a[propertyName] < b[propertyName]) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
   }
 
   return (
@@ -121,10 +149,30 @@ export default function Inventory(props) {
       <table className="w-full">
         <thead>
           <tr>
-            <th>Category</th>
-            <th>Item</th>
-            <th>Amount</th>
-            <th>Expiry date</th>
+            <th
+              onClick={() => sort("category")}
+              className={`${sortedBy === "category" ? "text-accent" : ""}`}
+            >
+              Category
+            </th>
+            <th
+              onClick={() => sort("item")}
+              className={`${sortedBy === "item" ? "text-accent" : ""}`}
+            >
+              Item
+            </th>
+            <th
+              onClick={() => sort("amount")}
+              className={`${sortedBy === "amount" ? "text-accent" : ""}`}
+            >
+              Amount
+            </th>
+            <th
+              onClick={() => sort("expirydate")}
+              className={`${sortedBy === "expirydate" ? "text-accent" : ""}`}
+            >
+              Expiry date
+            </th>
           </tr>
         </thead>
         <tbody>
