@@ -10,7 +10,7 @@ export default function Sidebar(props) {
 
   return (
     <div>
-      <nav className="static sm:sticky sm:top-0 bg-light w-full sm:w-56 sm:h-screen p-2 sm:p-8">
+      <nav className="static sm:sticky sm:top-0 bg-lighterGrey w-full sm:w-56 sm:h-screen p-2 sm:p-8">
         <ul className="flex sm:flex-col gap-2 sm:gap-6 ">
           <div className="grid sm:flex sm:flex-col gap-2 sm:gap-6">
             <li className={`${position === "dashboard" ? "text-accent" : "hover:text-accent"}`}>
