@@ -14,7 +14,7 @@ export default function Dashboard() {
         <span className="p-2 sm:p-0">{moment().format("MMMM Do YYYY")}</span>
       </div>
       {/* special offers */}
-      <div className="col-span-3 grid grid-cols-3 gap-4 md:gap-8 h-fit pb-6 lg:mb-0">
+      <div className="col-span-3 flex flex-col sm:grid sm:grid-cols-3 gap-4 md:gap-8 h-fit pb-6 lg:mb-0">
         <div className="col-span-3">
           <DashboardCardHeadline
             title="Special offers"
