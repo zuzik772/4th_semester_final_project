@@ -1,14 +1,14 @@
 import { useState } from "react";
 export default function Checkbox(props) {
-  const [isChecked, setIsChecked] = useState(false);
-  function changeCheckbox() {
+  const [isChecked, setIsChecked] = useState(props.isChecked);
+  function toggleCheckbox() {
     setIsChecked(!isChecked);
   }
 
   return (
     <input
       checked={isChecked}
-      onChange={changeCheckbox}
+      onChange={toggleCheckbox}
       id="orange-checkbox"
       type="checkbox"
       value=""
