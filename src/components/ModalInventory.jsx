@@ -1,7 +1,7 @@
 import CTA from "./CTA";
 import RequiredIcon from "./icons/RequiredIcon";
 import CloseIcon from "./icons/CloseIcon";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment/moment";
@@ -13,9 +13,10 @@ export default function ModalInventory(props) {
   const linkRef = useRef();
 
   const [expiryDate, setExpiryDate] = useState(new Date());
+  const [newItem, setNewItem] = useState({});
 
   function addItem() {
-    let item = {
+    setNewItem({
       category: categoryRef.current.value,
       item: itemRef.current.value,
       amount: amountRef.current.value,
@@ -23,19 +24,12 @@ export default function ModalInventory(props) {
       expirydate: moment(expiryDate).toISOString(),
       location: props.location,
       link: linkRef.current.value,
-    };
-    const postData = JSON.stringify(item);
-    fetch("https://louisiana-2c6b.restdb.io/rest/inventory-3", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        "x-apikey": "63925f89f43a573dae0953ee",
-      },
-      body: postData,
-    })
-      .then((res) => res.json())
-      .then((data) => {console.log(data); props.handleCTA()});
+    });
   }
+
+  useEffect(() => {
+    if (Object.keys(newItem).length) props.postToDb(newItem);
+  }, [newItem]);
 
   return (
     <div className="bg-modal fixed top-0 left-0 right-0 z-50 h-screen flex place-content-center items-center">
@@ -69,10 +63,10 @@ export default function ModalInventory(props) {
                   <option value="category" defaultValue disabled>
                     Choose category
                   </option>
-                  <option value="beer">Beer</option>
-                  <option value="cleaning">Cleaning</option>
-                  <option value="coffee">Coffee</option>
-                  <option value="food">Food</option>
+                  <option value="Beer">Beer</option>
+                  <option value="Cleaning">Cleaning</option>
+                  <option value="Coffee">Coffee</option>
+                  <option value="Food">Food</option>
                 </select>
               </div>
               <div className="flex flex-col gap-0.5 mt-4">

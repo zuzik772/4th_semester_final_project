@@ -25,10 +25,31 @@ export default function Inventory(props) {
       .then((response) => response.json())
       .then((data) => {
         setInventoryArray(data);
-        console.log(data)
       });
     // eslint-disable-next-line
   }, []);
+
+  function postToDb(item) {
+    const postData = JSON.stringify(item);
+    fetch(url, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+        "x-apikey": "63925f89f43a573dae0953ee",
+      },
+      body: postData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        handleClose();
+        fetch(url, options)
+          .then((response) => response.json())
+          .then((data) => {
+            setInventoryArray(data);
+          });
+      });
+  }
 
   return (
     <main className="overflow-x-auto w-full 2xl:w-3/5 h-fit p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
@@ -43,7 +64,13 @@ export default function Inventory(props) {
           <CTA title="Add item" handleCTA={handleShow} />
         )}
       </div>
-      {show ? <ModalInventory handleCTA={handleClose} location={props.location}/> : null}
+      {show ? (
+        <ModalInventory
+          handleCTA={handleClose}
+          location={props.location}
+          postToDb={postToDb}
+        />
+      ) : null}
       <div className="flex flex-wrap gap-4 text-center">
         <RadioButton title="All" />
         <RadioButton title="Beer" />
@@ -71,7 +98,10 @@ export default function Inventory(props) {
                 <td>
                   <AmountInput amount={item.amount} /> {item.unit}
                 </td>
-                <td>{item.expirydate && moment(item.expirydate).format("DD/MM/YYYY")}</td>
+                <td>
+                  {item.expirydate &&
+                    moment(item.expirydate).format("DD/MM/YYYY")}
+                </td>
                 {props.userType === "admin" && (
                   <td>
                     <a href={item.link} target="_blank" rel="noreferrer">
