@@ -3,7 +3,7 @@ import CTA from "../components/CTA";
 import AmountInput from "../components/AmountInput";
 import removeIcon from "../img/trash.png";
 import RadioButton from "../components/RadioButton";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ModalInventory from "../components/ModalInventory";
 import moment from "moment/moment";
 export default function Inventory(props) {
