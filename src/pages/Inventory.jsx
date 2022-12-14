@@ -5,10 +5,29 @@ import removeIcon from "../img/trash.png";
 import RadioButton from "../components/RadioButton";
 import { useState } from "react";
 import ModalInventory from "../components/ModalInventory";
+import moment from "moment/moment";
 export default function Inventory(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [inventoryArray, setInventoryArray] = useState([]);
+
+  const url = "https://louisiana-2c6b.restdb.io/rest/inventory-2";
+  const options = {
+    headers: {
+      "x-apikey": "63925f89f43a573dae0953ee",
+    },
+  };
+
+  useEffect(() => {
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => {
+        setInventoryArray(data);
+      });
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <main className="overflow-x-auto w-full 2xl:w-3/5 h-fit p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
@@ -19,9 +38,7 @@ export default function Inventory(props) {
             Check what items are we missing, you can filter by category
           </p>
         </div>
-        {props.userType === "admin" && (
-          <CTA title="Add item" handleCTA={handleShow} />
-        )}
+        {props.userType === "admin" && <CTA title="Add item" handleCTA={handleShow} />}
       </div>
       {show ? <ModalInventory handleCTA={handleClose} /> : null}
       <div className="flex flex-wrap gap-4 text-center">
@@ -42,30 +59,30 @@ export default function Inventory(props) {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Food</td>
-            <td>Bananas</td>
-            <td>
-              <AmountInput amount="14" /> pcs
-            </td>
-            <td>10/12/2022</td>
-            {props.userType === "admin" && (
+          {inventoryArray.map((item) => (
+            <tr key={item._id}>
+              <td>{item.category}</td>
+              <td>{item.item}</td>
               <td>
-                <CTA title="Order" />
+                <AmountInput amount={item.amount} /> {item.unit}
               </td>
-            )}
-            {props.userType === "admin" && (
-              <td>
-                <button>
-                  <img
-                    src={removeIcon}
-                    alt="remove icon"
-                    className="hover:bg-fadedAccent"
-                  />
-                </button>
-              </td>
-            )}
-          </tr>
+              <td>{moment(item.expirydate).format("DD/MM/YYYY")}</td>
+              {props.userType === "admin" && (
+                <td>
+                  <a href={item.link} target="_blank" rel="noreferrer">
+                    Order
+                  </a>
+                </td>
+              )}
+              {props.userType === "admin" && (
+                <td>
+                  <button>
+                    <img src={removeIcon} alt="remove icon" className="hover:bg-fadedAccent" />
+                  </button>
+                </td>
+              )}
+            </tr>
+          ))}
         </tbody>
       </table>
     </main>

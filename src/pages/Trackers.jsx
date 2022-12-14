@@ -1,14 +1,32 @@
 import MainTitle from "../components/MainTitle";
 import CTA from "../components/CTA";
 import removeIcon from "../img/trash.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Checkbox from "../components/Checkbox";
 import ModalRental from "../components/ModalRental";
+import moment from "moment/moment";
 
 export default function Trackers() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [rentalArray, setRentalArray] = useState([])
+
+  const url = "https://louisiana-2c6b.restdb.io/rest/crashpad-2?sort=from&dir=-1";
+  const options = {
+    headers: {
+      "x-apikey": "63925f89f43a573dae0953ee",
+    },
+  };
+
+  useEffect(() => {
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => {
+        setRentalArray(data)
+      });
+      // eslint-disable-next-line
+  },[]);
 
   return (
     <>
@@ -40,39 +58,20 @@ export default function Trackers() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>John Smith</td>
-              <td>BETA5147625</td>
-              <td>0</td>
-              <td>1</td>
-              <td>29/11/2022</td>
-              <td>02/12/2022</td>
-              <td>500</td>
+            {rentalArray.map(record=>
+            <tr key={record._id}>
+              <td>{record.name}</td>
+              <td>{record.betatag}</td>
+              <td>{record.double}</td>
+              <td>{record.triple}</td>
+              <td>{moment(record.from).format("DD/MM/YYYY")}</td>
+              <td>{moment(record.to).format("DD/MM/YYYY")}</td>
+              <td>{record.double*500+record.triple*500}</td>
               <td>
-                <Checkbox />
+                <Checkbox isChecked={record.paid}/>
               </td>
               <td>
-                <Checkbox />
-              </td>
-              <td>
-                <button>
-                  <img src={removeIcon} alt="remove icon" className="hover:bg-fadedAccent" />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>John Smith</td>
-              <td>BETA5147625</td>
-              <td>0</td>
-              <td>1</td>
-              <td>30/11/2022</td>
-              <td>02/12/2022</td>
-              <td>500</td>
-              <td>
-                <Checkbox />
-              </td>
-              <td>
-                <Checkbox />
+                <Checkbox isChecked={record.returned}/>
               </td>
               <td>
                 <button>
@@ -80,6 +79,7 @@ export default function Trackers() {
                 </button>
               </td>
             </tr>
+            )}
           </tbody>
         </table>
       </main>
