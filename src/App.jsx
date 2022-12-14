@@ -69,7 +69,7 @@ export default function App() {
               path="/dashboard"
               element={
                 <PrivateRoute>
-                  <Dashboard />
+                  <Dashboard location={location}/>
                 </PrivateRoute>
               }
             />
