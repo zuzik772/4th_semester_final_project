@@ -65,7 +65,7 @@ export default function Sidebar(props) {
               </span>
             </li>
 
-            <ul className="opacity-50 ml-8">
+            <ul className="opacity-50 ml-2 sm:ml-8">
               <li>Cleaning shoes</li>
               <li>Closing receipts</li>
               <li>Consent form</li>
