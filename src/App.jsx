@@ -26,7 +26,6 @@ export default function App() {
     } else setIsLoggedIn(false);
   }
 
-
   function getLocation(locationName) {
     setLocation(locationName);
   }
@@ -37,7 +36,14 @@ export default function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {isLoggedIn && <Nav getLoginStatus={getLoginStatus} userType={userType} location={location} />}
+        {isLoggedIn && (
+          <Nav
+            getLoginStatus={getLoginStatus}
+            userType={userType}
+            location={location}
+            getLocation={getLocation}
+          />
+        )}
         <div className="block sm:flex">
           {isLoggedIn && <Sidebar userType={userType} />}
           <Routes>
@@ -80,7 +86,7 @@ export default function App() {
                 path="/deliveries"
                 element={
                   <PrivateRoute>
-                    <Deliveries />
+                    <Deliveries location={location} />
                   </PrivateRoute>
                 }
               />
@@ -89,7 +95,7 @@ export default function App() {
               path="/inventory"
               element={
                 <PrivateRoute>
-                  <Inventory userType={userType} />
+                  <Inventory userType={userType} location={location} />
                 </PrivateRoute>
               }
             />
@@ -97,7 +103,7 @@ export default function App() {
               path="/trackers"
               element={
                 <PrivateRoute>
-                  <Trackers />
+                  <Trackers location={location} />
                 </PrivateRoute>
               }
             />

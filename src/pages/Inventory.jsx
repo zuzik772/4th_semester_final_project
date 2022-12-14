@@ -13,7 +13,7 @@ export default function Inventory(props) {
 
   const [inventoryArray, setInventoryArray] = useState([]);
 
-  const url = "https://louisiana-2c6b.restdb.io/rest/inventory-2";
+  const url = "https://louisiana-2c6b.restdb.io/rest/inventory-3";
   const options = {
     headers: {
       "x-apikey": "63925f89f43a573dae0953ee",
@@ -38,7 +38,9 @@ export default function Inventory(props) {
             Check what items are we missing, you can filter by category
           </p>
         </div>
-        {props.userType === "admin" && <CTA title="Add item" handleCTA={handleShow} />}
+        {props.userType === "admin" && (
+          <CTA title="Add item" handleCTA={handleShow} />
+        )}
       </div>
       {show ? <ModalInventory handleCTA={handleClose} /> : null}
       <div className="flex flex-wrap gap-4 text-center">
@@ -59,30 +61,36 @@ export default function Inventory(props) {
           </tr>
         </thead>
         <tbody>
-          {inventoryArray.map((item) => (
-            <tr key={item._id}>
-              <td>{item.category}</td>
-              <td>{item.item}</td>
-              <td>
-                <AmountInput amount={item.amount} /> {item.unit}
-              </td>
-              <td>{moment(item.expirydate).format("DD/MM/YYYY")}</td>
-              {props.userType === "admin" && (
+          {inventoryArray
+            .filter((item) => item.location === props.location)
+            .map((item) => (
+              <tr key={item._id}>
+                <td>{item.category}</td>
+                <td>{item.item}</td>
                 <td>
-                  <a href={item.link} target="_blank" rel="noreferrer">
-                    Order
-                  </a>
+                  <AmountInput amount={item.amount} /> {item.unit}
                 </td>
-              )}
-              {props.userType === "admin" && (
-                <td>
-                  <button>
-                    <img src={removeIcon} alt="remove icon" className="hover:bg-fadedAccent" />
-                  </button>
-                </td>
-              )}
-            </tr>
-          ))}
+                <td>{moment(item.expirydate).format("DD/MM/YYYY")}</td>
+                {props.userType === "admin" && (
+                  <td>
+                    <a href={item.link} target="_blank" rel="noreferrer">
+                      Order
+                    </a>
+                  </td>
+                )}
+                {props.userType === "admin" && (
+                  <td>
+                    <button>
+                      <img
+                        src={removeIcon}
+                        alt="remove icon"
+                        className="hover:bg-fadedAccent"
+                      />
+                    </button>
+                  </td>
+                )}
+              </tr>
+            ))}
         </tbody>
       </table>
     </main>
