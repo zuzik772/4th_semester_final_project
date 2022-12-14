@@ -12,6 +12,7 @@ export default function Inventory(props) {
   const handleShow = () => setShow(true);
 
   const [inventoryArray, setInventoryArray] = useState([]);
+  const [filtered, setFiltered] = useState([]);
 
   const url = "https://louisiana-2c6b.restdb.io/rest/inventory-3";
   const options = {
@@ -25,6 +26,7 @@ export default function Inventory(props) {
       .then((response) => response.json())
       .then((data) => {
         setInventoryArray(data);
+        setFiltered(data);
       });
     // eslint-disable-next-line
   }, []);
@@ -47,8 +49,15 @@ export default function Inventory(props) {
           .then((response) => response.json())
           .then((data) => {
             setInventoryArray(data);
+            setFiltered(data);
           });
       });
+  }
+
+  function filterByCategory(category) {
+    if (category === "all") setFiltered(inventoryArray);
+    else
+      setFiltered(inventoryArray.filter((item) => item.category === category));
   }
 
   return (
@@ -72,12 +81,42 @@ export default function Inventory(props) {
         />
       ) : null}
       <div className="flex flex-wrap gap-2 lg:gap-4 my-4 lg:my-0 text-center">
-        <RadioButton title="All" />
-        <RadioButton title="Beer" />
-        <RadioButton title="Cleaning" />
-        <RadioButton title="Coffee" />
-        <RadioButton title="Food" />
-        <RadioButton title="Soft drinks" />
+        <RadioButton
+          title="All"
+          name={"inv"}
+          value={"all"}
+          radioButtonFunction={filterByCategory}
+        />
+        <RadioButton
+          title="Beer"
+          name={"inv"}
+          value={"Beer"}
+          radioButtonFunction={filterByCategory}
+        />
+        <RadioButton
+          title="Cleaning"
+          name={"inv"}
+          value={"Cleaning"}
+          radioButtonFunction={filterByCategory}
+        />
+        <RadioButton
+          title="Coffee"
+          name={"inv"}
+          value={"Coffee"}
+          radioButtonFunction={filterByCategory}
+        />
+        <RadioButton
+          title="Food"
+          name={"inv"}
+          value={"Food"}
+          radioButtonFunction={filterByCategory}
+        />
+        <RadioButton
+          title="Soft drinks"
+          name={"inv"}
+          value={"Soft Drinks"}
+          radioButtonFunction={filterByCategory}
+        />
       </div>
       <table className="w-full">
         <thead>
@@ -89,7 +128,7 @@ export default function Inventory(props) {
           </tr>
         </thead>
         <tbody>
-          {inventoryArray
+          {filtered
             .filter((item) => item.location === props.location)
             .map((item) => (
               <tr key={item._id}>
@@ -99,8 +138,9 @@ export default function Inventory(props) {
                   <AmountInput amount={item.amount} /> {item.unit}
                 </td>
                 <td>
-                  {item.expirydate &&
-                    moment(item.expirydate).format("DD/MM/YYYY")}
+                  {item.expirydate
+                    ? moment(item.expirydate).format("DD/MM/YYYY")
+                    : "-"}
                 </td>
                 {props.userType === "admin" && (
                   <td className="text-end">
