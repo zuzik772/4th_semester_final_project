@@ -5,11 +5,44 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "../react-big-calendar.css";
 import { useState } from "react";
-export default function Deliveries() {
-  const localizer = momentLocalizer(moment);
+export default function Deliveries(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const localizer = momentLocalizer(moment);
+
+  let schedule = []
+
+  if((props.location==="west")){
+    schedule= [
+      {
+        allDay: false,
+        start: new Date("2022-12-13T10:30:46.765Z"),
+        end: new Date("2022-12-13T12:30:46.765Z"),
+        title: "Vegetables",
+      },
+      {
+        allDay: false,
+        start: new Date("2022-12-12T04:00:00.000Z"),
+        end: new Date("2022-12-12T09:00:00.000Z"),
+        title: "Toilet paper",
+      },
+    ]
+  } else {schedule=[
+    {
+      allDay: false,
+      start: new Date("2022-12-16T10:30:46.765Z"),
+      end: new Date("2022-12-16T12:30:46.765Z"),
+      title: "Vegetables",
+    },
+    {
+      allDay: false,
+      start: new Date("2022-12-14T04:00:00.000Z"),
+      end: new Date("2022-12-14T09:00:00.000Z"),
+      title: "Toilet paper",
+    },
+  ]}
 
   return (
     <main className="w-full 2xl:w-3/5 p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
@@ -28,20 +61,7 @@ export default function Deliveries() {
         defaultDate={new Date()}
         defaultView="week"
         style={{ height: "100vh" }}
-        events={[
-          {
-            allDay: false,
-            end: new Date("2022-12-13T11:37:46.765Z"),
-            start: new Date("2022-12-13T10:37:46.765Z"),
-            title: "Vegetables",
-          },
-          {
-            allDay: false,
-            end: new Date("2022-12-12T09:00:00.000Z"),
-            start: new Date("2022-12-12T04:00:00.000Z"),
-            title: "Toilet paper",
-          },
-        ]}
+        events={schedule}
       />
     </main>
   );

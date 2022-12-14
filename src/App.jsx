@@ -86,7 +86,7 @@ export default function App() {
                 path="/deliveries"
                 element={
                   <PrivateRoute>
-                    <Deliveries />
+                    <Deliveries location={location} />
                   </PrivateRoute>
                 }
               />
@@ -95,7 +95,7 @@ export default function App() {
               path="/inventory"
               element={
                 <PrivateRoute>
-                  <Inventory userType={userType} location={location}/>
+                  <Inventory userType={userType} location={location} />
                 </PrivateRoute>
               }
             />
@@ -103,7 +103,7 @@ export default function App() {
               path="/trackers"
               element={
                 <PrivateRoute>
-                  <Trackers location={location}/>
+                  <Trackers location={location} />
                 </PrivateRoute>
               }
             />
