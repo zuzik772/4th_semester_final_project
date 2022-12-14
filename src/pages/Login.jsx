@@ -42,12 +42,14 @@ export default function Login(props) {
     if (usernameRef.current.value === "admin" && passwordRef.current.value === "admin") {
       if (isLocationChosen) {
         props.getUserType("admin");
+        sessionStorage.setItem("userType", "admin");
         setValidated("");
         login();
       }
     } else if (usernameRef.current.value === "user" && passwordRef.current.value === "user") {
       if (isLocationChosen) {
         props.getUserType("employee");
+        sessionStorage.setItem("userType", "employee");
         setValidated("");
         login();
       }
@@ -57,6 +59,7 @@ export default function Login(props) {
   function getLocation(location) {
     props.getLocation(location);
     setIsLocationChosen(true);
+    sessionStorage.setItem("location", location);
   }
 
   return (

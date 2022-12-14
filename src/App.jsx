@@ -17,7 +17,9 @@ export default function App() {
 
   useEffect(() => {
     getLoginStatus(sessionStorage.getItem("isLoggedIn"));
-  });
+    setUserType(sessionStorage.getItem("userType"))
+    setLocation(sessionStorage.getItem("location"))
+  },[]);
 
   function getLoginStatus(status) {
     if (status === "true") {
