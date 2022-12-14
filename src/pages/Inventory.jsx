@@ -34,7 +34,7 @@ export default function Inventory(props) {
       <div className="flex flex-wrap sm:flex-nowrap justify-between">
         <div>
           <MainTitle title="Inventory overview" />
-          <p className="text-xs opacity-75 mb-4">
+          <p className="text-md opacity-75 mb-4">
             Check what items are we missing, you can filter by category
           </p>
         </div>
@@ -69,7 +69,7 @@ export default function Inventory(props) {
               <td>{moment(item.expirydate).format("DD/MM/YYYY")}</td>
               {props.userType === "admin" && (
                 <td>
-                  <a href={item.link} target="_blank" rel="noreferrer">
+                  <a href={item.link} target="_blank" rel="noreferrer" className="bg-accent">
                     Order
                   </a>
                 </td>

@@ -6,7 +6,7 @@ export default function Manual() {
     <main className="w-full md:w-11/12 lg:w-3/5 p-2 sm:p-6 sm:pl-6 block lg:grid gap-6">
       <div>
         <MainTitle title="Manual" />
-        <p className="text-xs opacity-75 mb-4">Gain the expertise in all the areas</p>
+        <p className="text-md opacity-75 mb-4">Gain the expertise in all the areas</p>
       </div>
 
       <div className="flex flex-col gap-2 p-5 mb-5 lg:mb-0">

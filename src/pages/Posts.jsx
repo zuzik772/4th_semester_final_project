@@ -10,7 +10,7 @@ export default function Posts(props) {
     <main className="w-full lg:w-3/5 p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
       <div>
         <MainTitle title="Posts" />
-        <p className="text-xs opacity-75 mb-4">
+        <p className="text-md opacity-75 mb-4">
           Write a post and inform your colleagues about changes
         </p>
       </div>
