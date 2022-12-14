@@ -8,7 +8,8 @@ export default function Checkbox(props) {
 
   useEffect(() => {
     props.getCheckboxState(isChecked);
-  }, [isChecked, props]);
+    // eslint-disable-next-line
+  }, [isChecked]);
 
   return (
     <input

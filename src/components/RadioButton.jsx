@@ -12,7 +12,6 @@ export default function RadioButton(props) {
         name={props.name}
         value={props.value}
         onChange={handleChange}
-        checked={props.checked}
         className="text-accent focus:ring-0 dark:focus:ring-0 opacity-80"
       />
       <label htmlFor={props.name + "-" + props.value} className="font-normal cursor-pointer">

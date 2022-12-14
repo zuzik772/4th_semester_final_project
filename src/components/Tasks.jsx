@@ -44,28 +44,30 @@ export default function Tasks(props) {
           name={"tasktype"}
           value={"opening"}
           radioButtonFunction={filterByType}
-          checked={false}
         />
         <RadioButton
           title="Daily"
           name={"tasktype"}
           value={"daily"}
           radioButtonFunction={filterByType}
-          checked={true}
         />
         <RadioButton
           title="Closing"
           name={"tasktype"}
           value={"closing"}
           radioButtonFunction={filterByType}
-          checked={false}
         />
       </div>
       <ul className="flex flex-col gap-6 bg-light px-2 lg:pl-2 xl:px-6 py-6">
         {filteredTasks
-          .filter((task) => task.location === props.location && !task.isdone)
+          .filter(
+            (task) =>
+              task.location === sessionStorage.getItem("location") &&
+              !task.isdone
+          )
           .map((task) => (
             <TaskItem
+              key={task._id}
               title={task.title}
               desc={task.desc}
               initials={task.initials}
@@ -77,9 +79,14 @@ export default function Tasks(props) {
       <ul className="bg-light py-6 lg:py-12 h-full">
         <h4 className="font-medium pl-6">Done</h4>
         {filteredTasks
-          .filter((task) => task.location === props.location && task.isdone)
+          .filter(
+            (task) =>
+              task.location === sessionStorage.getItem("location") &&
+              task.isdone
+          )
           .map((task) => (
             <TaskItem
+              key={task._id}
               title={task.title}
               desc={task.desc}
               initials={task.initials}
