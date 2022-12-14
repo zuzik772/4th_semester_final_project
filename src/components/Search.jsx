@@ -6,7 +6,7 @@ export default function Search() {
       <input
         type="text"
         name="search"
-        placeholder="Try coffee"
+        placeholder="Try 'coffee'"
         className="text-md outline-none text-dark bg-darkerLight w-full border-none rounded-md  focus:ring-0 dark:focus:ring-0"
       ></input>
     </div>
