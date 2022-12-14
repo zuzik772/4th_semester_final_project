@@ -66,7 +66,7 @@ export default function Login(props) {
         <div className="flex flex-col items-center justify-center gap-8 mb-4 sm:mb-0">
           <div className="flex flex-col w-60 sm:w-80 h-fit">
             <h1 className="uppercase font-semibold text-2xl text-left">Log in</h1>
-            <span className={`text-sm ${validated !== true ? "" : "hidden"}`}>
+            <span className={`text-sm ${validated !== true ? "hidden" : ""}`}>
               Welcome back! Please enter your details
             </span>
             <span className={`text-sm text-warning ${validated === false ? "" : "hidden"}`}>

@@ -41,7 +41,7 @@ export default function Inventory(props) {
         {props.userType === "admin" && <CTA title="Add item" handleCTA={handleShow} />}
       </div>
       {show ? <ModalInventory handleCTA={handleClose} /> : null}
-      <div className="flex flex-wrap gap-2 lg:gap-4 mb-4 lg:mb-0 text-center">
+      <div className="flex flex-wrap gap-2 lg:gap-4 my-4 lg:my-0 text-center">
         <RadioButton title="All" />
         <RadioButton title="Beer" />
         <RadioButton title="Cleaning" />
