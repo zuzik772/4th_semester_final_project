@@ -27,6 +27,29 @@ export default function Tasks(props) {
     setFilteredTasks(tasksArray.filter((task) => task.type === type));
   }
 
+  function updateInDb(task) {
+    const postData = JSON.stringify(task);
+    fetch(url + "/" + task.id, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        "x-apikey": "63925f89f43a573dae0953ee",
+      },
+      body: postData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        fetch(url, options)
+        .then((response) => response.json())
+        .then((data) => {
+          setTasksArray(data);
+          setFilteredTasks(data);
+
+        });
+      });
+  }
+
   return (
     <div>
       <div className="grid grid-cols-3 mt-4">
@@ -62,7 +85,7 @@ export default function Tasks(props) {
         {filteredTasks
           .filter(
             (task) =>
-              task.location === sessionStorage.getItem("location") &&
+              task.location === props.location &&
               !task.isdone
           )
           .map((task) => (
@@ -73,6 +96,9 @@ export default function Tasks(props) {
               initials={task.initials}
               fullname={task.fullname}
               status={task.isdone}
+              id={task._id}
+              updateInDb={updateInDb}
+              userType={props.userType}
             />
           ))}
       </ul>
@@ -81,7 +107,7 @@ export default function Tasks(props) {
         {filteredTasks
           .filter(
             (task) =>
-              task.location === sessionStorage.getItem("location") &&
+              task.location === props.location &&
               task.isdone
           )
           .map((task) => (
@@ -92,6 +118,9 @@ export default function Tasks(props) {
               initials={task.initials}
               fullname={task.fullname}
               status={task.isdone}
+              id={task._id}
+              updateInDb={updateInDb}
+              userType={props.userType}
             />
           ))}
       </ul>

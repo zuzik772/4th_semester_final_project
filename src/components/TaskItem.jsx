@@ -1,38 +1,55 @@
 import Checkbox from "./Checkbox";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 export default function TaskItem(props) {
   const [isDone, setIsDone] = useState(props.status);
   const [updatedTask, setUpdatedTask] = useState({});
 
   function getCheckboxState(state) {
     setIsDone(state);
-    update();
   }
 
   function update() {
-    let fullname = "";
-    let initials = "";
-    if (isDone) {
+    if (!isDone) {
       if (props.userType === "admin") {
-        fullname = "Big Admin";
-        initials = "BA";
+        setUpdatedTask({
+          id: props.id,
+          fullname: "Big Admin",
+          initials: "BA",
+          isdone: !isDone,
+        });
       } else if (props.userType === "employee") {
-        fullname = "Just an Employee";
-        initials = "JE";
+        setUpdatedTask({
+          id: props.id,
+          fullname: "Just an Employee",
+          initials: "JE",
+          isdone: !isDone,
+        });
       }
+    } else {
+      setUpdatedTask({
+        id: props.id,
+        fullname: "",
+        initials: "",
+        isdone: !isDone,
+      });
     }
-    setUpdatedTask({
-      fullname: fullname,
-      initials: initials,
-      isdone: isDone,
-    });
+    console.log(isDone);
   }
+
+  useEffect(() => {
+    if (Object.keys(updatedTask).length) props.updateInDb(updatedTask);
+    // eslint-disable-next-line
+  }, [updatedTask]);
 
   return (
     <>
       {isDone ? (
         <li className="flex items-center justify-start gap-3 px-4 lg:px-8 py-2">
-          <Checkbox isChecked={isDone} getCheckboxState={getCheckboxState} />
+          <Checkbox
+            isChecked={isDone}
+            getCheckboxState={getCheckboxState}
+            checkboxUpdated={update}
+          />
           <div className="flex flex-col line-through opacity-50">
             <label htmlFor="task">{props.title}</label>
             <span className="text-xs">{props.desc}</span>
@@ -47,7 +64,11 @@ export default function TaskItem(props) {
       ) : (
         <li className="lowercase">
           <div className="flex gap-4 items-center leading-4">
-            <Checkbox isChecked={isDone} getCheckboxState={getCheckboxState} />
+            <Checkbox
+              isChecked={isDone}
+              getCheckboxState={getCheckboxState}
+              checkboxUpdated={update}
+            />
 
             <div className="flex flex-col">
               <label htmlFor="orange-checkbox" className="text-sm font-medium">

@@ -45,7 +45,7 @@ export default function Dashboard(props) {
           iconSource={deliveries}
           iconDescription="deliveries icon"
         />
-        <Tasks location={props.location}/>
+        <Tasks location={props.location} userType={props.userType}/>
       </div>
       <div className="flex flex-col gap-2 h-fit mb-5 lg:mb-0">
         <DashboardCardHeadline

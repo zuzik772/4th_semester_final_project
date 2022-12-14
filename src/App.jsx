@@ -62,7 +62,8 @@ export default function App() {
               index
               element={
                 <PrivateRoute>
-                  <Dashboard />
+                  <Dashboard userType={userType}
+            location={location}/>
                 </PrivateRoute>
               }
             />
@@ -70,7 +71,8 @@ export default function App() {
               path="/dashboard"
               element={
                 <PrivateRoute>
-                  <Dashboard location={location}/>
+                  <Dashboard userType={userType}
+            location={location}/>
                 </PrivateRoute>
               }
             />

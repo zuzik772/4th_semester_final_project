@@ -4,6 +4,7 @@ export default function Checkbox(props) {
   const [isChecked, setIsChecked] = useState(props.isChecked);
   function toggleCheckbox() {
     setIsChecked(!isChecked);
+    props.checkboxUpdated();
   }
 
   useEffect(() => {
