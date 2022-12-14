@@ -5,14 +5,17 @@ import trackers from "../img/trackers.png";
 import posts from "../img/posts.png";
 import manual from "../img/manual.png";
 import inventory from "../img/stock.png";
+import { useState } from "react";
 export default function Sidebar(props) {
+  const [position, setPosition] = useState("dashboard")
+
   return (
     <div>
       <nav className="static sm:sticky sm:top-0 bg-light w-full sm:w-56 sm:h-screen p-2 sm:p-8">
         <ul className="flex sm:flex-col gap-2 sm:gap-6 ">
           <div className="grid sm:flex sm:flex-col gap-2 sm:gap-6">
-            <li>
-              <Link to="/dashboard">
+            <li className={`${position==="dashboard"?"text-accent":"hover:text-accent"}`}>
+              <Link to="/dashboard" onClick={()=>setPosition("dashboard")}>
                 <img src={dashboard} alt="dashboard icon" />
                 Dashboard
               </Link>
@@ -22,8 +25,8 @@ export default function Sidebar(props) {
             </li>
 
             {props.userType === "admin" && (
-              <li>
-                <Link to="/deliveries">
+              <li className={`${position==="deliveries"?"text-accent":"hover:text-accent"}`}>
+                <Link to="/deliveries" onClick={()=>setPosition("deliveries")}>
                   <img src={deliveries} alt="deliveries icon" />
                   Deliveries
                 </Link>
@@ -33,8 +36,8 @@ export default function Sidebar(props) {
               </li>
             )}
 
-            <li>
-              <Link to="/inventory">
+            <li className={`${position==="inventory"?"text-accent":"hover:text-accent"}`}>
+              <Link to="/inventory" onClick={()=>setPosition("inventory")}>
                 <img src={inventory} alt="inventory icon" />
                 Inventory
               </Link>
@@ -42,17 +45,17 @@ export default function Sidebar(props) {
                 see what's missing
               </span>
             </li>
-            <li>
-              <Link to="/manual">
+            <li className={`${position==="manual"?"text-accent":"hover:text-accent"}`}>
+              <Link to="/manual" onClick={()=>setPosition("manual")}>
                 <img src={manual} alt="manual icon" />
                 Manual
               </Link>
               <span className="hidden md:block lowercase text-xs text-left -mt-2">
                 get an answer
               </span>
-            </li>
-            <li>
-              <Link to="/posts">
+            </li >
+            <li className={`${position==="posts"?"text-accent":"hover:text-accent"}`}>
+              <Link to="/posts" onClick={()=>setPosition("posts")}>
                 <img src={posts} alt="posts icon" />
                 Posts
               </Link>
@@ -61,21 +64,24 @@ export default function Sidebar(props) {
               </span>
             </li>
           </div>
-          <li>
-            <Link to="/trackers">
+          <li className={`${position==="trackers"?"text-accent":"hover:text-accent"}`}>
+            <Link to="/trackers" onClick={()=>setPosition("trackers")}>
               <img src={trackers} alt="trackers icon" />
               Trackers
             </Link>
             <span className="hidden md:block lowercase text-xs text-lef mb-2 -mt-2">
               update the data
             </span>
-            <span>Cleaning shoes</span>
-            <span>Closing receipts</span>
-            <span>Consent form</span>
-            <span>Crashpad rental</span>
-            <span>Food waste</span>
-            <span>Lost & Found</span>
+            
           </li>
+          <div>
+            <span>Cleaning shoes</span>
+              <span>Closing receipts</span>
+              <span>Consent form</span>
+              <span>Crashpad rental</span>
+              <span>Food waste</span>
+              <span>Lost & Found</span>
+          </div>
         </ul>
       </nav>
     </div>
