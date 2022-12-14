@@ -88,6 +88,24 @@ export default function Inventory(props) {
     });
   }
 
+  function removeItem(id) {
+    fetch("https://louisiana-2c6b.restdb.io/rest/inventory-3/" + id, {
+      method: "delete",
+      headers: {
+        "x-apikey": "63925f89f43a573dae0953ee",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {console.log(data)
+        fetch(url, options)
+        .then((response) => response.json())
+        .then((data) => {
+          setInventoryArray(data);
+          setFiltered(data);
+        });
+      });
+  }
+
   return (
     <main className="overflow-x-auto w-full 2xl:w-3/5 h-fit p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
       <div className="flex flex-wrap sm:flex-nowrap justify-between">
@@ -204,7 +222,9 @@ export default function Inventory(props) {
                 )}
                 {props.userType === "admin" && (
                   <td className="text-end">
-                    <button>
+                    <button
+                    onClick={()=>removeItem(item._id)}
+                    >
                       <img
                         src={removeIcon}
                         alt="remove icon"
