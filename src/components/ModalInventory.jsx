@@ -29,7 +29,7 @@ export default function ModalInventory(props) {
 
   useEffect(() => {
     if (Object.keys(newItem).length) props.postToDb(newItem);
-  }, [newItem]);
+  }, [newItem, props]);
 
   return (
     <div className="bg-modal fixed top-0 left-0 right-0 z-50 h-screen flex place-content-center items-center">
