@@ -11,8 +11,9 @@ import Sidebar from "./components/Sidebar";
 import Login from "./pages/Login";
 import { PrivateRoute } from "./PrivateRoute";
 import { useState, useEffect } from "react";
-function App() {
+export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [location, setLocation] = useState();
   const [userType, setUserType] = useState("");
 
   useEffect(() => {
@@ -25,6 +26,10 @@ function App() {
     } else setIsLoggedIn(false);
   }
 
+
+  function getLocation(locationName) {
+    setLocation(locationName);
+  }
   function getUserType(type) {
     setUserType(type);
   }
@@ -32,9 +37,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        {isLoggedIn && (
-          <Nav getLoginStatus={getLoginStatus} userType={userType} />
-        )}
+        {isLoggedIn && <Nav getLoginStatus={getLoginStatus} userType={userType} location={location} />}
         <div className="block sm:flex">
           {isLoggedIn && <Sidebar userType={userType} />}
           <Routes>
@@ -44,6 +47,7 @@ function App() {
                 <Login
                   getLoginStatus={getLoginStatus}
                   getUserType={getUserType}
+                  getLocation={getLocation}
                 />
               }
             />
@@ -111,5 +115,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

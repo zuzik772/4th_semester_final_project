@@ -10,7 +10,7 @@ export default function Nav(props) {
         <Logo />
       </Link>
       <Search />
-      <Dropdown />
+      <Dropdown location={props.location}/>
       <Profile
         getLoginStatus={props.getLoginStatus}
         userType={props.userType}
