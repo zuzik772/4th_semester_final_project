@@ -5,6 +5,7 @@ export default function Dropdown(props) {
 
   function changeLocation() {
     props.getLocation(locationRef.current.value);
+    sessionStorage.setItem("location", locationRef.current.value);
   }
 
   return (
