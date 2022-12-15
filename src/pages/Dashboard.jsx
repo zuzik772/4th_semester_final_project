@@ -2,6 +2,10 @@ import MainTitle from "../components/MainTitle";
 import CardItem from "../components/CardItem";
 import Tasks from "../components/Tasks";
 import deliveries from "../img/deliveries.png";
+import pig from "../img/pig.png";
+import tasks from "../img/tasks.png";
+import bookings from "../img/bookings.png";
+import schedule from "../img/schedule.png";
 import SpecialOfferItem from "../components/SpecialOfferItem";
 import DashboardCardHeadline from "../components/DashboardCardHeadline";
 import moment from "moment";
@@ -18,8 +22,8 @@ export default function Dashboard(props) {
         <div className="col-span-3">
           <DashboardCardHeadline
             title="Special offers"
-            iconSource={deliveries}
-            iconDescription="deliveries icon"
+            iconSource={pig}
+            iconDescription="coin pig icon"
           />
         </div>
         <SpecialOfferItem
@@ -39,18 +43,14 @@ export default function Dashboard(props) {
         />
       </div>
       <div className="min-w-fit row-span-4 p-0 sm:p-2 mb-5 lg:mb-0">
-        <DashboardCardHeadline
-          title="Tasks"
-          iconSource={deliveries}
-          iconDescription="deliveries icon"
-        />
+        <DashboardCardHeadline title="Tasks" iconSource={tasks} iconDescription="tasks icon" />
         <Tasks location={props.location} userType={props.userType} />
       </div>
       <div className="flex flex-col gap-2 h-fit mb-5 lg:mb-0">
         <DashboardCardHeadline
           title="Bookings"
-          iconSource={deliveries}
-          iconDescription="deliveries icon"
+          iconSource={bookings}
+          iconDescription="bookings icon"
         />
         <CardItem title="Kea" time="10:00 - 12:00" />
         <div className="grid gap-2 grid-cols-2 grid-rows-3">
@@ -80,8 +80,8 @@ export default function Dashboard(props) {
       <div className="flex flex-col gap-4 h-full mb-5 lg:mb-0">
         <DashboardCardHeadline
           title="Schedule"
-          iconSource={deliveries}
-          iconDescription="deliveries icon"
+          iconSource={schedule}
+          iconDescription="schedule icon"
         />
         <div className="grid gap-2 grid-cols-2 grid-rows-9 h-full">
           <div className="col-start-1 col-span-2 row-start-1 row-span-3">
