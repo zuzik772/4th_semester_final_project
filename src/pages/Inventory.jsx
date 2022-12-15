@@ -1,19 +1,24 @@
 import MainTitle from "../components/MainTitle";
 import CTA from "../components/CTA";
-import AmountInput from "../components/AmountInput";
-import removeIcon from "../img/trash.png";
 import RadioButton from "../components/RadioButton";
 import { useState, useEffect } from "react";
 import ModalInventory from "../components/ModalInventory";
-import moment from "moment/moment";
+import InventoryLine from "../components/InventoryLine";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function Inventory(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const notify = () => toast("Item deleted");
 
   const [inventoryArray, setInventoryArray] = useState([]);
+  const [filtered, setFiltered] = useState([]);
+  const [sortedBy, setSortedBy] = useState("");
+  const [url, setUrl] = useState(
+    "https://louisiana-2c6b.restdb.io/rest/inventory-3"
+  );
 
-  const url = "https://louisiana-2c6b.restdb.io/rest/inventory-3";
   const options = {
     headers: {
       "x-apikey": "63925f89f43a573dae0953ee",
@@ -25,9 +30,10 @@ export default function Inventory(props) {
       .then((response) => response.json())
       .then((data) => {
         setInventoryArray(data);
+        setFiltered(data);
       });
     // eslint-disable-next-line
-  }, []);
+  }, [url]);
 
   function postToDb(item) {
     const postData = JSON.stringify(item);
@@ -47,7 +53,75 @@ export default function Inventory(props) {
           .then((response) => response.json())
           .then((data) => {
             setInventoryArray(data);
+            setFiltered(data);
           });
+      });
+  }
+
+  function filterByCategory(category) {
+    if (category === "all") setFiltered(inventoryArray);
+    else
+      setFiltered(inventoryArray.filter((item) => item.category === category));
+  }
+
+  function sort(property) {
+    if (property !== "") {
+      setSortedBy(property);
+      if (property === "expirydate")
+        setUrl(
+          "https://louisiana-2c6b.restdb.io/rest/inventory-3?sort=expirydate"
+        );
+      else {
+        setUrl("https://louisiana-2c6b.restdb.io/rest/inventory-3");
+        const sortedArray = [...filtered];
+        setFiltered(sortByProperty(sortedArray, property));
+      }
+    }
+  }
+
+  function sortByProperty(array, propertyName) {
+    return array.sort(function (a, b) {
+      if (a[propertyName] < b[propertyName]) {
+        return -1;
+      } else {
+        return 1;
+      }
+    });
+  }
+
+  function removeItem(id) {
+    fetch("https://louisiana-2c6b.restdb.io/rest/inventory-3/" + id, {
+      method: "delete",
+      headers: {
+        "x-apikey": "63925f89f43a573dae0953ee",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        fetch(url, options)
+          .then((response) => response.json())
+          .then((data) => {
+            setInventoryArray(data);
+            setFiltered(data);
+            notify();
+          });
+      });
+  }
+
+  function updateInDb(item) {
+    const postData = JSON.stringify(item);
+    fetch("https://louisiana-2c6b.restdb.io/rest/inventory-3/" + item.id, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        "x-apikey": "63925f89f43a573dae0953ee",
+      },
+      body: postData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
       });
   }
 
@@ -72,63 +146,93 @@ export default function Inventory(props) {
         />
       ) : null}
       <div className="flex flex-wrap gap-2 lg:gap-4 my-4 lg:my-0 text-center">
-        <RadioButton title="All" />
-        <RadioButton title="Beer" />
-        <RadioButton title="Cleaning" />
-        <RadioButton title="Coffee" />
-        <RadioButton title="Food" />
-        <RadioButton title="Soft drinks" />
+        <RadioButton
+          title="All"
+          name={"inv"}
+          value={"all"}
+          radioButtonFunction={filterByCategory}
+        />
+        <RadioButton
+          title="Beer"
+          name={"inv"}
+          value={"Beer"}
+          radioButtonFunction={filterByCategory}
+        />
+        <RadioButton
+          title="Cleaning"
+          name={"inv"}
+          value={"Cleaning"}
+          radioButtonFunction={filterByCategory}
+        />
+        <RadioButton
+          title="Coffee"
+          name={"inv"}
+          value={"Coffee"}
+          radioButtonFunction={filterByCategory}
+        />
+        <RadioButton
+          title="Food"
+          name={"inv"}
+          value={"Food"}
+          radioButtonFunction={filterByCategory}
+        />
+        <RadioButton
+          title="Soft drinks"
+          name={"inv"}
+          value={"Soft Drinks"}
+          radioButtonFunction={filterByCategory}
+        />
       </div>
       <table className="w-full">
         <thead>
           <tr>
-            <th>Category</th>
-            <th>Item</th>
-            <th>Amount</th>
-            <th>Expiry date</th>
+            <th
+              onClick={() => sort("category")}
+              className={`${sortedBy === "category" ? "text-accent" : ""}`}
+            >
+              Category
+            </th>
+            <th
+              onClick={() => sort("item")}
+              className={`${sortedBy === "item" ? "text-accent" : ""}`}
+            >
+              Item
+            </th>
+            <th
+              onClick={() => sort("amount")}
+              className={`${sortedBy === "amount" ? "text-accent" : ""}`}
+            >
+              Amount
+            </th>
+            <th
+              onClick={() => sort("expirydate")}
+              className={`${sortedBy === "expirydate" ? "text-accent" : ""}`}
+            >
+              Expiry date
+            </th>
           </tr>
         </thead>
         <tbody>
-          {inventoryArray
+          {filtered
             .filter((item) => item.location === props.location)
             .map((item) => (
-              <tr key={item._id}>
-                <td>{item.category}</td>
-                <td>{item.item}</td>
-                <td>
-                  <AmountInput amount={item.amount} /> {item.unit}
-                </td>
-                <td>
-                  {item.expirydate &&
-                    moment(item.expirydate).format("DD/MM/YYYY")}
-                </td>
-                {props.userType === "admin" && (
-                  <td className="text-end">
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="bg-accent text-white py-1 px-6 rounded-xl hover:bg-fadedAccent hover:text-dark"
-                    >
-                      Order
-                    </a>
-                  </td>
-                )}
-                {props.userType === "admin" && (
-                  <td className="text-end">
-                    <button>
-                      <img
-                        src={removeIcon}
-                        alt="remove icon"
-                        className="hover:bg-fadedAccent"
-                      />
-                    </button>
-                  </td>
-                )}
-              </tr>
+              <InventoryLine
+                key={item._id}
+                category={item.category}
+                item={item.item}
+                amount={item.amount}
+                unit={item.unit}
+                expirydate={item.expirydate}
+                link={item.link}
+                userType={props.userType}
+                removeItem={removeItem}
+                id={item._id}
+                updateInDb={updateInDb}
+              />
             ))}
         </tbody>
       </table>
+      <ToastContainer />
     </main>
   );
 }
