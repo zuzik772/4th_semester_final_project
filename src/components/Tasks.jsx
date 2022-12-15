@@ -52,15 +52,6 @@ export default function Tasks(props) {
   return (
     <div>
       <div className="flex items-center justify-evenly flex-wrap gap-1 mt-4 w-fit">
-        {/* <button className="rounded-t-lg bg-light  p-0 sm:p-3 py-1">
-          Opening
-        </button>
-        <button className="rounded-t-lg bg-darkerLight  p-0 sm:p-3 py-1">
-          Daily
-        </button>
-        <button className="rounded-t-lg bg-darkerLight  p-0 sm:p-3 py-1">
-          Closing
-        </button> */}
         <RadioButton
           title="Opening"
           name={"tasktype"}
