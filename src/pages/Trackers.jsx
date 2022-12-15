@@ -1,10 +1,8 @@
 import MainTitle from "../components/MainTitle";
 import CTA from "../components/CTA";
-import removeIcon from "../img/trash.png";
 import { useState, useEffect } from "react";
-import Checkbox from "../components/Checkbox";
 import ModalRental from "../components/ModalRental";
-import moment from "moment/moment";
+import RentalLine from "../components/RentalLine";
 
 export default function Trackers(props) {
   const [show, setShow] = useState(false);
@@ -105,26 +103,18 @@ export default function Trackers(props) {
           </thead>
           <tbody>
             {rentalArray.filter((record) => record.location === props.location).map((record) => (
-              <tr key={record._id}>
-                <td>{record.name}</td>
-                <td>{record.betatag}</td>
-                <td className="text-center">{record.double}</td>
-                <td className="text-center">{record.triple}</td>
-                <td className="pl-4">{moment(record.from).format("DD/MM/YYYY")}</td>
-                <td>{moment(record.to).format("DD/MM/YYYY")}</td>
-                <td className="text-center">{record.double * 500 + record.triple * 500}</td>
-                <td className="text-center">
-                  <Checkbox isChecked={record.paid} />
-                </td>
-                <td className="text-center">
-                  <Checkbox isChecked={record.returned}/>
-                </td>
-                <td>
-                  <button onClick={()=>removeRecord(record._id)}>
-                    <img src={removeIcon} alt="remove icon" className="hover:bg-fadedAccent" />
-                  </button>
-                </td>
-              </tr>
+              <RentalLine 
+              key={record._id}
+              name={record.name}
+              betatag={record.betatag}
+              double={record.double}
+              triple={record.triple}
+              from={record.from}
+              to={record.to}
+              paid={record.paid}
+              returned={record.returned}
+              removeRecord={removeRecord}
+              />
             ))}
           </tbody>
         </table>
@@ -132,3 +122,5 @@ export default function Trackers(props) {
     </>
   );
 }
+
+
