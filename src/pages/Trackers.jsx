@@ -51,6 +51,23 @@ export default function Trackers(props) {
       });
   }
 
+  function removeRecord(id) {
+    fetch("https://louisiana-2c6b.restdb.io/rest/crashpad-2/" + id, {
+      method: "delete",
+      headers: {
+        "x-apikey": "63925f89f43a573dae0953ee",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {console.log(data)
+        fetch(url, options)
+          .then((response) => response.json())
+          .then((data) => {
+            setRentalArray(data);
+          });
+      });
+  }
+
   return (
     <>
       <main className="overflow-x-auto w-full 2xl:w-3/5 h-fit p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
@@ -100,10 +117,10 @@ export default function Trackers(props) {
                   <Checkbox isChecked={record.paid} />
                 </td>
                 <td className="text-center">
-                  <Checkbox isChecked={record.returned} />
+                  <Checkbox isChecked={record.returned}/>
                 </td>
                 <td>
-                  <button>
+                  <button onClick={()=>removeRecord(record._id)}>
                     <img src={removeIcon} alt="remove icon" className="hover:bg-fadedAccent" />
                   </button>
                 </td>
