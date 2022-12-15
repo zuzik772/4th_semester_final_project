@@ -3,12 +3,16 @@ import CTA from "../components/CTA";
 import { useState, useEffect } from "react";
 import ModalRental from "../components/ModalRental";
 import RentalLine from "../components/RentalLine";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Trackers(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [rentalArray, setRentalArray] = useState([]);
+
+  const notify = () => toast("Record deleted");
 
   const url =
     "https://louisiana-2c6b.restdb.io/rest/crashpad-2?sort=from&dir=-1";
@@ -62,6 +66,7 @@ export default function Trackers(props) {
           .then((response) => response.json())
           .then((data) => {
             setRentalArray(data);
+            notify()
           });
       });
   }
@@ -141,6 +146,7 @@ export default function Trackers(props) {
             ))}
           </tbody>
         </table>
+        <ToastContainer />
       </main>
     </>
   );
