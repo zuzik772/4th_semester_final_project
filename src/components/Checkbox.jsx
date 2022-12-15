@@ -16,9 +16,7 @@ export default function Checkbox(props) {
     <input
       checked={isChecked}
       onChange={toggleCheckbox}
-      id="orange-checkbox"
       type="checkbox"
-      value=""
       className="w-4 h-4 sm:w-6 sm:h-6 text-accent bg-gray-100 rounded border-2 border-accent hover:ring-accent focus:ring-0 dark:focus:ring-0"
     />
   );

@@ -22,7 +22,7 @@ export default function Sidebar(props) {
                 <img src={dashboard} alt="dashboard icon" />
                 Dashboard
               </Link>
-              <span className="hidden md:block lowercase text-xs text-left -mt-2">
+              <span className="hidden md:block lowercase text-xs text-left -mt-2 ">
                 get an overview
               </span>
             </li>
@@ -83,7 +83,7 @@ export default function Sidebar(props) {
               </span>
             </li>
 
-            <ul className="opacity-50 mt-2 ml-2 sm:ml-8">
+            <ul className="opacity-80 mt-2 ml-2 sm:ml-8">
               <li>Cleaning shoes</li>
               <li>Closing receipts</li>
               <li>Consent form</li>
