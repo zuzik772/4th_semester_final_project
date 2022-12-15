@@ -6,7 +6,7 @@ export default function DashboardCardHeadline(props) {
         alt={props.iconDescription}
         className="border-b-4 border-accent rounded-sm"
       />
-      <h3>{props.title}</h3>
+      <h2>{props.title}</h2>
     </div>
   );
 }

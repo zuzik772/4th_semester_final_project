@@ -50,7 +50,7 @@ export default function TaskItem(props) {
             getCheckboxState={getCheckboxState}
             checkboxUpdated={update}
           />
-          <div className="flex flex-col line-through opacity-50">
+          <div className="flex flex-grow flex-col line-through">
             <label htmlFor="task">{props.title}</label>
             <span className="text-xs">{props.desc}</span>
           </div>
