@@ -4,10 +4,13 @@ import RadioButton from "../components/RadioButton";
 import { useState, useEffect } from "react";
 import ModalInventory from "../components/ModalInventory";
 import InventoryLine from "../components/InventoryLine";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 export default function Inventory(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const notify = () => toast("Item deleted");
 
   const [inventoryArray, setInventoryArray] = useState([]);
   const [filtered, setFiltered] = useState([]);
@@ -101,6 +104,7 @@ export default function Inventory(props) {
           .then((data) => {
             setInventoryArray(data);
             setFiltered(data);
+            notify();
           });
       });
   }
@@ -228,6 +232,7 @@ export default function Inventory(props) {
             ))}
         </tbody>
       </table>
+      <ToastContainer />
     </main>
   );
 }
