@@ -1,11 +1,9 @@
 import MainTitle from "../components/MainTitle";
 import CTA from "../components/CTA";
-import AmountInput from "../components/AmountInput";
-import removeIcon from "../img/trash.png";
 import RadioButton from "../components/RadioButton";
 import { useState, useEffect } from "react";
 import ModalInventory from "../components/ModalInventory";
-import moment from "moment/moment";
+import InventoryLine from "../components/InventoryLine";
 export default function Inventory(props) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -197,43 +195,18 @@ export default function Inventory(props) {
           {filtered
             .filter((item) => item.location === props.location)
             .map((item) => (
-              <tr key={item._id}>
-                <td>{item.category}</td>
-                <td>{item.item}</td>
-                <td>
-                  <AmountInput amount={item.amount} /> {item.unit}
-                </td>
-                <td>
-                  {item.expirydate
-                    ? moment(item.expirydate).format("DD/MM/YYYY")
-                    : "-"}
-                </td>
-                {props.userType === "admin" && (
-                  <td className="text-end">
-                    <a
-                      href={item.link}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="bg-accent text-white py-1 px-6 rounded-xl hover:bg-fadedAccent hover:text-dark"
-                    >
-                      Order
-                    </a>
-                  </td>
-                )}
-                {props.userType === "admin" && (
-                  <td className="text-end">
-                    <button
-                    onClick={()=>removeItem(item._id)}
-                    >
-                      <img
-                        src={removeIcon}
-                        alt="remove icon"
-                        className="hover:bg-fadedAccent"
-                      />
-                    </button>
-                  </td>
-                )}
-              </tr>
+              <InventoryLine
+              key={item._id}
+              category={item.category}
+              item={item.item}
+              amount={item.amount}
+              unit={item.unit}
+              expirydate={item.expirydate}
+              link={item.link}
+              userType={props.userType}
+              removeItem={removeItem}
+              id={item._id}
+              />
             ))}
         </tbody>
       </table>
