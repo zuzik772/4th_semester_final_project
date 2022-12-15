@@ -29,9 +29,8 @@ export default function ModalDelivery(props) {
                   type="text"
                   placeholder="Write product name here"
                   required
-                  className="p-0 border-none placeholder:text-darkerLight bg-white w-full rounded-md  focus:ring-0 dark:focus:ring-0 focus:bg-white"
+                  className="pl-0 pb-0 rounded-none border-0 border-b-darkerLight border-b focus:ring-0 dark:focus:ring-0 focus:border-accent"
                 />
-                <span className="border-t-2 border-t-accent"></span>
               </div>
               <div className="flex flex-col gap-0.5 mt-4">
                 <label htmlFor="company" className="flex pt-2">
@@ -42,9 +41,8 @@ export default function ModalDelivery(props) {
                   type="text"
                   placeholder="Write company name here"
                   required
-                  className="p-0 border-none placeholder:text-darkerLight bg-white w-full rounded-md  focus:ring-0 dark:focus:ring-0 focus:bg-white"
+                  className="pl-0 pb-0 rounded-none border-0 border-b-darkerLight border-b focus:ring-0 dark:focus:ring-0 focus:border-accent"
                 />
-                <span className="border-t border-t-accent"></span>
               </div>
               <div className="flex flex-col gap-1 mt-4">
                 <label htmlFor="when" className="flex mt-6">

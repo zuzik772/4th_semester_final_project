@@ -5,7 +5,7 @@ export default function Menu(props) {
     props.getLoginStatus(sessionStorage.getItem("isLoggedIn"));
   }
   return (
-    <div className="p-3 w-36 absolute top-20 right-0">
+    <div className="p-3 absolute top-20 right-0 w-fit">
       <ul className="bg-light text-center leading-8 rounded-lg border-2 border-accent">
         <li className="list-group-item flex items-center gap-2 border-b border-b-accent p-3 opacity-70">
           <svg

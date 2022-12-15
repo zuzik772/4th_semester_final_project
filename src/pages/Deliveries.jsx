@@ -49,7 +49,7 @@ export default function Deliveries(props) {
       <div className="flex flex-wrap items-center justify-between">
         <div>
           <Maintitle title="Deliveries" />
-          <p className="text-xs opacity-75 mb-4">
+          <p className="text-md opacity-75 mb-4">
             Check out all the upcoming deliveries in the calendar
           </p>
         </div>
