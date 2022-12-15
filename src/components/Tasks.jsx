@@ -20,7 +20,6 @@ export default function Tasks(props) {
         setTasksArray(data);
         setFilteredTasks(data);
       });
-    // eslint-disable-next-line
   }, []);
 
   function filterByType(type) {
