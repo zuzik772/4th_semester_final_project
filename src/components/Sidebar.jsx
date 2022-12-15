@@ -94,6 +94,11 @@ export default function Sidebar(props) {
           </div>
         </ul>
       </nav>
+      <span className="text-xs fixed bottom-0 left-2 hover:bg-light rounded-md">
+        <a href="https://icons8.com/" target="_blank" rel="noreferrer">
+          icons source: icons8.com
+        </a>
+      </span>
     </div>
   );
 }
