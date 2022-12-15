@@ -15,9 +15,7 @@ export default function Inventory(props) {
   const [inventoryArray, setInventoryArray] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [sortedBy, setSortedBy] = useState("");
-  const [url, setUrl] = useState(
-    "https://louisiana-2c6b.restdb.io/rest/inventory-3"
-  );
+  const [url, setUrl] = useState("https://louisiana-2c6b.restdb.io/rest/inventory-3");
 
   const options = {
     headers: {
@@ -60,17 +58,14 @@ export default function Inventory(props) {
 
   function filterByCategory(category) {
     if (category === "all") setFiltered(inventoryArray);
-    else
-      setFiltered(inventoryArray.filter((item) => item.category === category));
+    else setFiltered(inventoryArray.filter((item) => item.category === category));
   }
 
   function sort(property) {
     if (property !== "") {
       setSortedBy(property);
       if (property === "expirydate")
-        setUrl(
-          "https://louisiana-2c6b.restdb.io/rest/inventory-3?sort=expirydate"
-        );
+        setUrl("https://louisiana-2c6b.restdb.io/rest/inventory-3?sort=expirydate");
       else {
         setUrl("https://louisiana-2c6b.restdb.io/rest/inventory-3");
         const sortedArray = [...filtered];
@@ -134,18 +129,12 @@ export default function Inventory(props) {
             Check what items are we missing, you can filter by category
           </p>
         </div>
-        {props.userType === "admin" && (
-          <CTA title="Add item" handleCTA={handleShow} />
-        )}
+        {props.userType === "admin" && <CTA title="Add item" handleCTA={handleShow} />}
       </div>
       {show ? (
-        <ModalInventory
-          handleCTA={handleClose}
-          location={props.location}
-          postToDb={postToDb}
-        />
+        <ModalInventory handleCTA={handleClose} location={props.location} postToDb={postToDb} />
       ) : null}
-      <div className="flex flex-wrap gap-2 lg:gap-4 my-4 lg:my-0 text-center">
+      <div className="flex flex-wrap gap-2 lg:gap-4 mb-4 lg:mb-0 text-center">
         <RadioButton
           title="All"
           name={"inv"}

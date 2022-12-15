@@ -3,8 +3,8 @@ import CTA from "../components/CTA";
 import { useState, useEffect } from "react";
 import ModalRental from "../components/ModalRental";
 import RentalLine from "../components/RentalLine";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Trackers(props) {
   const [show, setShow] = useState(false);
@@ -14,8 +14,7 @@ export default function Trackers(props) {
 
   const notify = () => toast("Record deleted");
 
-  const url =
-    "https://louisiana-2c6b.restdb.io/rest/crashpad-2?sort=from&dir=-1";
+  const url = "https://louisiana-2c6b.restdb.io/rest/crashpad-2?sort=from&dir=-1";
   const options = {
     headers: {
       "x-apikey": "63925f89f43a573dae0953ee",
@@ -61,12 +60,13 @@ export default function Trackers(props) {
       },
     })
       .then((res) => res.json())
-      .then((data) => {console.log(data)
+      .then((data) => {
+        console.log(data);
         fetch(url, options)
           .then((response) => response.json())
           .then((data) => {
             setRentalArray(data);
-            notify()
+            notify();
           });
       });
   }
@@ -85,16 +85,16 @@ export default function Trackers(props) {
       .then((data) => {
         console.log(data);
         fetch(url, options)
-        .then((response) => response.json())
-        .then((data) => {
-          setRentalArray(data);
-        });
+          .then((response) => response.json())
+          .then((data) => {
+            setRentalArray(data);
+          });
       });
   }
 
   return (
     <>
-      <main className="overflow-x-auto w-full 2xl:w-3/5 h-fit p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
+      <main className="overflow-x-auto w-full 2xl:w-11/12 h-fit p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
         <div className="flex flex-wrap items-center justify-between">
           <div>
             <MainTitle title="Crashpad rental" />
@@ -106,11 +106,7 @@ export default function Trackers(props) {
           <CTA title="Add rental " handleCTA={handleShow} />
         </div>
         {show ? (
-          <ModalRental
-            handleCTA={handleClose}
-            location={props.location}
-            postToDb={postToDb}
-          />
+          <ModalRental handleCTA={handleClose} location={props.location} postToDb={postToDb} />
         ) : null}
 
         <table className="w-fit">
@@ -128,22 +124,24 @@ export default function Trackers(props) {
             </tr>
           </thead>
           <tbody>
-            {rentalArray.filter((record) => record.location === props.location).map((record) => (
-              <RentalLine 
-              key={record._id}
-              name={record.name}
-              betatag={record.betatag}
-              double={record.double}
-              triple={record.triple}
-              from={record.from}
-              to={record.to}
-              paid={record.paid}
-              returned={record.returned}
-              removeRecord={removeRecord}
-              updateInDb={updateInDb}
-              id={record._id}
-              />
-            ))}
+            {rentalArray
+              .filter((record) => record.location === props.location)
+              .map((record) => (
+                <RentalLine
+                  key={record._id}
+                  name={record.name}
+                  betatag={record.betatag}
+                  double={record.double}
+                  triple={record.triple}
+                  from={record.from}
+                  to={record.to}
+                  paid={record.paid}
+                  returned={record.returned}
+                  removeRecord={removeRecord}
+                  updateInDb={updateInDb}
+                  id={record._id}
+                />
+              ))}
           </tbody>
         </table>
         <ToastContainer />
@@ -151,5 +149,3 @@ export default function Trackers(props) {
     </>
   );
 }
-
-

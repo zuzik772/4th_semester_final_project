@@ -6,16 +6,15 @@ import SpecialOfferItem from "../components/SpecialOfferItem";
 import DashboardCardHeadline from "../components/DashboardCardHeadline";
 import moment from "moment";
 export default function Dashboard(props) {
-
   return (
-    <main className="p-0 sm:p-6 sm:pr-1 block lg:grid grid-cols-4 gap-4 xl:gap-8 w-full h-fit">
+    <main className="p-0 sm:p-6 sm:pr-1 block lg:grid grid-cols-4 gap-4 2xl:gap-8 w-full h-fit">
       <div className="col-span-3">
         <MainTitle title="Dashboard" />
 
         <span className="p-2 sm:p-0">{moment().format("MMMM Do YYYY")}</span>
       </div>
       {/* special offers */}
-      <div className="col-span-3 flex flex-col sm:grid sm:grid-cols-3 gap-4 md:gap-8 h-fit pb-6 lg:mb-0">
+      <div className="col-span-3 flex flex-col sm:grid sm:grid-cols-3 gap-4 2xl:gap-8 h-fit pb-6 lg:mb-0">
         <div className="col-span-3">
           <DashboardCardHeadline
             title="Special offers"
@@ -45,7 +44,7 @@ export default function Dashboard(props) {
           iconSource={deliveries}
           iconDescription="deliveries icon"
         />
-        <Tasks location={props.location} userType={props.userType}/>
+        <Tasks location={props.location} userType={props.userType} />
       </div>
       <div className="flex flex-col gap-2 h-fit mb-5 lg:mb-0">
         <DashboardCardHeadline

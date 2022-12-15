@@ -41,18 +41,17 @@ export default function Tasks(props) {
       .then((data) => {
         console.log(data);
         fetch(url, options)
-        .then((response) => response.json())
-        .then((data) => {
-          setTasksArray(data);
-          setFilteredTasks(data);
-
-        });
+          .then((response) => response.json())
+          .then((data) => {
+            setTasksArray(data);
+            setFilteredTasks(data);
+          });
       });
   }
 
   return (
     <div>
-      <div className="grid grid-cols-3 mt-4">
+      <div className="flex items-center justify-evenly flex-wrap gap-1 mt-4 w-fit">
         {/* <button className="rounded-t-lg bg-light  p-0 sm:p-3 py-1">
           Opening
         </button>
@@ -81,13 +80,9 @@ export default function Tasks(props) {
           radioButtonFunction={filterByType}
         />
       </div>
-      <ul className="flex flex-col gap-6 bg-light px-2 lg:pl-2 xl:px-6 py-6">
+      <ul className="flex flex-col gap-6 bg-light px-2 lg:pl-2 xl:px-6 py-6 rounded-md">
         {filteredTasks
-          .filter(
-            (task) =>
-              task.location === props.location &&
-              !task.isdone
-          )
+          .filter((task) => task.location === props.location && !task.isdone)
           .map((task) => (
             <TaskItem
               key={task._id}
@@ -105,11 +100,7 @@ export default function Tasks(props) {
       <ul className="bg-light py-6 lg:py-12 h-full">
         <h4 className="font-medium pl-6">Done</h4>
         {filteredTasks
-          .filter(
-            (task) =>
-              task.location === props.location &&
-              task.isdone
-          )
+          .filter((task) => task.location === props.location && task.isdone)
           .map((task) => (
             <TaskItem
               key={task._id}
