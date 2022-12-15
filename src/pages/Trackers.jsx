@@ -66,6 +66,27 @@ export default function Trackers(props) {
       });
   }
 
+  function updateInDb(record) {
+    const postData = JSON.stringify(record);
+    fetch("https://louisiana-2c6b.restdb.io/rest/crashpad-2/" + record.id, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        "x-apikey": "63925f89f43a573dae0953ee",
+      },
+      body: postData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        fetch(url, options)
+        .then((response) => response.json())
+        .then((data) => {
+          setRentalArray(data);
+        });
+      });
+  }
+
   return (
     <>
       <main className="overflow-x-auto w-full 2xl:w-3/5 h-fit p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
@@ -114,6 +135,8 @@ export default function Trackers(props) {
               paid={record.paid}
               returned={record.returned}
               removeRecord={removeRecord}
+              updateInDb={updateInDb}
+              id={record._id}
               />
             ))}
           </tbody>

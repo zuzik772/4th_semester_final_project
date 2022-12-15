@@ -1,8 +1,39 @@
 import moment from "moment/moment";
 import Checkbox from "./Checkbox";
 import removeIcon from "../img/trash.png";
-
+import { useState, useEffect } from "react";
 export default function RentalLine(props) {
+  const [updatedRecord, setUpdatedRecord] = useState({});
+  const [isPaid, setIsPaid] = useState(props.paid);
+  const [isReturned, setIsReturned] = useState(props.returned);
+
+  function getCheckboxStatePaid(state) {
+    setIsPaid(state);
+  }
+
+  function getCheckboxStateReturned(state) {
+    setIsReturned(state);
+  }
+
+  function updatePaid() {
+    setUpdatedRecord({
+      id: props.id,
+      paid: !isPaid,
+    });
+  }
+
+  function updateReturned() {
+    setUpdatedRecord({
+        id: props.id,
+        returned: !isReturned,
+      });
+  }
+
+  useEffect(() => {
+    if (Object.keys(updatedRecord).length) props.updateInDb(updatedRecord);
+    // eslint-disable-next-line
+  }, [updatedRecord]);
+
   return (
     <tr>
       <td>{props.name}</td>
@@ -14,12 +45,17 @@ export default function RentalLine(props) {
       <td className="text-center">{props.double * 500 + props.triple * 500}</td>
       <td className="text-center">
         <Checkbox
-          isChecked={props.paid}
-          checkboxUpdates={() => props.updateRecord(props._id)}
+          isChecked={isPaid}
+          checkboxUpdated={updatePaid}
+          getCheckboxState={getCheckboxStatePaid}
         />
       </td>
       <td className="text-center">
-        <Checkbox isChecked={props.returned} />
+        <Checkbox
+          isChecked={isReturned}
+          checkboxUpdated={updateReturned}
+          getCheckboxState={getCheckboxStateReturned}
+        />
       </td>
       <td>
         <button onClick={() => props.removeRecord(props._id)}>
