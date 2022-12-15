@@ -4,45 +4,71 @@ import ModalDelivery from "../components/ModalDelivery";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "../react-big-calendar.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 export default function Deliveries(props) {
   const [show, setShow] = useState(false);
+  const [schedule, setSchedule] = useState([]);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const localizer = momentLocalizer(moment);
-
-  let schedule = []
-
-  if((props.location==="west")){
-    schedule= [
-      {
-        allDay: false,
-        start: new Date("2022-12-13T10:30:46.765Z"),
-        end: new Date("2022-12-13T12:30:46.765Z"),
-        title: "Vegetables",
-      },
-      {
-        allDay: false,
-        start: new Date("2022-12-12T04:00:00.000Z"),
-        end: new Date("2022-12-12T09:00:00.000Z"),
-        title: "Toilet paper",
-      },
-    ]
-  } else {schedule=[
-    {
-      allDay: false,
-      start: new Date("2022-12-16T10:30:46.765Z"),
-      end: new Date("2022-12-16T12:30:46.765Z"),
-      title: "Vegetables",
+  const url = "https://louisiana-2c6b.restdb.io/rest/deliveries";
+  const options = {
+    headers: {
+      "x-apikey": "63925f89f43a573dae0953ee",
     },
-    {
-      allDay: false,
-      start: new Date("2022-12-14T04:00:00.000Z"),
-      end: new Date("2022-12-14T09:00:00.000Z"),
-      title: "Toilet paper",
-    },
-  ]}
+  };
+
+  useEffect(() => {
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => {
+        setSchedule([])
+        data.filter((delivery) => delivery.location === props.location).forEach((delivery)=>{
+          let newDelivery = {
+            allDay: delivery.allDay,
+            start: new Date(delivery.start),
+            end: new Date(delivery.end),
+            title: delivery.title
+          }
+          setSchedule(current => [...current, newDelivery]);
+        })
+      });
+    // eslint-disable-next-line
+  }, [props.location]);
+
+  function addToSchedule(delivery) {
+    if (Object.keys(delivery).length) {
+      const postData = JSON.stringify(delivery);
+      fetch(url, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          "x-apikey": "63925f89f43a573dae0953ee",
+        },
+        body: postData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          handleClose();
+          fetch(url, options)
+              .then((response) => response.json())
+              .then((data) => {
+                setSchedule([])
+                data.filter((delivery) => delivery.location === props.location).forEach((delivery)=>{
+                  let newDelivery = {
+                    allDay: delivery.allDay,
+                    start: new Date(delivery.start),
+                    end: new Date(delivery.end),
+                    title: delivery.title
+                  }
+                  setSchedule(current => [...current, newDelivery]);
+                })
+              });
+            });
+        };
+    }
 
   return (
     <main className="w-full 2xl:w-3/5 p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
@@ -55,7 +81,13 @@ export default function Deliveries(props) {
         </div>
         <CTA title="Add delivery" handleCTA={handleShow} />
       </div>
-      {show ? <ModalDelivery handleCTA={handleClose} /> : null}
+      {show ? (
+        <ModalDelivery
+          handleCTA={handleClose}
+          location={props.location}
+          addToSchedule={addToSchedule}
+        />
+      ) : null}
       <Calendar
         localizer={localizer}
         defaultDate={new Date()}

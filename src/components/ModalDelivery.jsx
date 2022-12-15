@@ -1,7 +1,32 @@
 import CTA from "./CTA";
 import RequiredIcon from "./icons/RequiredIcon";
 import CloseIcon from "./icons/CloseIcon";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useRef, useState } from "react";
+import { useEffect } from "react";
 export default function ModalDelivery(props) {
+  const [fromDate, setFromDate] = useState(new Date());
+  const [toDate, setToDate] = useState(new Date());
+  const [newDelivery, setNewDelivery] = useState({});
+
+  const productRef = useRef();
+
+  function addDelivery() { 
+    setNewDelivery({
+      allDay: false,
+      start: fromDate.toISOString(),
+      end: toDate.toISOString(),
+      title: productRef.current.value,
+      location: props.location
+    });
+  }
+
+  useEffect(() => {
+    if (Object.keys(newDelivery).length) props.addToSchedule(newDelivery);
+    // eslint-disable-next-line
+  }, [newDelivery]);
+
   return (
     <div className="bg-modal fixed top-0 left-0 right-0 z-50 h-screen flex place-content-center items-center">
       <div id="small-modal" tabIndex="-1" className="w-96">
@@ -26,6 +51,7 @@ export default function ModalDelivery(props) {
                   <RequiredIcon />
                 </label>
                 <input
+                  ref={productRef}
                   type="text"
                   placeholder="Write product name here"
                   required
@@ -49,16 +75,24 @@ export default function ModalDelivery(props) {
                   When
                   <RequiredIcon />
                 </label>
-                <div className="flex items-center gap-2">
-                  <input
-                    type="checkbox"
-                    required
-                    className="w-6 h-6 text-accent bg-gray-100 rounded border-accent hover:ring-accent focus:ring-0 dark:focus:ring-0"
-                  />
-                  <label htmlFor="allDay" className="flex py-2 font-normal">
-                    All workday
-                  </label>
-                </div>
+                <label htmlFor="from" className="flex mt-1">
+                  From
+                </label>
+                <DatePicker
+                  showTimeSelect
+                  selected={fromDate}
+                  onChange={(date) => setFromDate(date)}
+                  className="w-full rounded-md border-darkerLight focus:bg-light focus:ring-0 focus:border-accent"
+                />
+                <label htmlFor="to" className="flex mt-1">
+                  To
+                </label>
+                <DatePicker
+                  showTimeSelect
+                  selected={toDate}
+                  onChange={(date) => setToDate(date)}
+                  className="w-full rounded-md border-darkerLight focus:bg-light focus:ring-0 focus:border-accent"
+                />
               </div>
               <div className="mt-6">
                 <label htmlFor="description" className="flex py-2 ">
@@ -75,7 +109,7 @@ export default function ModalDelivery(props) {
               </div>
             </div>
             <div className="flex justify-end p-6 pt-0">
-              <CTA title="Add delivery" />
+              <CTA title="Add delivery" handleCTA={addDelivery} />
             </div>
           </div>
         </div>
