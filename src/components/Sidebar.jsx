@@ -10,10 +10,14 @@ export default function Sidebar(props) {
 
   return (
     <div>
-      <nav className="static sm:sticky sm:top-0 bg-lighterGrey w-full sm:w-56 sm:h-screen p-2 sm:p-8">
-        <ul className="flex sm:flex-col gap-2 sm:gap-6 ">
-          <div className="grid sm:flex sm:flex-col gap-2 sm:gap-6">
-            <li className={`${position === "dashboard" ? "text-accent" : "hover:text-accent"}`}>
+      <nav className="static sm:sticky sm:top-0 bg-lighterGrey sm:h-screen pt-5">
+        <ul className="flex sm:flex-col gap-2">
+          <div className="grid sm:flex sm:flex-col gap-2">
+            <li
+              className={`p-2 pl-0 sm:pl-6 ${
+                position === "dashboard" ? "bg-fadedAccent" : "hover:bg-fadedAccent"
+              }`}
+            >
               <Link to="/dashboard" onClick={() => setPosition("dashboard")}>
                 <img src={dashboard} alt="dashboard icon" />
                 Dashboard
@@ -24,7 +28,11 @@ export default function Sidebar(props) {
             </li>
 
             {props.userType === "admin" && (
-              <li className={`${position === "deliveries" ? "text-accent" : "hover:text-accent"}`}>
+              <li
+                className={`p-2 pl-0 sm:pl-6 ${
+                  position === "deliveries" ? "bg-fadedAccent" : "hover:bg-fadedAccent"
+                }`}
+              >
                 <Link to="/deliveries" onClick={() => setPosition("deliveries")}>
                   <img src={deliveries} alt="deliveries icon" />
                   Deliveries
@@ -35,7 +43,11 @@ export default function Sidebar(props) {
               </li>
             )}
 
-            <li className={`${position === "inventory" ? "text-accent" : "hover:text-accent"}`}>
+            <li
+              className={`p-2 pl-0 sm:pl-6 ${
+                position === "inventory" ? "bg-fadedAccent" : "hover:bg-fadedAccent"
+              }`}
+            >
               <Link to="/inventory" onClick={() => setPosition("inventory")}>
                 <img src={inventory} alt="inventory icon" />
                 Inventory
@@ -44,7 +56,11 @@ export default function Sidebar(props) {
                 see what's missing
               </span>
             </li>
-            <li className={`${position === "posts" ? "text-accent" : "hover:text-accent"}`}>
+            <li
+              className={`p-2 pl-0 sm:pl-6 ${
+                position === "posts" ? "bg-fadedAccent" : "hover:bg-fadedAccent"
+              }`}
+            >
               <Link to="/posts" onClick={() => setPosition("posts")}>
                 <img src={posts} alt="posts icon" />
                 Posts
@@ -55,17 +71,21 @@ export default function Sidebar(props) {
             </li>
           </div>
           <div>
-            <li className={`${position === "trackers" ? "text-accent" : "hover:text-accent"}`}>
+            <li
+              className={`p-2 pl-0 sm:pl-6 ${
+                position === "trackers" ? "bg-fadedAccent" : "hover:bg-fadedAccent"
+              }`}
+            >
               <Link to="/trackers" onClick={() => setPosition("trackers")}>
                 <img src={trackers} alt="trackers icon" />
                 Trackers
               </Link>
-              <span className="hidden md:block lowercase text-xs text-lef mb-2 -mt-2">
+              <span className="hidden md:block lowercase text-xs text-lef -mt-2">
                 update the data
               </span>
             </li>
 
-            <ul className="opacity-50 ml-2 sm:ml-8">
+            <ul className="opacity-50 mt-2 ml-2 sm:ml-8">
               <li>Cleaning shoes</li>
               <li>Closing receipts</li>
               <li>Consent form</li>
