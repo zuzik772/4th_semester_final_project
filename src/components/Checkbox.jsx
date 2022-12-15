@@ -1,9 +1,16 @@
+import { useEffect } from "react";
 import { useState } from "react";
 export default function Checkbox(props) {
   const [isChecked, setIsChecked] = useState(props.isChecked);
   function toggleCheckbox() {
     setIsChecked(!isChecked);
+    props.checkboxUpdated();
   }
+
+  useEffect(() => {
+    props.getCheckboxState(isChecked);
+    // eslint-disable-next-line
+  }, [isChecked]);
 
   return (
     <input
