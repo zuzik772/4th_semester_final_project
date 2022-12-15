@@ -15,7 +15,7 @@ export default function Sidebar(props) {
           <div className="grid sm:flex sm:flex-col gap-2">
             <li
               className={`p-2 pl-0 sm:pl-6 ${
-                position === "dashboard" ? "bg-fadedAccent" : "hover:bg-fadedAccent"
+                position === "dashboard" ? "bg-light" : "hover:bg-light"
               }`}
             >
               <Link to="/dashboard" onClick={() => setPosition("dashboard")}>
@@ -30,7 +30,7 @@ export default function Sidebar(props) {
             {props.userType === "admin" && (
               <li
                 className={`p-2 pl-0 sm:pl-6 ${
-                  position === "deliveries" ? "bg-fadedAccent" : "hover:bg-fadedAccent"
+                  position === "deliveries" ? "bg-light" : "hover:bg-light"
                 }`}
               >
                 <Link to="/deliveries" onClick={() => setPosition("deliveries")}>
@@ -45,7 +45,7 @@ export default function Sidebar(props) {
 
             <li
               className={`p-2 pl-0 sm:pl-6 ${
-                position === "inventory" ? "bg-fadedAccent" : "hover:bg-fadedAccent"
+                position === "inventory" ? "bg-light" : "hover:bg-light"
               }`}
             >
               <Link to="/inventory" onClick={() => setPosition("inventory")}>
@@ -57,9 +57,7 @@ export default function Sidebar(props) {
               </span>
             </li>
             <li
-              className={`p-2 pl-0 sm:pl-6 ${
-                position === "posts" ? "bg-fadedAccent" : "hover:bg-fadedAccent"
-              }`}
+              className={`p-2 pl-0 sm:pl-6 ${position === "posts" ? "bg-light" : "hover:bg-light"}`}
             >
               <Link to="/posts" onClick={() => setPosition("posts")}>
                 <img src={posts} alt="posts icon" />
@@ -73,7 +71,7 @@ export default function Sidebar(props) {
           <div>
             <li
               className={`p-2 pl-0 sm:pl-6 ${
-                position === "trackers" ? "bg-fadedAccent" : "hover:bg-fadedAccent"
+                position === "trackers" ? "bg-light" : "hover:bg-light"
               }`}
             >
               <Link to="/trackers" onClick={() => setPosition("trackers")}>
