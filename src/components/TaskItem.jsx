@@ -50,10 +50,12 @@ export default function TaskItem(props) {
             getCheckboxState={getCheckboxState}
             checkboxUpdated={update}
           />
-          <div className="flex flex-grow flex-col line-through">
-            <label htmlFor="task">{props.title}</label>
-            <span className="text-xs">{props.desc}</span>
-          </div>
+
+          <label htmlFor="task" className="flex flex-grow flex-col line-through">
+            {props.title} <span className="text-xs">{props.desc}</span>
+          </label>
+          {/* <span className="text-xs">{props.desc}</span> */}
+
           <span
             title={props.fullname}
             className="bg-fadedBlue w-6 h-6 p-2 rounded-full flex items-center justify-center cursor-pointerfont-bold text-xs font-medium cursor-pointer"
@@ -62,21 +64,16 @@ export default function TaskItem(props) {
           </span>
         </li>
       ) : (
-        <li className="lowercase">
-          <div className="flex gap-4 items-center leading-4">
-            <Checkbox
-              isChecked={isDone}
-              getCheckboxState={getCheckboxState}
-              checkboxUpdated={update}
-            />
-
-            <div className="flex flex-col">
-              <label htmlFor="orange-checkbox" className="text-sm font-medium">
-                {props.title}
-              </label>
-              <span className="text-xs">{props.desc}</span>
-            </div>
-          </div>
+        <li className="lowercase flex gap-4 items-center leading-4">
+          <Checkbox
+            isChecked={isDone}
+            getCheckboxState={getCheckboxState}
+            checkboxUpdated={update}
+          />
+          <label htmlFor="orange-checkbox" className="flex flex-col text-sm font-medium">
+            {props.title}
+            <span className="text-xs">{props.desc}</span>
+          </label>
         </li>
       )}
     </>
