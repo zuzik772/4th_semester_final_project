@@ -58,7 +58,7 @@ export default function RentalLine(props) {
         />
       </td>
       <td>
-        <button onClick={() => props.removeRecord(props._id)}>
+        <button onClick={() => props.removeRecord(props.id)}>
           <img
             src={removeIcon}
             alt="remove icon"
