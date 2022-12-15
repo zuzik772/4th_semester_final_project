@@ -94,13 +94,30 @@ export default function Inventory(props) {
       },
     })
       .then((res) => res.json())
-      .then((data) => {console.log(data)
+      .then((data) => {
+        console.log(data);
         fetch(url, options)
-        .then((response) => response.json())
-        .then((data) => {
-          setInventoryArray(data);
-          setFiltered(data);
-        });
+          .then((response) => response.json())
+          .then((data) => {
+            setInventoryArray(data);
+            setFiltered(data);
+          });
+      });
+  }
+
+  function updateInDb(item) {
+    const postData = JSON.stringify(item);
+    fetch("https://louisiana-2c6b.restdb.io/rest/inventory-3/" + item.id, {
+      method: "put",
+      headers: {
+        "Content-Type": "application/json",
+        "x-apikey": "63925f89f43a573dae0953ee",
+      },
+      body: postData,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
       });
   }
 
@@ -196,16 +213,17 @@ export default function Inventory(props) {
             .filter((item) => item.location === props.location)
             .map((item) => (
               <InventoryLine
-              key={item._id}
-              category={item.category}
-              item={item.item}
-              amount={item.amount}
-              unit={item.unit}
-              expirydate={item.expirydate}
-              link={item.link}
-              userType={props.userType}
-              removeItem={removeItem}
-              id={item._id}
+                key={item._id}
+                category={item.category}
+                item={item.item}
+                amount={item.amount}
+                unit={item.unit}
+                expirydate={item.expirydate}
+                link={item.link}
+                userType={props.userType}
+                removeItem={removeItem}
+                id={item._id}
+                updateInDb={updateInDb}
               />
             ))}
         </tbody>
