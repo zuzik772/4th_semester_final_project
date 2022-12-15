@@ -6,11 +6,13 @@ import SeenByPeople from "../components/icons/SeenByPeople";
 import Attachment from "../components/icons/Attachment";
 import CTA from "../components/CTA";
 import { useState, useEffect, useRef } from "react";
+import moment from "moment";
 export default function Posts(props) {
   const [postsArray, setPostsArray] = useState([]);
+  const [newPost, setNewPost] = useState({});
   const postRef = useRef();
 
-  const url = "https://louisiana-2c6b.restdb.io/rest/posts?sort=date";
+  const url = "https://louisiana-2c6b.restdb.io/rest/posts?sort=date&dir=-1";
   const options = {
     headers: {
       "x-apikey": "63925f89f43a573dae0953ee",
@@ -26,7 +28,49 @@ export default function Posts(props) {
     // eslint-disable-next-line
   }, []);
 
-  function post() {}
+  function post() {
+    if (props.userType === "admin") {
+      setNewPost({
+        user: "Big Admin",
+        initials: "BA",
+        date: moment().toISOString(),
+        text: postRef.current.value,
+      });
+    } else if (props.userType === "employee") {
+      setNewPost({
+        user: "Just an Employee",
+        initials: "JE",
+        date: moment().toISOString(),
+        text: postRef.current.value,
+      });
+    }
+  }
+
+  useEffect(() => {
+    if (Object.keys(newPost).length) {
+      const postData = JSON.stringify(newPost);
+      fetch("https://louisiana-2c6b.restdb.io/rest/posts", {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          "x-apikey": "63925f89f43a573dae0953ee",
+        },
+        body: postData,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          fetch(url, options)
+            .then((response) => response.json())
+            .then((data) => {
+              setPostsArray(data);
+              postRef.current.value = "";
+              setNewPost({})
+            });
+        });
+    }
+    // eslint-disable-next-line
+  }, [newPost]);
 
   return (
     <main className="w-full lg:w-3/5 p-2 sm:p-6 sm:pl-12 block lg:grid gap-6">
@@ -59,6 +103,31 @@ export default function Posts(props) {
       {/* new posts */}
       <div className="mt-6">
         <h3 className="text-lg font-semibold">New Posts</h3>
+
+        {postsArray.map((post) => (
+          <div className="mt-6" key={post._id}>
+            <div className="flex flex-col gap-2 bg-light p-2 sm:p-5 col-span-3 mb-5 lg:mb-0">
+              <div className="flex gap-2 items-center">
+                <span className="bg-fadedBlue w-10 h-10 p-2 rounded-full flex items-center justify-center cursor-pointerfont-bold text-md font-medium cursor-pointer">
+                  {post.initials}
+                </span>
+                <div className="flex flex-col ">
+                  <span className="font-medium">{post.user}</span>
+                  <span className="font-light text-xs">{moment(post.date).format("D MMM YY, kk:mm")}</span>
+                </div>
+              </div>
+              <p>{post.text}</p>
+              <div className="flex gap-1 items-center justify-end">
+                <SeenByPeople />
+                <span className="font-medium text-sm">0</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* old posts */}
+      <div className="mt-6">
+        <h3 className="text-lg font-semibold">Old Posts</h3>
         <div className="flex flex-col gap-2 bg-light p-2 sm:p-5 col-span-3 mb-5 lg:mb-0">
           <div className="flex gap-2 items-center">
             <span className="bg-fadedBlue w-10 h-10 p-2 rounded-full flex items-center justify-center cursor-pointerfont-bold text-md font-medium cursor-pointer">
@@ -82,32 +151,8 @@ export default function Posts(props) {
             <span className="font-medium text-sm">10</span>
           </div>
         </div>
-      </div>
 
-      {postsArray.map((post) => (
-        <div className="mt-6" key={post._id}>
-          <div className="flex flex-col gap-2 bg-light p-2 sm:p-5 col-span-3 mb-5 lg:mb-0">
-            <div className="flex gap-2 items-center">
-              <span className="bg-fadedBlue w-10 h-10 p-2 rounded-full flex items-center justify-center cursor-pointerfont-bold text-md font-medium cursor-pointer">
-                {post.initials}
-              </span>
-              <div className="flex flex-col ">
-                <span className="font-medium">{post.user}</span>
-                <span className="font-light text-xs">{post.date}</span>
-              </div>
-            </div>
-            <p>{post.text}</p>
-            <div className="flex gap-1 items-center justify-end">
-              <SeenByPeople />
-              <span className="font-medium text-sm">10</span>
-            </div>
-          </div>
-        </div>
-      ))}
-      {/* old posts */}
-      <div className="mt-6">
-        <h3 className="text-lg font-semibold">Old Posts</h3>
-        <div className="flex flex-col gap-2 bg-light p-2 sm:p-5 col-span-3 mb-5 lg:mb-0">
+        <div className="flex flex-col gap-2 bg-light p-2 sm:p-5 col-span-3 mb-5 lg:mb-0 mt-6">
           <div className="flex gap-2 items-center">
             <span className="bg-fadedBlue w-10 h-10 p-2 rounded-full flex items-center justify-center cursor-pointerfont-bold text-md font-medium cursor-pointer">
               AS

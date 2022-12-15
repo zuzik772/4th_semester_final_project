@@ -80,7 +80,7 @@ export default function App() {
               path="/posts"
               element={
                 <PrivateRoute>
-                  <Posts />
+                  <Posts userType={userType}/>
                 </PrivateRoute>
               }
             />
